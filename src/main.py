@@ -4,22 +4,25 @@ from config import mysql
 from flask import jsonify
 from flask import flash, request
 
-@app.route('/create', methods=['POST'])
-def create_emp():
+#CREAR PRODUCTOS
+@app.route('/insertar', methods=['POST'])
+def crear_producto():
     try:        
         _json = request.json
-        _name = _json['name']
-        _email = _json['email']
-        _phone = _json['phone']
-        _address = _json['address']	
-        if _name and _email and _phone and _address and request.method == 'POST':
+        _id = _json['id']
+        _nproducto =_json['n_producto']
+        _descripcion = _json['descripcion']
+        _cantidad = _json['cantidad']
+        _imagen = _json['imagen']
+        _precio = _json['precio']	
+        if _id and _nproducto and _descripcion and _cantidad and _imagen and request.method == 'POST':
             conn = mysql.connect()
             cursor = conn.cursor(pymysql.cursors.DictCursor)		
-            sqlQuery = "INSERT INTO emp(name, email, phone, address) VALUES(%s, %s, %s, %s)"
-            bindData = (_name, _email, _phone, _address)            
+            sqlQuery = "INSERT INTO `productos`(`id`, `n_producto`, `descripcion`, `cantidad`, `imagen`, `precio`)  VALUES(%s, %s, %s, %s, %s, %s)"
+            bindData = (_id, _nproducto, _descripcion, _cantidad, _imagen, _precio,)            
             cursor.execute(sqlQuery, bindData)
             conn.commit()
-            respone = jsonify('Employee added successfully!')
+            respone = jsonify('Producto añadido a la lista!')
             respone.status_code = 200
             return respone
         else:
@@ -28,9 +31,9 @@ def create_emp():
         print(e)
     finally:
         cursor.close() 
-        conn.close()          
-#  LISTAR PRODUCTOS
+        conn.close()
 
+#  LISTAR PRODUCTOS
 @app.route('/listado')
 def listado_productos():
     try:
@@ -47,6 +50,8 @@ def listado_productos():
         cursor.close() 
         conn.close()  
 
+
+#FILTRAR POR ID
 @app.route('/emp/<int:emp_id>')
 def emp_details(emp_id):
     try:
@@ -63,18 +68,20 @@ def emp_details(emp_id):
         cursor.close() 
         conn.close() 
 
-@app.route('/update', methods=['PUT'])
-def update_emp():
+#MODIFICAR PRODUCTOS
+@app.route('/modificar', methods=['PUT'])
+def modificar_producto():
     try:
         _json = request.json
         _id = _json['id']
-        _name = _json['name']
-        _email = _json['email']
-        _phone = _json['phone']
-        _address = _json['address']
-        if _name and _email and _phone and _address and _id and request.method == 'PUT':			
-            sqlQuery = "UPDATE productos SET name=%s, email=%s, phone=%s, address=%s WHERE id=%s"
-            bindData = (_name, _email, _phone, _address, _id,)
+        _nproducto =_json['n_producto']
+        _descripcion = _json['descripcion']
+        _cantidad = _json['cantidad']
+        _imagen = _json['imagen']
+        _precio = _json['precio']	
+        if _id and _nproducto and _descripcion and _cantidad and _imagen and _precio and request.method == 'PUT':			
+            sqlQuery = "UPDATE `productos` SET `id`= %s,`n_producto`=%s,`descripcion`=%s,`cantidad`=%s,`imagen`=%s,`precio`=%s WHERE id=%s"
+            bindData = (_id, _nproducto, _descripcion, _cantidad, _imagen, _precio,)
             conn = mysql.connect()
             cursor = conn.cursor()
             cursor.execute(sqlQuery, bindData)
@@ -90,8 +97,9 @@ def update_emp():
         cursor.close() 
         conn.close() 
 
-@app.route('/delete/<int:id>', methods=['DELETE'])
-def delete_emp(id):
+#ELIMINAR PRODUCTOS
+@app.route('/eliminar/<int:id>', methods=['DELETE'])
+def eliminar_producto(id):
 	try:
 		conn = mysql.connect()
 		cursor = conn.cursor()
