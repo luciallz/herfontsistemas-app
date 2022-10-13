@@ -18,7 +18,7 @@ def crear_producto():
         if _id and _nproducto and _descripcion and _cantidad and _imagen and request.method == 'POST':
             conn = mysql.connect()
             cursor = conn.cursor(pymysql.cursors.DictCursor)		
-            sqlQuery = "INSERT INTO `productos`(`id`, `n_producto`, `descripcion`, `cantidad`, `imagen`, `precio`)  VALUES(%s, %s, %s, %s, %s, %s)"
+            sqlQuery = "INSERT INTO productos(id, n_producto, descripcion, cantidad, imagen, precio)  VALUES(%s, %s, %s, %s, %s, %s)"
             bindData = (_id, _nproducto, _descripcion, _cantidad, _imagen, _precio,)            
             cursor.execute(sqlQuery, bindData)
             conn.commit()
