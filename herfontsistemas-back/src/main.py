@@ -127,4 +127,4 @@ def showMessage(error=None):
     return respone
         
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

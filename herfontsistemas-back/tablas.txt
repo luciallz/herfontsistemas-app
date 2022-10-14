@@ -1,0 +1,30 @@
+Crear base de datos:
+CREATE TABLE herfontsistemasdb
+
+Tabla de poductos:
+CREATE TABLE productos (
+  id int(11) NOT NULL,
+  n_producto varchar(40) DEFAULT NULL,
+  descripcion varchar(40) DEFAULT NULL,
+  cantidad int(11) DEFAULT NULL,
+  imagen varchar(40) DEFAULT NULL,
+  precio int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+Tabla usuarios:
+ CREATE TABLE usuarios (
+    ->   id int AUTO_INCREMENT primary key,
+    ->   nombre varchar(20) NOT NULL,
+    ->   apellidos varchar(40) NOT NULL,
+    ->   correo varchar(60) NOT NULL,
+    ->   telefono varchar(40) NOT NULL,
+    ->   tipo_cliente varchar(20) NOT NULL,
+    ->   contrasena varchar(40) NOT NULL,
+    ->   direccion varchar(40) NOT NULL,
+    ->   ciudad varchar(20) DEFAULT NULL,
+    ->   provincia varchar(40) NOT NULL,
+    ->   codigo_postal varchar(40) NOT NULL,
+    ->   descuento int(11) DEFAULT NULL
+    -> ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+Tabla trabajadores:
