@@ -1,14 +1,19 @@
 from flask import Blueprint,render_template
-
+from sqlalchemy.orm import sessionmaker
+from models.usuarios import usuarios
+from utils.db import engine
 contacts=Blueprint('contacts',__name__)
 
 @contacts.route("/")
 def home():
-    return render_template('index.html')
+ SessionListar=sessionmaker(bind=engine)
+ session=SessionListar()
+ result=session.query(usuarios).all()
+ return render_template('index.html',result=result)
 
 @contacts.route("/new")
-def add_contact():
-    return "guardando un contacto"
+def new():
+    return {"prueba": ["prueba1","prueba2","prueba3"]}
 
 @contacts.route("/update")
 def update():

@@ -1,2 +1,9 @@
-<h1>Home page</h1>
-<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat, suscipit?</p>
+<div>
+{% for usuario in result %}
+
+<div>
+    <p>Nombre:{{usuario.nombre}}</p>
+    <p>Usuario{{usuario.correo}}</p>
+</div>
+{% endfor %}
+</div>
