@@ -28,3 +28,32 @@ Tabla usuarios:
     -> ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 Tabla trabajadores:
+ CREATE TABLE trabajadores (
+    ->   id int AUTO_INCREMENT primary key,
+    ->   nombre varchar(20) NOT NULL,
+    ->   primer_apellido varchar(40) NOT NULL,
+    ->   segundo_apellido varchar(40) NOT NULL,
+    ->   DNI varchar(60) NOT NULL,
+    ->   fecha_nacimiento varchar(40) NOT NULL,
+    ->   direccion varchar(40) NOT NULL,
+    ->   poblacion varchar(40) NOT NULL,
+    ->   correo varchar(40) NOT NULL,
+    ->   codigo_postal varchar(40) NOT NULL,
+    ->   telefono_fijo varchar(40),
+    ->   telefono_movil_personal varchar(40) NOT NULL,
+    ->   telefono_movil_empresa varchar(40) NOT NULL,
+    ->   telefono_emergencias varchar(40) NOT NULL,
+    ->   nombre_persona_emergencias varchar(40) NOT NULL,
+    ->   BANCO varchar(20) DEFAULT NULL,
+    ->   IBAN INT(40) NOT NULL,
+    ->   BIC varchar(21) DEFAULT NULL
+    -> ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    
+Tabla pedidos:
+ CREATE TABLE pedidos (
+    ->   id int AUTO_INCREMENT primary key,
+    ->   id_cliente INT NOT NULL,
+    ->   id_producto INT NOT NULL,
+    ->   cantidad INT NOT NULL,
+    ->   precio_total INT NOT NULL
+    -> ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
