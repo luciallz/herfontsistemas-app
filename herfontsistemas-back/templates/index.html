@@ -1,3 +1,4 @@
+<h1>Inserta un usuario</h1>
 <form action="/nuevo" method="POST">
     <input type="text" name="id" placeholder="Escribe tu id">
     <input type="text" name="nombre" placeholder="Escribe tu nombre">
@@ -12,3 +13,19 @@
     <input type="text" name="descuento" placeholder="Escribe tu descuento">
     <button>Save</button>
 </form>
+
+<div>
+    <h1>Listado,borrado y Modificación de Usuarios</h1>
+{% for usuario in result %}
+
+<div>
+    <h5>{{usuario.nombre}} {{usuario.apellidos}}</h5>
+    <a href="{{ url_for('contacts.borrar',id=usuario.id )}}">Borrar</a>
+    <a href="{{ url_for('contacts.modificar',id=usuario.id )}}">Modificar</a>
+
+
+    <p>Correo: {{usuario.correo}}</p>
+    <p>Telefono: {{usuario.telefono}}</p>
+</div>
+{% endfor %}
+</div>
