@@ -1,4 +1,4 @@
-from flask import  Flask,Blueprint,render_template,request,url_for
+from flask import  Flask,Blueprint,render_template,request,url_for,redirect
 from sqlalchemy.orm import sessionmaker,Session
 from models.usuarios import usuarios,Usuarios
 from sqlalchemy import Integer, insert,Column,String
@@ -7,10 +7,6 @@ from utils.db import engine,db
 contacts=Blueprint('contacts',__name__)
 
 @contacts.route("/")
-def home():
-    return render_template('index.html')
-
-@contacts.route("/usuarios")
 def usuarios():
 
  SessionListar=sessionmaker(bind=engine)
@@ -40,7 +36,7 @@ def nuevo():
     with Session(engine) as session:
         session.add(nuevoUsuario)
         session.commit()
-    return "nuevo contacto"
+    return redirect("/")
 
 @contacts.route("/borrar/<id>")
 def borrar(id):
@@ -49,7 +45,7 @@ def borrar(id):
         session.delete(usuario)
         session.commit()
 
-    return "Contacto eliminado"
+    return redirect("/usuarios")
 @contacts.route("/modificar/<id>")
 def modificar(id):
 
