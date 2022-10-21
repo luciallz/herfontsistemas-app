@@ -1,3 +1,12 @@
+{% with messages = get_flashed_messages() %}
+
+    {% if messages %}
+        {% for message in messages %}
+            {{message}}
+        {% endfor %}
+    {% endif %}
+
+{% endwith %}
 <h1>Inserta un usuario</h1>
 <form action="/nuevo" method="POST">
     <input type="text" name="id" placeholder="Escribe tu id">
