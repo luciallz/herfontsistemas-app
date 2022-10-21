@@ -45,8 +45,26 @@ def borrar(id):
         session.delete(usuario)
         session.commit()
 
-    return redirect("/usuarios")
-@contacts.route("/modificar/<id>")
-def modificar(id):
+    return redirect("/")
 
-    return "Contacto Modificado"
+@contacts.route("/modificar/<id>",methods=['POST', 'GET'])
+def modificar(id):
+    with Session(engine) as session:
+        if request.method == 'POST':
+            usuario=session.query(Usuarios).get(id)
+            usuario.id=request.form['id']
+            usuario.nombre=request.form['nombre']
+            usuario.apellidos=request.form['apellidos']
+            usuario.correo=request.form['correo']
+            usuario.telefono=request.form['telefono']
+            usuario.contrasena=request.form['contrasena']
+            usuario.direccion=request.form['direccion']
+            usuario.ciudad=request.form['ciudad']
+            usuario.provincia=request.form['provincia']
+            usuario.codigo_postal=request.form['codigo_postal']
+            usuario.descuento=request.form['descuento']
+            print(usuario)
+            session.commit()
+            return redirect("/")
+        usuario=session.query(Usuarios).get(id)
+    return render_template("modificar.html",usuario=usuario)    
