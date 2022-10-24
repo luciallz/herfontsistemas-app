@@ -20,7 +20,6 @@ def new():
 
 @contacts.route("/nuevo",methods=['POST'])
 def nuevo():
-    _id=request.form['id']
     _nombre=request.form['nombre']
     _apellidos=request.form['apellidos']
     _correo=request.form['correo']
@@ -31,7 +30,8 @@ def nuevo():
     _provincia=request.form['provincia']
     _codigo_postal=request.form['codigo_postal']
     _descuento=request.form['descuento']
-    nuevoUsuario=Usuarios(_id,_nombre,_apellidos,_correo,_telefono,_contrasena,_direccion,_ciudad,_provincia,_codigo_postal,_descuento)
+    
+    nuevoUsuario=Usuarios(_nombre,_apellidos,_correo,_telefono,_contrasena,_direccion,_ciudad,_provincia,_codigo_postal,_descuento)
     print(nuevoUsuario)
     with Session(engine) as session:
         session.add(nuevoUsuario)
@@ -53,7 +53,6 @@ def modificar(id):
     with Session(engine) as session:
         if request.method == 'POST':
             usuario=session.query(Usuarios).get(id)
-            usuario.id=request.form['id']
             usuario.nombre=request.form['nombre']
             usuario.apellidos=request.form['apellidos']
             usuario.correo=request.form['correo']

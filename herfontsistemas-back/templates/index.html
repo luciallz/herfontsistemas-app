@@ -1,40 +1,42 @@
-{% with messages = get_flashed_messages() %}
+{% extends 'layout.html' %}
+    {% block content %}
+        {% with messages = get_flashed_messages() %}
 
-    {% if messages %}
-        {% for message in messages %}
-            {{message}}
+            {% if messages %}
+                {% for message in messages %}
+                    {{message}}
+                {% endfor %}
+            {% endif %}
+
+        {% endwith %}
+        <h1>Inserta un usuario</h1>
+        <form action="/nuevo" method="POST">
+            <input type="text" name="nombre" placeholder="Escribe tu nombre">
+            <input type="text" name="apellidos" placeholder="Escribe tu apellidos">
+            <input type="text" name="correo" placeholder="Escribe tu correo">
+            <input type="text" name="telefono" placeholder="Escribe tu telefono">
+            <input type="password" name="contrasena" placeholder="Escribe tu contrasena">
+            <input type="text" name="direccion" placeholder="Escribe tu direccion">
+            <input type="text" name="ciudad" placeholder="Escribe tu ciudad">
+            <input type="text" name="provincia" placeholder="Escribe tu provincia">
+            <input type="text" name="codigo_postal" placeholder="Escribe tu codigo_postal">
+            <input type="text" name="descuento" placeholder="Escribe tu descuento">
+            <button>Save</button>
+        </form>
+
+        <div>
+            <h1>Listado,borrado y Modificación de Usuarios</h1>
+        {% for usuario in result %}
+
+            <div>
+                <h5>{{usuario.nombre}} {{usuario.apellidos}}</h5>
+                <a href="{{ url_for('contacts.borrar',id=usuario.id )}}">Borrar</a>
+                <a href="{{ url_for('contacts.modificar',id=usuario.id )}}">Modificar</a>
+
+
+                <p>Correo: {{usuario.correo}}</p>
+                <p>Telefono: {{usuario.telefono}}</p>
+            </div>
         {% endfor %}
-    {% endif %}
-
-{% endwith %}
-<h1>Inserta un usuario</h1>
-<form action="/nuevo" method="POST">
-    <input type="text" name="id" placeholder="Escribe tu id">
-    <input type="text" name="nombre" placeholder="Escribe tu nombre">
-    <input type="text" name="apellidos" placeholder="Escribe tu apellidos">
-    <input type="text" name="correo" placeholder="Escribe tu correo">
-    <input type="text" name="telefono" placeholder="Escribe tu telefono">
-    <input type="password" name="contrasena" placeholder="Escribe tu contrasena">
-    <input type="text" name="direccion" placeholder="Escribe tu direccion">
-    <input type="text" name="ciudad" placeholder="Escribe tu ciudad">
-    <input type="text" name="provincia" placeholder="Escribe tu provincia">
-    <input type="text" name="codigo_postal" placeholder="Escribe tu codigo_postal">
-    <input type="text" name="descuento" placeholder="Escribe tu descuento">
-    <button>Save</button>
-</form>
-
-<div>
-    <h1>Listado,borrado y Modificación de Usuarios</h1>
-{% for usuario in result %}
-
-    <div>
-        <h5>{{usuario.nombre}} {{usuario.apellidos}}</h5>
-        <a href="{{ url_for('contacts.borrar',id=usuario.id )}}">Borrar</a>
-        <a href="{{ url_for('contacts.modificar',id=usuario.id )}}">Modificar</a>
-
-
-        <p>Correo: {{usuario.correo}}</p>
-        <p>Telefono: {{usuario.telefono}}</p>
-    </div>
-{% endfor %}
-</div>
+        </div>
+    {% endblock %}

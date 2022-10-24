@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 metaUsuarios=MetaData()
 usuarios=Table(
     'usuarios',metaUsuarios,
-    Column('id',Integer, primary_key=True),
+    Column('id',Integer,primary_key=True),
     Column('nombre',String(100)),
     Column('apellidos',String(100)),
     Column('correo',String(100)),
@@ -31,8 +31,7 @@ class Usuarios(Base):
     codigo_postal=Column(String)
     descuento=Column(String)
 
-    def __init__(self, id, nombre, apellidos, correo, telefono, contrasena, direccion, ciudad, provincia, codigo_postal, descuento):
-        self.id=id
+    def __init__(self, nombre, apellidos, correo, telefono, contrasena, direccion, ciudad, provincia, codigo_postal, descuento):
         self.nombre=nombre
         self.apellidos=apellidos
         self.correo=correo
