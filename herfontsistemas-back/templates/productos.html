@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+    {% block content %}
+        {% with messages = get_flashed_messages() %}
+
+            {% if messages %}
+                {% for message in messages %}
+                    {{message}}
+                {% endfor %}
+            {% endif %}
+
+        {% endwith %}
+        <h1>Inserta un usuario</h1>
+        <form action="/nuevoProducto" method="POST" enctype="multipart/form-data">
+            <input type="text" name="nomproducto" placeholder="Escribe el nombre del producto" size="26"><br>
+            <textarea name="descripcion" cols="30" rows="10"  placeholder="Escribe la descripción del producto"></textarea><br>
+            <input type="text" name="cantidad" placeholder="Escribe la cantidad deseada" size="26"><br>
+            <input type="file" name="imagen" id="imagen" ><br>
+            <input type="text" name="precio" placeholder="Escribe el precio">
+            <br>
+            <button>Save</button>
+        </form>
+
+        <div>
+            <h1>Listado,borrado y Modificación de Productos</h1>
+        {% for producto in result %}
+
+            <div>
+                <h5>{{producto.nombre}} {{producto.apellidos}}</h5>
+                <a href="{{ url_for('contacts.borrar',id=producto.id )}}">Borrar</a>
+                <a href="{{ url_for('contacts.modificar',id=producto.id )}}">Modificar</a>
+
+
+                <p>Nombre: {{producto.nom_producto}}</p>
+                <p>descripcion: {{producto.descripcion}}</p>
+                <p>cantidad: {{producto.cantidad}}</p>
+                <p>imagen: {{producto.imagen}}</p>
+                <p>precio: {{producto.precio}}</p>
+
+            </div>
+        {% endfor %}
+        </div>
+    {% endblock %}

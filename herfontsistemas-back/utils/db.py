@@ -8,6 +8,7 @@ from sqlalchemy.orm import sessionmaker
 db=SQLAlchemy()
 engine=create_engine("mysql://root:lucia@localhost/herfontsistemasdb",echo=True)
 
+
 Session=sessionmaker(bind=engine)
 session=Session()
 

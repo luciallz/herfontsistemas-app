@@ -1,14 +1,12 @@
 from flask import  Flask,Blueprint,render_template,request,url_for,redirect,flash
 from sqlalchemy.orm import sessionmaker,Session
 from models.usuarios import usuarios,Usuarios
-from sqlalchemy import Integer, insert,Column,String
+from sqlalchemy import Integer, insert,Column,String, true
 from utils.db import engine,db
-
 contacts=Blueprint('contacts',__name__)
 
 @contacts.route("/")
 def usuarios():
-
  SessionListar=sessionmaker(bind=engine)
  session=SessionListar()
  result=session.query(Usuarios).all()
@@ -30,14 +28,14 @@ def nuevo():
     _provincia=request.form['provincia']
     _codigo_postal=request.form['codigo_postal']
     _descuento=request.form['descuento']
-    
     nuevoUsuario=Usuarios(_nombre,_apellidos,_correo,_telefono,_contrasena,_direccion,_ciudad,_provincia,_codigo_postal,_descuento)
     print(nuevoUsuario)
     with Session(engine) as session:
         session.add(nuevoUsuario)
         session.commit()
         flash("¡Usuario añadido sactifactoriamente!")
-    return redirect("/")
+        return redirect("/")
+
 
 @contacts.route("/borrar/<id>")
 def borrar(id):
@@ -69,4 +67,4 @@ def modificar(id):
         usuario=session.query(Usuarios).get(id)
     flash("¡Usuario modificado sactifactoriamente!")
     
-    return render_template("modificar.html",usuario=usuario)    
+    return render_template("modificarUsuario.html",usuario=usuario)    
