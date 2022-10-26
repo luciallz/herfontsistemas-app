@@ -9,11 +9,11 @@
             {% endif %}
 
         {% endwith %}
-        <h1>Inserta un usuario</h1>
+        <h1>Inserta un producto</h1>
         <form action="/nuevoProducto" method="POST" enctype="multipart/form-data">
             <input type="text" name="nomproducto" placeholder="Escribe el nombre del producto" size="26"><br>
             <textarea name="descripcion" cols="30" rows="10"  placeholder="Escribe la descripción del producto"></textarea><br>
-            <input type="text" name="cantidad" placeholder="Escribe la cantidad deseada" size="26"><br>
+            <input type="text" name="cantidad"  placeholder="Escribe la cantidad deseada" size="26"><br>
             <input type="file" name="imagen" id="imagen" ><br>
             <input type="text" name="precio" placeholder="Escribe el precio">
             <br>
@@ -25,9 +25,9 @@
         {% for producto in result %}
 
             <div>
-                <h5>{{producto.nombre}} {{producto.apellidos}}</h5>
-                <a href="{{ url_for('contacts.borrar',id=producto.id )}}">Borrar</a>
-                <a href="{{ url_for('contacts.modificar',id=producto.id )}}">Modificar</a>
+                <h5>{{producto.nom_producto}}</h5>
+                <a href="{{ url_for('productos.borrarProducto',id=producto.id )}}">Borrar</a>
+                <a href="{{ url_for('productos.modificarProducto',id=producto.id )}}">Modificar</a>
 
 
                 <p>Nombre: {{producto.nom_producto}}</p>

@@ -1,8 +1,8 @@
 <h1>Modificación de Productos</h1>
-<form action="/modificar/{{usuario.id}}" method="POST">
+<form action="/modificarProducto/{{producto.id}}" method="POST">
     <input type="text" name="nom_producto" placeholder="Escribe el nombre del producto" value="{{producto.nom_producto}}" size="28"><br>
     <textarea name="descripcion" cols="30" rows="10"  placeholder="Escribe la descripción del producto" value="{{producto.descripcion}}"></textarea><br>
-    <input type="text" name="cantidad" placeholder="Escribe la cantidad deseada" size="26" value="{{producto.cantidad}"><br>
+    <input type="text" name="cantidad" placeholder="Escribe la cantidad deseada" size="26" value="{{producto.cantidad}}"><br>
     <input type="file" name="imagen" value="{{producto.imagen}}"><br>
     <input type="text" name="precio" placeholder="Escribe el precio" value="{{producto.precio}}">
     <br>

@@ -15,23 +15,19 @@ def productosList():
     result=session.query(Productos).all()
     return render_template('productos.html',result=result)
 
-
-@productos.route("/nuevoProducto",methods=['POST', 'GET'])
+@productos.route("/nuevoProducto",methods=['POST'])
 def nuevoProducto():
-    print("444444444444444444444444")
-    print(request.form['nomproducto'])
-    _nom_producto="producto"
-    #_nom_producto=request.form['nomproducto']
+    print("ENTRA")
+    _nom_producto=request.form['nomproducto']
     _descripcion=request.form['descripcion']
     _cantidad=request.form['cantidad']
-    _imagen_name=None
-    print("aaaaa")
-
+    _precio=request.form['precio']
     if 'imagen' in request.files:
+        print("TIENE IMAGENES")
         _imagen=request.files['imagen']
         if _imagen.filename:
             imagen_name=secure_filename(_imagen.filename)
-            print("rrrrrrrrr")
+            print("blablabla")
             print(imagen_name)
 
             current_app.config['imagenes']="./imagenes"
@@ -42,31 +38,33 @@ def nuevoProducto():
             os.makedirs(imagen_dir, exist_ok=True)
             imagen_path=os.path.join(imagen_dir,imagen_name)
             _imagen.save(imagen_path)
-    _precio=request.form['precio']
-    nuevoProducto=Productos(_nom_producto,_descripcion,_cantidad,_imagen_name,_precio)
+            print("PATH")
+            print(imagen_path)
+            nuevoProducto=Productos(_nom_producto,_descripcion,_cantidad,imagen_name,_precio)
+    else:
+        nuevoProducto=Productos(_nom_producto,_descripcion,_cantidad,'None',_precio)
     print(nuevoProducto)
     with Session(engine) as session:
         session.add(nuevoProducto)
         session.commit()
         flash("¡Producto añadido sactifactoriamente!")
-        return redirect("/nuevoProducto")
-
+        return redirect("/productos")
 
 @productos.route("/borrarProducto/<id>")
-def borrar(id):
+def borrarProducto(id):
     with Session(engine) as session:
         producto=session.query(Productos).get(id)
         session.delete(producto)
         session.commit()
     flash("¡Producto eliminado sactifactoriamente!")
-    return redirect("/")
+    return redirect("/productos")
 
 @productos.route("/modificarProducto/<id>",methods=['POST', 'GET'])
-def modificar(id):
+def modificarProducto(id):
     with Session(engine) as session:
         if request.method == 'POST':
             producto=session.query(Productos).get(id)
-            producto.nombre=request.form['nombre']
+            producto.nom_producto=request.form['nom_producto']
             producto.descripcion=request.form['descripcion']
             producto.cantidad=request.form['cantidad']
             producto.imagen=request.form['imagen']
@@ -74,7 +72,7 @@ def modificar(id):
             
             print(producto)
             session.commit()
-            return redirect("/")
+            return redirect("/productos")
         producto=session.query(Productos).get(id)
     flash("¡Producto modificado sactifactoriamente!")
     

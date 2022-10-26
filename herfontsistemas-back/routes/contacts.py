@@ -18,6 +18,7 @@ def new():
 
 @contacts.route("/nuevo",methods=['POST'])
 def nuevo():
+    print("entra en usuario")
     _nombre=request.form['nombre']
     _apellidos=request.form['apellidos']
     _correo=request.form['correo']
