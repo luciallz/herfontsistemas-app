@@ -30,8 +30,8 @@
 
             <div>
                 <h5>{{usuario.nombre}} {{usuario.apellidos}}</h5>
-                <a href="{{ url_for('contacts.borrar',id=usuario.id )}}">Borrar</a>
-                <a href="{{ url_for('contacts.modificar',id=usuario.id )}}">Modificar</a>
+                <a href="{{ url_for('usuarios.borrar',id=usuario.id )}}">Borrar</a>
+                <a href="{{ url_for('usuarios.modificar',id=usuario.id )}}">Modificar</a>
 
 
                 <p>Correo: {{usuario.correo}}</p>

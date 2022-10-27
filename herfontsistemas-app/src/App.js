@@ -15,14 +15,16 @@ function App() {
     )
   }, [])
   return (
-    <div>
-      {(typeof data.prueba ==='undefined')? (
-        <p>Loading...</p>
-      ):(
-        data.prueba.map((elemento, i)=>(
-          <p key={i}>{elemento}</p>
-        ))
-      )}
+    <div className='container'>
+      <div>
+        {(typeof data.prueba ==='undefined')? (
+          <p>Loading...</p>
+        ):(
+          data.prueba.map((elemento, i)=>(
+            <p key={i}>{elemento}</p>
+          ))
+        )}
+      </div>
     </div>
   )
 }

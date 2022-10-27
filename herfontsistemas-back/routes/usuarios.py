@@ -3,20 +3,20 @@ from sqlalchemy.orm import sessionmaker,Session
 from models.usuarios import usuarios,Usuarios
 from sqlalchemy import Integer, insert,Column,String, true
 from utils.db import engine,db
-contacts=Blueprint('contacts',__name__)
+usuarios=Blueprint('usuarios',__name__)
 
-@contacts.route("/")
-def usuarios():
+@usuarios.route("/")
+def usuariosList():
  SessionListar=sessionmaker(bind=engine)
  session=SessionListar()
  result=session.query(Usuarios).all()
  return render_template('index.html',result=result)
 
-@contacts.route("/new")
+@usuarios.route("/new")
 def new():
     return {"prueba": ["prueba1","prueba2","prueba3"]}
 
-@contacts.route("/nuevo",methods=['POST'])
+@usuarios.route("/nuevo",methods=['POST'])
 def nuevo():
     print("entra en usuario")
     _nombre=request.form['nombre']
@@ -38,7 +38,7 @@ def nuevo():
         return redirect("/")
 
 
-@contacts.route("/borrar/<id>")
+@usuarios.route("/borrar/<id>")
 def borrar(id):
     with Session(engine) as session:
         usuario=session.query(Usuarios).get(id)
@@ -47,7 +47,7 @@ def borrar(id):
     flash("¡Usuario eliminado sactifactoriamente!")
     return redirect("/")
 
-@contacts.route("/modificar/<id>",methods=['POST', 'GET'])
+@usuarios.route("/modificar/<id>",methods=['POST', 'GET'])
 def modificar(id):
     with Session(engine) as session:
         if request.method == 'POST':
