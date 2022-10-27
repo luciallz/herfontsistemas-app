@@ -1,0 +1,21 @@
+<h1>Modifica un trabajador</h1>
+<form action="/modificarTrabajador/{{trabajador.id}}" method="POST">
+    <input type="text" name="nom_trabajador" placeholder="Escriba el nombre" value="{{trabajador.nom_trabajador}}">
+    <input type="text" name="primer_ape_trabajador" placeholder="Escriba el primer apellido" value="{{trabajador.primer_ape_trabajador}}">
+    <input type="text" name="segundo_ape_trabajador" placeholder="Escriba el segundo apellido" value="{{trabajador.segundo_ape_trabajador}}">
+    <input type="text" name="dni_trabajador" placeholder="Escriba el DNI" value="{{trabajador.dni_trabajador}}">
+    <input type="text" name="fecha_nacimiento_trabajador" placeholder="Escriba la fecha nacimiento" value="{{trabajador.fecha_nacimiento_trabajador}}"><br>
+    <input type="text" name="direccion_trabajador" placeholder="Escriba la direccion" value="{{trabajador.direccion_trabajador}}">
+    <input type="text" name="poblacion_trabajador" placeholder="Escriba la poblacion" value="{{trabajador.poblacion_trabajador}}">
+    <input type="text" name="correo_trabajador" placeholder="Escriba el correo" value="{{trabajador.correo_trabajador}}">
+    <input type="text" name="codigo_postal_trabajador" placeholder="Escriba el codigo_postal" value="{{trabajador.codigo_postal_trabajador}}">
+    <input type="text" name="tel_fijo_trabajador" placeholder="Escriba el telefono fijo" value="{{trabajador.tel_fijo_trabajador}}"><br>
+    <input type="text" name="tel_movil_personal" placeholder="Escriba el telefono móvil personal" size="29" value="{{trabajador.tel_movil_personal}}">
+    <input type="text" name="tel_movil_empresa" placeholder="Escriba el telefono móvil de la empresa" size="32" value="{{trabajador.tel_movil_empresa}}">
+    <input type="text" name="persona_emergencias" placeholder="Escriba el nombre de la persona de emergencias" size="40" value="{{trabajador.persona_emergencias}}"><br>
+    <input type="text" name="tel_emergencias" placeholder="Escriba el telefono móvil de emergencias" size="34" value="{{trabajador.tel_emergencias}}">
+    <input type="text" name="banco" placeholder="Escriba el banco al que pertenece" size="30" value="{{trabajador.banco}}">
+    <input type="text" name="IBAN" placeholder="Escriba el IBAN" value="{{trabajador.iban}}">
+    <input type="text" name="BIC" placeholder="Escriba el BIC" value="{{trabajador.bic}}">
+    <button>Save</button>
+</form>

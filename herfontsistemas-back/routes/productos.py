@@ -5,7 +5,6 @@ from sqlalchemy import Integer, insert,Column,String, true
 from werkzeug.utils import secure_filename
 from utils.db import engine,db
 import os
-import logging
 productos=Blueprint('productos',__name__)
 
 @productos.route("/productos")

@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+    {% block content %}
+        {% with messages = get_flashed_messages() %}
+
+            {% if messages %}
+                {% for message in messages %}
+                    {{message}}
+                {% endfor %}
+            {% endif %}
+
+        {% endwith %}
+        <h1>Inserta un trabajador</h1>
+        <form action="/nuevoTrabajador" method="POST">
+            <input type="text" name="nom_trabajador" placeholder="Escriba el nombre">
+            <input type="text" name="primer_ape_trabajador" placeholder="Escriba el primer apellido">
+            <input type="text" name="segundo_ape_trabajador" placeholder="Escriba el segundo apellido">
+            <input type="text" name="dni_trabajador" placeholder="Escriba el DNI">
+            <input type="text" name="fecha_nacimiento_trabajador" placeholder="Escriba la fecha nacimiento"><br>
+            <input type="text" name="direccion_trabajador" placeholder="Escriba la direccion">
+            <input type="text" name="poblacion_trabajador" placeholder="Escriba la poblacion">
+            <input type="text" name="correo_trabajador" placeholder="Escriba el correo">
+            <input type="text" name="codigo_postal_trabajador" placeholder="Escriba el codigo_postal">
+            <input type="text" name="tel_fijo_trabajador" placeholder="Escriba el telefono fijo"><br>
+            <input type="text" name="tel_movil_personal" placeholder="Escriba el telefono móvil personal" size="29">
+            <input type="text" name="tel_movil_empresa" placeholder="Escriba el telefono móvil de la empresa" size="32">
+            <input type="text" name="persona_emergencias" placeholder="Escriba el nombre de la persona de emergencias" size="40"><br>
+            <input type="text" name="tel_emergencias" placeholder="Escriba el telefono móvil de emergencias" size="34">
+            <input type="text" name="banco" placeholder="Escriba el banco al que pertenece" size="30">
+            <input type="text" name="IBAN" placeholder="Escriba el IBAN">
+            <input type="text" name="BIC" placeholder="Escriba el BIC">
+            <button>Save</button>
+        </form>
+
+        <div>
+            <h1>Listado,borrado y Modificación de Trabajadores</h1>
+        {% for trabajador in result %}
+
+            <div>
+                <h5>{{trabajador.nom_producto}}</h5>
+                <a href="{{ url_for('trabajadores.borrarTrabajador',id=trabajador.id )}}">Borrar</a>
+                <a href="{{ url_for('trabajadores.modificarTrabajador',id=trabajador.id )}}">Modificar</a>
+
+
+                <p>Nombre: {{trabajador.nom_trabajador}}</p>
+                <p>Primer apellido: {{trabajador.primer_ape_trabajador}}</p>
+                <p>Segundo apellido: {{trabajador.segundo_ape_trabajador}}</p>
+
+
+            </div>
+        {% endfor %}
+        </div>
+    {% endblock %}
