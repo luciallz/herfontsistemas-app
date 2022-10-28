@@ -1,21 +1,27 @@
-from flask import  Flask,Blueprint,render_template,request,url_for,redirect,flash
+
+from flask import  Flask,Blueprint, jsonify,render_template,request,url_for,redirect,flash
 from sqlalchemy.orm import sessionmaker,Session
 from models.usuarios import usuarios,Usuarios
 from sqlalchemy import Integer, insert,Column,String, true
 from utils.db import engine,db
+import json
+#from flask_cors import CORS,cross_origin
+
+
 usuarios=Blueprint('usuarios',__name__)
+#CORS(usuarios, resources={r"/*":{"origins":"http://localhost"}})
+
 
 @usuarios.route("/")
 def usuariosList():
  SessionListar=sessionmaker(bind=engine)
  session=SessionListar()
  result=session.query(Usuarios).all()
- return render_template('index.html',result=result)
-
-@usuarios.route("/new")
-def new():
-    return {"prueba": ["prueba1","prueba2","prueba3"]}
-
+ #return render_template('index.html',result=result)
+ #return jsonify(result)
+#  results = [dict(row) for row in result]
+ return [dict(row) for row in result]
+ 
 @usuarios.route("/nuevo",methods=['POST'])
 def nuevo():
     print("entra en usuario")
