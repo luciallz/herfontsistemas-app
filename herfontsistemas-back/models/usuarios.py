@@ -1,5 +1,8 @@
 from sqlalchemy import Table,Column,Integer,String,Float,MetaData
 from sqlalchemy.ext.declarative import declarative_base
+from json import JSONEncoder
+import json
+
 metaUsuarios=MetaData()
 usuarios=Table(
     'usuarios',metaUsuarios,
@@ -30,6 +33,7 @@ class Usuarios(Base):
     provincia=Column(String)
     codigo_postal=Column(String)
     descuento=Column(String)
+    
 
     def __init__(self, nombre, apellidos, correo, telefono, contrasena, direccion, ciudad, provincia, codigo_postal, descuento):
         self.nombre=nombre
@@ -42,5 +46,37 @@ class Usuarios(Base):
         self.provincia=provincia
         self.codigo_postal=codigo_postal
         self.descuento=descuento
-        
+   
+class Encoder(json.JSONEncoder):
+    def default(self, o):
+        if isinstance(o,Usuarios):
+            return {
+                "nombre":o.nombre,
+                "apellidos":o.apellidos,
+                "correo":o.correo,
+                "telefono":o.telefono,
+                "contrasena":o.contrasena,
+                "direccion":o.direccion,
+                "ciudad":o.ciudad,
+                "provincia":o.provincia,
+                "codigo_postal":o.codigo_postal,
+                "descuento":o.descuento
+            }
+        return super().default(o)
+    # def __iter__(self):
+    #     yield from{
+    #         "nombre":self.nombre,
+    #         "apellidos":self.apellidos,
+    #         "correo":self.correo,
+    #         "telefono":self.telefono,
+    #         "contrasena":self.contrasena,
+    #         "direccion":self.direccion,
+    #         "ciudad":self.ciudad,
+    #         "provincia":self.provincia,
+    #         "codigo_postal":self.codigo_postal,
+    #         "descuento":self.descuento
+    #     }.items()
+
+
+
     

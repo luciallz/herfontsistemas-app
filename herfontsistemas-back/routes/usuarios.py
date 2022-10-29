@@ -1,7 +1,7 @@
-
+from flask_marshmallow import Marshmallow
 from flask import  Flask,Blueprint, jsonify,render_template,request,url_for,redirect,flash
 from sqlalchemy.orm import sessionmaker,Session
-from models.usuarios import usuarios,Usuarios
+from models.usuarios import usuarios,Usuarios,Encoder
 from sqlalchemy import Integer, insert,Column,String, true
 from utils.db import engine,db
 import json
@@ -17,10 +17,10 @@ def usuariosList():
  SessionListar=sessionmaker(bind=engine)
  session=SessionListar()
  result=session.query(Usuarios).all()
- #return render_template('index.html',result=result)
- #return jsonify(result)
-#  results = [dict(row) for row in result]
- return [dict(row) for row in result]
+
+ jsonUsers=json.dumps(result, cls=Encoder, indent=4)
+ print(type(jsonUsers))
+ return jsonUsers
  
 @usuarios.route("/nuevo",methods=['POST'])
 def nuevo():
