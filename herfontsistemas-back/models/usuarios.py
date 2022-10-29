@@ -51,6 +51,7 @@ class Encoder(json.JSONEncoder):
     def default(self, o):
         if isinstance(o,Usuarios):
             return {
+                "id":o.id,
                 "nombre":o.nombre,
                 "apellidos":o.apellidos,
                 "correo":o.correo,
