@@ -77,7 +77,3 @@ class Encoder(json.JSONEncoder):
     #         "codigo_postal":self.codigo_postal,
     #         "descuento":self.descuento
     #     }.items()
-
-
-
-    
