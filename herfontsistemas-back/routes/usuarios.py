@@ -20,6 +20,8 @@ def usuariosList():
 
  jsonUsers=json.dumps(result, cls=Encoder, indent=4)
  print(type(jsonUsers))
+ print(jsonUsers)
+
  return jsonUsers
  
 @usuarios.route("/nuevo",methods=['POST'])
@@ -53,10 +55,10 @@ def borrar(id):
     flash("¡Usuario eliminado sactifactoriamente!")
     return redirect("/")
 
-@usuarios.route("/modificar/<id>",methods=['POST', 'GET'])
+@usuarios.route("/modificar/<id>",methods=['PUT'])
 def modificar(id):
     with Session(engine) as session:
-        if request.method == 'POST':
+        if request.method == 'PUT':
             usuario=session.query(Usuarios).get(id)
             usuario.nombre=request.form['nombre']
             usuario.apellidos=request.form['apellidos']
@@ -72,6 +74,9 @@ def modificar(id):
             session.commit()
             return redirect("/")
         usuario=session.query(Usuarios).get(id)
-    flash("¡Usuario modificado sactifactoriamente!")
-    
-    return render_template("modificarUsuario.html",usuario=usuario)    
+        flash("¡Usuario modificado sactifactoriamente!")
+        # jsonUsersModificado=json.dumps(usuario, cls=Encoder, indent=4)
+        # print(type(jsonUsersModificado))
+        # print(jsonUsersModificado)
+    #return jsonUsersModificado    NO FUNCIONA!
+    return render_template("modificarUsuario.html",usuario=usuario) 
