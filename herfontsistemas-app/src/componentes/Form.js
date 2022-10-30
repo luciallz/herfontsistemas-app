@@ -1,21 +1,34 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import APIService from '../componentes/APIService';
 
 function Form(props) {
-    const [nombre, setNombre] = useState(props.usuario.nombre)
-    const [apellidos, setApellidos] = useState(props.usuario.apellidos)
-    const [correo, setCorreo] = useState(props.usuario.correo)
-    const [telefono, setTelefono] = useState(props.usuario.telefono)
-    const [contrasena, setContrasena] = useState(props.usuario.contrasena)
-    const [direccion, setDireccion] = useState(props.usuario.direccion)
-    const [ciudad, setCiudad] = useState(props.usuario.ciudad)
-    const [provincia, setProvincia] = useState(props.usuario.provincia)
-    const [codigo_postal, setCodigoPostal] = useState(props.usuario.codigo_postal)
-    const [descuento, setDescuento] = useState(props.usuario.descuento)
+    const [nombre, setNombre] = useState('')
+    const [apellidos, setApellidos] = useState('')
+    const [correo, setCorreo] = useState('')
+    const [telefono, setTelefono] = useState('')
+    const [contrasena, setContrasena] = useState('')
+    const [direccion, setDireccion] = useState('')
+    const [ciudad, setCiudad] = useState('')
+    const [provincia, setProvincia] = useState('')
+    const [codigo_postal, setCodigoPostal] = useState('')
+    const [descuento, setDescuento] = useState('')
+
+    useEffect(()=>{
+        setNombre(props.usuario.nombre)
+        setApellidos(props.usuario.apellidos)
+        setCorreo(props.usuario.correo)
+        setTelefono(props.usuario.telefono)
+        setContrasena(props.usuario.contrasena)
+        setDireccion(props.usuario.direccion)
+        setCiudad(props.usuario.ciudad)
+        setProvincia(props.usuario.provincia)
+        setCodigoPostal(props.usuario.codigo_postal)
+        setDescuento(props.usuario.descuento)
+    },[props.usuario])
 
     const ModificarUsuario = () => {
         APIService.ModificarUsuario(props.usuario.id, {nombre, apellidos, correo, telefono, contrasena, direccion, ciudad, provincia, codigo_postal, descuento})
-        .then(resp => console.log(resp))
+        .then(resp => props.datoModificado(resp))
         .catch(error => console.log(error))
     }
 

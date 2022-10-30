@@ -23,12 +23,22 @@ function App() {
 
     setEditadoUsuario(usuario)
   }
+  const datoModificado = (usuario) => {
+    const nuevo_usuario = usuarios.map(mi_usuario => {
+      if(mi_usuario.id === usuario.id){
+        return usuario
+      }else{
+        return mi_usuario
+      }
+    })
+    setUsuario(nuevo_usuario)
+  }
 
   return (
     <div className='container'>
      <UsuariosList usuarios={usuarios} editarUsuario= {editarUsuario}/>
 
-     {editadoUsuario ? <Form usuario = {editadoUsuario}/> : null}
+     {editadoUsuario ? <Form usuario = {editadoUsuario} datoModificado = {datoModificado}/> : null}
 
     </div>
   )
