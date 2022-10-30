@@ -1,11 +1,15 @@
 import React from 'react'
-
+import APIService from '../componentes/APIService'
 function UsuariosList(props) {
   
   const editarUsuario = (usuario)=>{
     props.editarUsuario(usuario)
   }
 
+  const borrarUsuario = (usuario)=>{
+    APIService.BorrarUsuario(usuario.id)
+    .then(()=> props.borrarUsuario(usuario))
+  }
   return (
     <div> 
         {props.usuarios && props.usuarios.map(usuario=>{
@@ -23,8 +27,11 @@ function UsuariosList(props) {
               </div>
 
               <div className="col">
-                <button className="btn btn-danger">Eliminar</button>
+                <button className="btn btn-danger"
+                onClick={()=> borrarUsuario(usuario)}
+                >Eliminar</button>
               </div>
+
             </div>
 
             <hr/>

@@ -33,12 +33,42 @@ function App() {
     })
     setUsuario(nuevo_usuario)
   }
+  const abrirForm = ()=>{
+    setEditadoUsuario({nombre:'', apellidos:'', correo:'', telefono:'', contrasena:'', direccion:'', ciudad:'', provincia:'', codigo_postal:'', descuento:''})
+  }
+  const usuarioInsertado = (usuario)=>{
+    const nuevo_usuario = [...usuarios, usuario]
+    setUsuario(nuevo_usuario)
+  }
+
+  const borrarUsuario = (usuario)=>{
+    const nuevo_usuario = usuarios.filter(miusuario=>{
+      if(miusuario.id === usuario.id){
+        return false;
+      }
+      return true;
+    })
+
+    setUsuario(nuevo_usuario)
+  }
 
   return (
     <div className='container'>
-     <UsuariosList usuarios={usuarios} editarUsuario= {editarUsuario}/>
+      <div className='row'>
+        <div className='col'>
+          <h1>HERFONTSISTEMAS WEB</h1>
+        </div>
+          <button
+          className='btn btn-success'
+          onClick={abrirForm}
+          >Insertar Usuario</button>
+        <div className='col'>
+          
+        </div>
+      </div>
+     <UsuariosList usuarios={usuarios} editarUsuario= {editarUsuario} borrarUsuario = {borrarUsuario}/>
 
-     {editadoUsuario ? <Form usuario = {editadoUsuario} datoModificado = {datoModificado}/> : null}
+     {editadoUsuario ? <Form usuario = {editadoUsuario} datoModificado = {datoModificado} usuarioInsertado={usuarioInsertado}/> : null}
 
     </div>
   )

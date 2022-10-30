@@ -26,12 +26,17 @@ function Form(props) {
         setDescuento(props.usuario.descuento)
     },[props.usuario])
 
-    const ModificarUsuario = () => {
+    const modificarUsuario = () => {
         APIService.ModificarUsuario(props.usuario.id, {nombre, apellidos, correo, telefono, contrasena, direccion, ciudad, provincia, codigo_postal, descuento})
         .then(resp => props.datoModificado(resp))
         .catch(error => console.log(error))
     }
 
+    const insertarUsuario=()=>{
+        APIService.InsertarUsuario({nombre, apellidos, correo, telefono, contrasena, direccion, ciudad, provincia, codigo_postal, descuento})
+        .then(resp=>props.usuarioInsertado(resp))
+        .catch(error=>console.log(error))
+    }
 
   return (
     <div>
@@ -117,10 +122,19 @@ function Form(props) {
                 onChange={(u) => setDescuento(u.target.value)}
 
                 />
-                <button 
-                onClick={ModificarUsuario}
-                className='btn btn-success mt3'
-                >Modificar</button>
+                {
+                    props.usuario.id ? <button 
+                    onClick={modificarUsuario}
+                    className='btn btn-success mt3'
+                    >Modificar</button>
+                    :
+                    <button 
+                    onClick={insertarUsuario}
+                    className='btn btn-success mt3'
+                    >Insertar</button>
+
+                }
+                
                 
             </div>
         ):null}
