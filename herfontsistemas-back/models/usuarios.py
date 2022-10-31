@@ -64,16 +64,3 @@ class Encoder(json.JSONEncoder):
                 "descuento":o.descuento
             }
         return super().default(o)
-    # def __iter__(self):
-    #     yield from{
-    #         "nombre":self.nombre,
-    #         "apellidos":self.apellidos,
-    #         "correo":self.correo,
-    #         "telefono":self.telefono,
-    #         "contrasena":self.contrasena,
-    #         "direccion":self.direccion,
-    #         "ciudad":self.ciudad,
-    #         "provincia":self.provincia,
-    #         "codigo_postal":self.codigo_postal,
-    #         "descuento":self.descuento
-    #     }.items()

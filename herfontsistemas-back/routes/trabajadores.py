@@ -6,6 +6,7 @@ from sqlalchemy import Integer, insert,Column,String, true
 from werkzeug.utils import secure_filename
 from utils.db import engine,db
 import os
+
 trabajadores=Blueprint('trabajadores',__name__)
 
 @trabajadores.route("/trabajadores")
