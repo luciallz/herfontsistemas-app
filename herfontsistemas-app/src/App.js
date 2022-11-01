@@ -1,118 +1,83 @@
 import React, {useState,useEffect} from 'react';
 import "./App.css";
+import Usuarios from './componentes/Usuarios';
 import UsuariosList from './componentes/UsuariosList';
 import Form from './componentes/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from './componentes/img/logo.jpg';
 import 'bootstrap-icons/font/bootstrap-icons.css'
-import { Nav, Navbar, NavbarBrand, NavDropdown } from 'react-bootstrap'
+import Menu from './componentes/Menu'
+import {BrowserRouter, Routes, Route, Router, Link} from "react-router-dom"
+import AppRoute from './rutas';
 function App() {
-  const [usuarios, setUsuario]=useState([])
-  const [editadoUsuario, setEditadoUsuario]=useState(null)
+  // const [usuarios, setUsuario]=useState([])
+  // const [editadoUsuario, setEditadoUsuario]=useState(null)
 
-  useEffect(()=>{
-    fetch("http://127.0.0.1:5000",{
-      'method':'GET',
-      headers:{"Content-type": "application/json"}
-    }).then(
-      res=>res.json()
-    ).then(
-      res=>{
-        setUsuario(res)
-      }
-    ).catch(error=>console.log(error))
-  }, [])
+  // useEffect(()=>{
+  //   fetch("http://127.0.0.1:5000",{
+  //     'method':'GET',
+  //     headers:{"Content-type": "application/json"}
+  //   }).then(
+  //     res=>res.json()
+  //   ).then(
+  //     res=>{
+  //       setUsuario(res)
+  //     }
+  //   ).catch(error=>console.log(error))
+  // }, [])
 
-  const editarUsuario = (usuario) => {
+  // const editarUsuario = (usuario) => {
 
-    setEditadoUsuario(usuario)
-  }
-  const datoModificado = (usuario) => {
-    const nuevo_usuario = usuarios.map(mi_usuario => {
-      if(mi_usuario.id === usuario.id){
-        return usuario
-      }else{
-        return mi_usuario
-      }
-    })
-    setUsuario(nuevo_usuario)
-  }
-  const abrirForm = ()=>{
-    setEditadoUsuario({nombre:'', apellidos:'', correo:'', telefono:'', contrasena:'', direccion:'', ciudad:'', provincia:'', codigo_postal:'', descuento:''})
-  }
-  const usuarioInsertado = (usuario)=>{
-    const nuevo_usuario = [...usuarios, usuario]
-    setUsuario(nuevo_usuario)
-  }
+  //   setEditadoUsuario(usuario)
+  // }
+  // const datoModificado = (usuario) => {
+  //   const nuevo_usuario = usuarios.map(mi_usuario => {
+  //     if(mi_usuario.id === usuario.id){
+  //       return usuario
+  //     }else{
+  //       return mi_usuario
+  //     }
+  //   })
+  //   setUsuario(nuevo_usuario)
+  // }
+  // const abrirForm = ()=>{
+  //   setEditadoUsuario({nombre:'', apellidos:'', correo:'', telefono:'', contrasena:'', direccion:'', ciudad:'', provincia:'', codigo_postal:'', descuento:''})
+  // }
+  // const usuarioInsertado = (usuario)=>{
+  //   const nuevo_usuario = [...usuarios, usuario]
+  //   setUsuario(nuevo_usuario)
+  // }
 
-  const borrarUsuario = (usuario)=>{
-    const nuevo_usuario = usuarios.filter(miusuario=>{
-      if(miusuario.id === usuario.id){
-        return false;
-      }
-      return true;
-    })
+  // const borrarUsuario = (usuario)=>{
+  //   const nuevo_usuario = usuarios.filter(miusuario=>{
+  //     if(miusuario.id === usuario.id){
+  //       return false;
+  //     }
+  //     return true;
+  //   })
 
-    setUsuario(nuevo_usuario)
-  }
+  //   setUsuario(nuevo_usuario)
+  // }
 
 
   return (
     <div className='container'>
       <div className='row'>
         <div className='col'>
-          <h1>HERFONTSISTEMAS WEB</h1>
-          <Navbar bg="green" variant="dark" sticky='top' expand='lg'>
-            <NavbarBrand>
-              <img src={logo} height='85px' width='205px'></img>
-            </NavbarBrand>
-            
-            <Navbar.Toggle/>
-              <Navbar.Collapse>
-                  <Nav>
-                    <NavDropdown title="Productos">
-                      <NavDropdown.Item href="productos/abrazaderas">Abrazaderas de tuberia</NavDropdown.Item>
-                      <NavDropdown.Item href="productos/abrazaderas">Conectores SML</NavDropdown.Item>
-                      <NavDropdown.Item href="productos/abrazaderas">Accesorios de montaje</NavDropdown.Item>
-                      <NavDropdown.Item href="productos/abrazaderas">Sistemas de montaje para ventilación</NavDropdown.Item>
-                      <NavDropdown.Item href="productos/abrazaderas">CENTUM</NavDropdown.Item>
-                      <NavDropdown.Item href="productos/abrazaderas">Carriles de perfil</NavDropdown.Item>
-                      <NavDropdown.Item href="productos/abrazaderas">Aisladores de resorte</NavDropdown.Item>
-                      <NavDropdown.Item href="productos/abrazaderas">Abrazaderas de tubería aisladas</NavDropdown.Item>
-                      <NavDropdown.Item href="productos/abrazaderas">Accesorios de trabajo, heramientas...</NavDropdown.Item>
-                      <NavDropdown.Item href="productos/abrazaderas">Sistemas de montaje para rociadortes</NavDropdown.Item>
-                      <NavDropdown.Item href="productos/abrazaderas">Puntos fijos</NavDropdown.Item>
-                      <NavDropdown.Item href="productos/abrazaderas">Elementos deslizantes</NavDropdown.Item>
-                      <NavDropdown.Item href="productos/abrazaderas">Recubrumiento TSP-3</NavDropdown.Item>
-                      <NavDropdown.Item href="productos/abrazaderas">Sistemas de montaje acero inoxidable</NavDropdown.Item>
-                    </NavDropdown>
-
-                    <Nav.Link href="servicios">Servicios</Nav.Link>
-                    <Nav.Link href="sobre nosotros">Sobre nosotros</Nav.Link>
-                    <Nav.Link href="contacto">Contacto</Nav.Link>
-                    <Nav.Link href="usuarios">Usuarios</Nav.Link>{/* solo se ve en rol de administrador */}
-                    <Nav.Link href="trabajadores">Trabajadores</Nav.Link> {/* solo se ve en rol de administrador */}
-
-                  </Nav>
-              </Navbar.Collapse>
-              <i className="bi bi-person fs-1 text-white text-right"></i> {/* No puedo alinearlo a la derecha*/}
-              <i class="bi bi-cart3 fs-1 text-white text-right"></i> {/* No puedo alinearlo a la derecha*/}
-
-
-          </Navbar>
+  
+            <Menu />
           
         </div>
-      </div>   
-        <div className='col'>
+      </div>  
+        {/* <div className='col'>
           <button
           className='btn btn-success'
           onClick={abrirForm}
           >Insertar Usuario</button>
         </div>
-      
+          
      <UsuariosList usuarios={usuarios} editarUsuario= {editarUsuario} borrarUsuario = {borrarUsuario}/>
 
-     {editadoUsuario ? <Form usuario = {editadoUsuario} datoModificado = {datoModificado} usuarioInsertado={usuarioInsertado}/> : null}
+     {editadoUsuario ? <Form usuario = {editadoUsuario} datoModificado = {datoModificado} usuarioInsertado={usuarioInsertado}/> : null} */}
 
     </div>
   )
