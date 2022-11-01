@@ -26,12 +26,10 @@ def nuevoProducto():
         _imagen=request.files['imagen']
         if _imagen.filename:
             imagen_name=secure_filename(_imagen.filename)
-            print("blablabla")
             print(imagen_name)
 
             current_app.config['imagenes']="./imagenes"
             imagen_dir=current_app.config['imagenes']
-            print("uuuuuuuuuuuu")
             print(imagen_dir)
 
             os.makedirs(imagen_dir, exist_ok=True)
