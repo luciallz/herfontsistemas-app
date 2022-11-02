@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react';
-import UsuariosList from './UsuariosList';
-import Form from './Form';
+import UsuariosList from './listar/UsuariosList';
+import FormUsuarios from './formularios/FormUsuarios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css'
 
@@ -66,7 +66,7 @@ function Usuarios() {
           
      <UsuariosList usuarios={usuarios} editarUsuario= {editarUsuario} borrarUsuario = {borrarUsuario}/>
 
-     {editadoUsuario ? <Form usuario = {editadoUsuario} datoModificado = {datoModificado} usuarioInsertado={usuarioInsertado}/> : null}
+     {editadoUsuario ? <FormUsuarios usuario = {editadoUsuario} datoModificado = {datoModificado} usuarioInsertado={usuarioInsertado}/> : null}
 
     </div>
   )

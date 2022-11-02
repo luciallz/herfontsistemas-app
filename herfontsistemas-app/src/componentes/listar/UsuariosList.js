@@ -1,5 +1,5 @@
 import React from 'react'
-import APIService from '../componentes/APIService'
+import APIService from '../APIService'
 function UsuariosList(props) {
   
   const editarUsuario = (usuario)=>{
