@@ -3,7 +3,7 @@ import { Nav, Navbar, NavbarBrand, NavDropdown } from 'react-bootstrap'
 import logo from './img/logo.jpg';
 import {BrowserRouter as Router, Route, Routes,Link} from 'react-router-dom'
 import Usuarios from './Usuarios';
-import insertarUsuario from './formularios/FormUsuarios'
+import Registro1 from './Registro1'
 function Menu() {
   return (
     <Router>
@@ -41,14 +41,14 @@ function Menu() {
                     </Nav>
                 </Navbar.Collapse>
                 <Nav>
-                <Nav.Link ><i className="bi bi-person fs-1 text-white text-right"></i></Nav.Link>
+                <Nav.Link as={Link} to={"/Registro1"}><i className="bi bi-person fs-1 text-white text-right"></i></Nav.Link>
                 <i className="bi bi-cart3 fs-1 text-white text-right"></i>
                 </Nav>
         </Navbar>
         <div>
             <Routes>
-                <Route path="/Usuarios" element={<Usuarios />}>
-                </Route>
+                <Route path="/Usuarios" element={<Usuarios />} />
+                <Route path="/Registro1" element={<Registro1 />} />
             </Routes>
         </div>
     </Router>
