@@ -13,14 +13,7 @@ function App() {
         <div className='row'>
           <div className='col'>
           <Menu /> 
-          <Registro />
-            <BrowserRouter>
-              <Routes>
-                
-
-              </Routes>
-            </BrowserRouter>
-             
+    
           </div>
         </div>  
       </div>
