@@ -1,4 +1,4 @@
-from sqlalchemy import Table,Column,Integer,String,Float,MetaData
+from sqlalchemy import Table,Column,Integer,String,Float,Boolean,MetaData
 from sqlalchemy.ext.declarative import declarative_base
 from json import JSONEncoder
 import json
@@ -15,8 +15,9 @@ usuarios=Table(
     Column('direccion',String(50)),
     Column('ciudad',String(50)),
     Column('provincia',String(50)),
-    Column('codigo_postal',String(50)),
+    Column('codigo_postal',Integer),
     Column('descuento',String(50)),
+    Column('admin',Boolean, default=False),
 )
 
 Base=declarative_base()
@@ -31,11 +32,12 @@ class Usuarios(Base):
     direccion=Column(String)
     ciudad=Column(String)
     provincia=Column(String)
-    codigo_postal=Column(String)
+    codigo_postal=Column(Integer)
     descuento=Column(String)
+    admin=Column(Boolean)
     
 
-    def __init__(self, nombre, apellidos, correo, telefono, contrasena, direccion, ciudad, provincia, codigo_postal, descuento):
+    def __init__(self, nombre, apellidos, correo, telefono, contrasena, direccion, ciudad, provincia, codigo_postal, descuento,admin):
         self.nombre=nombre
         self.apellidos=apellidos
         self.correo=correo
@@ -46,6 +48,7 @@ class Usuarios(Base):
         self.provincia=provincia
         self.codigo_postal=codigo_postal
         self.descuento=descuento
+        self.admin=admin
    
 class Encoder(json.JSONEncoder):
     def default(self, o):
@@ -61,6 +64,7 @@ class Encoder(json.JSONEncoder):
                 "ciudad":o.ciudad,
                 "provincia":o.provincia,
                 "codigo_postal":o.codigo_postal,
-                "descuento":o.descuento
+                "descuento":o.descuento,
+                "admin":o.admin
             }
         return super().default(o)

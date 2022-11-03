@@ -37,7 +37,8 @@ def nuevo():
     _provincia=request.json['provincia']
     _codigo_postal=request.json['codigo_postal']
     _descuento=request.json['descuento']
-    nuevoUsuario=Usuarios(_nombre,_apellidos,_correo,_telefono,_contrasena,_direccion,_ciudad,_provincia,_codigo_postal,_descuento)
+    _admin=False
+    nuevoUsuario=Usuarios(_nombre,_apellidos,_correo,_telefono,_contrasena,_direccion,_ciudad,_provincia,_codigo_postal,_descuento,_admin)
     print(nuevoUsuario)
     with Session(engine) as session:
         session.add(nuevoUsuario)
