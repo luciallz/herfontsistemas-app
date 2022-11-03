@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import APIService from '../componentes/APIService';
+import APIService from '../APIService';
 
-function Form(props) {
+function FormUsuarios(props) {
     const [nombre, setNombre] = useState('')
     const [apellidos, setApellidos] = useState('')
     const [correo, setCorreo] = useState('')
@@ -43,7 +43,7 @@ function Form(props) {
         {props.usuario ? (
             
             <div className="mb-3">
-                <h1>Modificar</h1>
+                <h1>Inserar</h1>
                 <label htmlFor='nombre' className='form-label'>nombre</label>
                 <input type="text" className='form-control'
                 placeholder="Ingrese el nombre"
@@ -137,12 +137,9 @@ function Form(props) {
                 
                 
             </div>
-        ):null}
-
-            
-        
+        ):null}                
     </div>
   )
 }
 
-export default Form
+export default FormUsuarios
