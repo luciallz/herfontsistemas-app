@@ -1,6 +1,5 @@
 import React, {useState,useEffect} from 'react';
-import UsuariosList from './listar/UsuariosList';
-import FormUsuarios from './formularios/FormUsuarios';
+import FormRegistro from './formularios/FormRegistro';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css'
 
@@ -53,7 +52,7 @@ function Registro1() {
         </div>
           
 
-     {editadoUsuario ? <FormUsuarios usuario = {editadoUsuario} usuarioInsertado={usuarioInsertado}/> : null}
+     {editadoUsuario ? <FormRegistro usuario = {editadoUsuario} usuarioInsertado={usuarioInsertado}/> : null}
 
     </div>
   )
