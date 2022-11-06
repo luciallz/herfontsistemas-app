@@ -1,5 +1,5 @@
 from flask_marshmallow import Marshmallow
-from flask import  Flask,Blueprint, jsonify,render_template,request,url_for,redirect,flash
+from flask import  Flask,Blueprint, jsonify,render_template,request,url_for,redirect,flash,abort
 from sqlalchemy.orm import sessionmaker,Session
 from models.usuarios import usuarios,Usuarios,Encoder
 from sqlalchemy import Integer, insert,Column,String, true
@@ -38,14 +38,20 @@ def nuevo():
     _codigo_postal=request.json['codigo_postal']
     _descuento=request.json['descuento']
     _admin=False
+    
     nuevoUsuario=Usuarios(_nombre,_apellidos,_correo,_telefono,_contrasena,_direccion,_ciudad,_provincia,_codigo_postal,_descuento,_admin)
     print(nuevoUsuario)
     with Session(engine) as session:
-        session.add(nuevoUsuario)
-        session.commit()
-        flash("¡Usuario añadido sactifactoriamente!")
-        jsonUsersInsertado=json.dumps(nuevoUsuario, cls=Encoder, indent=4)
-        return jsonUsersInsertado
+        user_exist=session.query(Usuarios).filter_by(correo = _correo).first() is not None
+        if user_exist:
+            print("Ese usuario ya existe")
+            abort(409)
+        else:
+            session.add(nuevoUsuario)
+            session.commit()
+            flash("¡Usuario añadido sactifactoriamente!")
+            jsonUsersInsertado=json.dumps(nuevoUsuario, cls=Encoder, indent=4)
+            return jsonUsersInsertado
 
 
 
