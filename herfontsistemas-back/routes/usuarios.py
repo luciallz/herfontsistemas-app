@@ -44,8 +44,11 @@ def nuevo():
     with Session(engine) as session:
         user_exist=session.query(Usuarios).filter_by(correo = _correo).first() is not None
         if user_exist:
-            print("Ese usuario ya existe")
-            abort(409)
+            error={"errorDuplicado":"El usuario ya existe"}
+            # devolverError=json.dumps(error, cls=Encoder, indent=4)
+            print(error)
+            print(type(error))
+            return jsonify(error)
         else:
             session.add(nuevoUsuario)
             session.commit()
