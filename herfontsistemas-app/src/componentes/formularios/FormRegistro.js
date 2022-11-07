@@ -88,6 +88,7 @@ function FormRegistro(props) {
         setProvincia(props.usuario.provincia)
         setCodigoPostal(props.usuario.codigo_postal)
         setDescuento(props.usuario.descuento)
+
     },[props.usuario])
 
     useEffect(() => {
@@ -105,37 +106,27 @@ function FormRegistro(props) {
     }, [])
     useEffect(()=>{
         const result = NOMBRE_VAL.test(nombre);
-        console.log(result);
-        console.log(nombre);
         setValidNombre(result);
 
     },[nombre])
     useEffect(()=>{
         const result = APE_VAL.test(apellidos);
-        console.log(result);
-        console.log(apellidos);
         setValidApe(result);
 
     },[apellidos])
     useEffect(()=>{
         const result = CORREO_VAL.test(correo);
-        console.log(result);
-        console.log(correo);
         setValidCorreo(result);
 
     },[correo])
     useEffect(()=>{
         const result = TEL_VAL.test(telefono);
-        console.log(result);
-        console.log(telefono);
         setValidTel(result);
 
     },[telefono])
     
     useEffect(()=>{
         const result = CONTRASENA_VAL.test(contrasena);
-        console.log(result);
-        console.log(contrasena);
         setValidContrasena(result);
         const match = contrasena === matchPasswd
         setValidMatch(match);
@@ -143,37 +134,27 @@ function FormRegistro(props) {
     },[contrasena,matchPasswd])
     useEffect(()=>{
         const result = DIR_VAL.test(direccion);
-        console.log(result);
-        console.log(direccion);
         setValidDir(result);
         
     },[direccion])
 
     useEffect(()=>{
         const result = CIUPROV_VAL.test(ciudad);
-        console.log(result);
-        console.log(ciudad);
         setValidCiudad(result);
 
     },[ciudad])
     useEffect(()=>{
         const result = CIUPROV_VAL.test(provincia);
-        console.log(result);
-        console.log(provincia);
         setValidProvincia(result);
 
     },[provincia])
     useEffect(()=>{
         const result = CODPOST_VAL.test(codigo_postal);
-        console.log(result);
-        console.log(codigo_postal);
         setValidCodPost(result);
 
     },[codigo_postal])
     useEffect(()=>{
         const result = DESC_VAL.test(descuento);
-        console.log(result);
-        console.log(descuento);
         setValidDesc(result);
 
     },[descuento])
@@ -185,12 +166,14 @@ function FormRegistro(props) {
         .catch(error=>console.log(error))
     }
 
+
   return (
     <div>
-        
         {props.usuario ? (
             
             <div className="mb-3">
+                
+
                 <h1>Inserar</h1>
                 <label htmlFor='nombre' className='form-label'>nombre
                     <span className={validNombre ? "valid" : "hide"}>
@@ -352,8 +335,9 @@ function FormRegistro(props) {
                 />
                 <p id="dirnote" className={dirFocus && direccion && !validDir ? "instructions" : "offscreen"}>
                     <FontAwesomeIcon icon={faInfoCircle} />
-                    Debe introducir una dirección válida, puede contener números,<br />
-                    Y los siguientes caracteres especiales
+                    Debe introducir una dirección válida.<br /> 
+                    La primera letra en mayúscula, puede contener espacios, números 
+                    y los siguientes caracteres especiales
                     <span aria-label="circulo arriba">º</span>
                     <span aria-label="guion">-</span>
                 </p>
@@ -361,7 +345,7 @@ function FormRegistro(props) {
                     <span className={validCiudad ? "valid" : "hide"}>
                         <FontAwesomeIcon icon={faCheck} />
                     </span>
-                    <span className={validDir || !direccion ? "hide" : "invalid"}>
+                    <span className={validDir || !ciudad ? "hide" : "invalid"}>
                         <FontAwesomeIcon icon={faTimes} />
                     </span>
                 </label>
@@ -380,6 +364,7 @@ function FormRegistro(props) {
                     <FontAwesomeIcon icon={faInfoCircle} />
                     Debe introducir una ciudad válida<br />
                     Solo se permiten letras y espacios.
+                    La primera letra debe estar en mayúscula
                 </p>
 
                 <label htmlFor='provincia' className='form-label'>provincia
