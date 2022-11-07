@@ -180,7 +180,7 @@ function FormRegistro(props) {
             .then(resp=>props.usuarioInsertado(resp))
             .catch(error=>console.log(error))
         }else{
-             Swal.fire("error! Faltan registros por completar")
+             Swal.fire("error! Faltan registros por completar bien")
         }
         
         
