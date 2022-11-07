@@ -2,6 +2,7 @@ import React, {useRef,useState, useEffect} from 'react';
 import APIService from '../APIService';
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import Swal from 'sweetalert2';
 
 function FormRegistro(props) {
     const NOMBRE_VAL = /^(?=.{3,20})[A-ZÑÁÉÍÓÚ][a-zñáéíóú]+((\s|-)[A-ZÑÁÉÍÓÚ][a-zñáéíóú]+)*$/;
@@ -107,63 +108,82 @@ function FormRegistro(props) {
     useEffect(()=>{
         const result = NOMBRE_VAL.test(nombre);
         setValidNombre(result);
-
+        console.log(result)
     },[nombre])
     useEffect(()=>{
         const result = APE_VAL.test(apellidos);
         setValidApe(result);
+        console.log(result)
 
     },[apellidos])
     useEffect(()=>{
         const result = CORREO_VAL.test(correo);
         setValidCorreo(result);
+        console.log(result)
 
     },[correo])
     useEffect(()=>{
         const result = TEL_VAL.test(telefono);
         setValidTel(result);
+        console.log(result)
 
     },[telefono])
     
     useEffect(()=>{
         const result = CONTRASENA_VAL.test(contrasena);
         setValidContrasena(result);
+        console.log(result)
+
         const match = contrasena === matchPasswd
         setValidMatch(match);
+        console.log(match)
 
     },[contrasena,matchPasswd])
     useEffect(()=>{
         const result = DIR_VAL.test(direccion);
         setValidDir(result);
+        console.log(result)
         
     },[direccion])
 
     useEffect(()=>{
         const result = CIUPROV_VAL.test(ciudad);
         setValidCiudad(result);
+        console.log(result)
 
     },[ciudad])
     useEffect(()=>{
         const result = CIUPROV_VAL.test(provincia);
         setValidProvincia(result);
+        console.log(result)
 
     },[provincia])
     useEffect(()=>{
         const result = CODPOST_VAL.test(codigo_postal);
         setValidCodPost(result);
+        console.log(result)
 
     },[codigo_postal])
     useEffect(()=>{
         const result = DESC_VAL.test(descuento);
         setValidDesc(result);
+        console.log(result)
 
     },[descuento])
 
 
     const insertarUsuario=()=>{
-        APIService.InsertarUsuario({nombre, apellidos, correo, telefono, contrasena, direccion, ciudad, provincia, codigo_postal, descuento})
-        .then(resp=>props.usuarioInsertado(resp))
-        .catch(error=>console.log(error))
+        console.log(setValidNombre);
+        const match = contrasena === matchPasswd
+        if(NOMBRE_VAL.test(nombre)===true && APE_VAL.test(apellidos)===true && CORREO_VAL.test(correo)===true && TEL_VAL.test(telefono)===true && CONTRASENA_VAL.test(contrasena)===true && match===true && DIR_VAL.test(direccion)===true && CIUPROV_VAL.test(ciudad)===true && CIUPROV_VAL.test(provincia)===true && CODPOST_VAL.test(codigo_postal)===true){
+            APIService.InsertarUsuario({nombre, apellidos, correo, telefono, contrasena, direccion, ciudad, provincia, codigo_postal, descuento})
+            .then(resp=>props.usuarioInsertado(resp))
+            .catch(error=>console.log(error))
+        }else{
+             Swal.fire("error! Faltan registros por completar")
+        }
+        
+        
     }
 
 

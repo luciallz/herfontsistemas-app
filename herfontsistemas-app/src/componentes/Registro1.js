@@ -31,7 +31,7 @@ function Registro1() {
   const usuarioInsertado = (usuario)=>{
     console.log(usuario)
     if(usuario.errorDuplicado){
-      Swal.fire("El usuario ya existe")
+      Swal.fire("Error! el correo electrónico insertado ya existe")
     }else{
       const nuevo_usuario = [...usuarios, usuario]
       setUsuario(nuevo_usuario)
