@@ -18,6 +18,14 @@ export default class APIService {
           })
           .then(resp=>resp.json())
     }
+    static IniciarSesion(body){
+        return fetch(`http://127.0.0.1:5000/login`,{
+            'method':'POST',
+            headers:{"Content-type": "application/json"},
+            body: JSON.stringify(body)
+          })
+          .then(resp=>resp.json())
+    }
 
     static BorrarUsuario(id){
         return fetch(`http://127.0.0.1:5000/borrar/${id}`,{

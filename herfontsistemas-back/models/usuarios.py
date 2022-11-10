@@ -2,6 +2,7 @@ from sqlalchemy import Table,Column,Integer,String,Float,Boolean,MetaData
 from sqlalchemy.ext.declarative import declarative_base
 from json import JSONEncoder
 import json
+from flask_login import UserMixin
 
 metaUsuarios=MetaData()
 usuarios=Table(
@@ -21,7 +22,7 @@ usuarios=Table(
 )
 
 Base=declarative_base()
-class Usuarios(Base):
+class Usuarios(Base, UserMixin):
     __tablename__='usuarios'
     id=Column(Integer,primary_key=True)
     nombre=Column(String)
