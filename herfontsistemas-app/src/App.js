@@ -13,13 +13,7 @@ function App() {
       <div className='container'>
         <div className='row'>
           <div className='col'>
-            <BrowserRouter>
-              <Routes>
-                <Route exact path="/Login" element={<Login />}/>
-              </Routes>
-            </BrowserRouter>
           <Menu /> 
-    
           </div>
         </div>  
       </div>

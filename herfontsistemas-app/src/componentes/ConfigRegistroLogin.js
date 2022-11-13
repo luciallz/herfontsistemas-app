@@ -75,7 +75,7 @@ function ConfigRegistroLogin() {
         title:"¡Nos encanta tenerte de vuelta!",
         text: sesion+" acaba de iniciar sesión.",
         icon: "success",})
-        if(accept){ //MIRAR QUE CUANDO PINCHE OK EN EL MENSAJE HA INCIAIDO SESIÓN SE REFRESQUE LA PÁGINA PARA QUE CAMBIE EL MENÚ
+        if(accept){
           window.location.reload(true);
         }
       
