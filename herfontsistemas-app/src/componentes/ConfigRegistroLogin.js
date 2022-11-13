@@ -45,7 +45,10 @@ function ConfigRegistroLogin() {
   const usuarioInsertado = (usuario)=>{
     console.log(usuario)
     if(usuario.errorDuplicado){
-      Swal.fire("Error! el correo electrónico insertado ya existe")
+      Swal.fire({
+        title:"¡Error!",
+        text: "El correo electrónico insertado ya existe.",
+        icon: "error",})
     }else{
       const nuevo_usuario = [...usuarios, usuario]
       setUsuario(nuevo_usuario)
@@ -53,18 +56,29 @@ function ConfigRegistroLogin() {
     
   
   }
-  const usuarioLogueado=(usuario)=>{
+  async function usuarioLogueado(usuario){
     console.log("entra")
     console.log(usuario)
     console.log(usuario.nombre)
     
     if(usuario.errorLog){
-      Swal.fire("Error! al intentar iniciar sesion")
+      
+      Swal.fire({
+        title:"¡Error!",
+        text: "No se ha podido iniciar sesion.",
+        icon: "error",})
     }else{
       setLogueadoUsuario(true)
       sessionStorage.setItem("nombre",usuario.nombre)
       var sesion=sessionStorage.getItem("nombre")
-      Swal.fire(sesion+" acaba de iniciar sesión.")
+      const{value:accept}=await Swal.fire({
+        title:"¡Nos encanta tenerte de vuelta!",
+        text: sesion+" acaba de iniciar sesión.",
+        icon: "success",})
+        if(accept){ //MIRAR QUE CUANDO PINCHE OK EN EL MENSAJE HA INCIAIDO SESIÓN SE REFRESQUE LA PÁGINA PARA QUE CAMBIE EL MENÚ
+          window.location.reload(true);
+        }
+      
     }
   }
     

@@ -48,9 +48,16 @@ function FormLogin(props) {
         if(CORREO_VAL.test(correo)===true && CONTRASENA_VAL.test(contrasena)===true ){
             APIService.IniciarSesion({correo, contrasena})
             .then(resp=>props.usuarioLogueado(resp))
-            .catch(error=>console.log(error))
+            .catch(error=>Swal.fire({
+                title:"¡Error!",
+                text: " No se reconoce el correo o contraseña con el que se está intentando acceder.",
+                icon: "error"}))
         }else{
-             Swal.fire("error! Faltan registros por completar bien")
+            Swal.fire({
+                title:"¡error!",
+                text: " Faltan registros por completar correctamente.",
+                icon: "Error"})
+             
         }
         
         

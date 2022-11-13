@@ -77,7 +77,7 @@ def login():
         # })
         jsonUserLogeado=json.dumps(userLog, cls=Encoder, indent=4)
         return jsonUserLogeado
-        return jsonify({"Mensaje":"Usted ha iniciado sesion"})
+        # return jsonify({"Mensaje":"Usted ha iniciado sesion"})
 
 @usuarios.route("/logout")
 def logout():
