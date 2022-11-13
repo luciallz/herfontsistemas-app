@@ -4,6 +4,7 @@ import logo from './img/logo.jpg';
 import {BrowserRouter as Router, Route, Routes,Link} from 'react-router-dom'
 import Usuarios from './Usuarios';
 import Logout from './Logout';
+import Home from './Home'
 import ConfigRegistroLogin from './ConfigRegistroLogin'
 
 function Menu() {
@@ -15,7 +16,7 @@ function Menu() {
                 
                 <Navbar bg="green" variant="dark" sticky='top' expand='lg'>
                         <NavbarBrand>
-                        <img src={logo} height='85px' width='205px'></img>
+                            <Nav.Link as={Link} to={"/Home"}><img src={logo} height='85px' width='205px' /></Nav.Link>
                         </NavbarBrand>
                         
                         <Navbar.Toggle/>
@@ -53,6 +54,7 @@ function Menu() {
                 <div>
                     <Routes>
                         <Route path="/ConfigRegistroLogin" element={<ConfigRegistroLogin />} />
+                        <Route path='*' element={<Home />} />
                     </Routes>
                 </div>
             </Router>
@@ -63,7 +65,7 @@ function Menu() {
                 
                 <Navbar bg="green" variant="dark" sticky='top' expand='lg'>
                         <NavbarBrand>
-                        <img src={logo} height='85px' width='205px'></img>
+                            <Nav.Link as={Link} to={"/Home"}><img src={logo} height='85px' width='205px' /></Nav.Link>
                         </NavbarBrand>
                         
                         <Navbar.Toggle/>
@@ -101,8 +103,10 @@ function Menu() {
                 </Navbar>
                 <div>
                     <Routes>
+                        <Route path='*' element={<Home />} />
                         <Route path="/ConfigRegistroLogin" element={<ConfigRegistroLogin />} />
                         <Route path='/Logout' element={<Logout />} />
+
                     </Routes>
                 </div>
             </Router>
@@ -113,7 +117,7 @@ function Menu() {
                 
                 <Navbar bg="green" variant="dark" sticky='top' expand='lg'>
                         <NavbarBrand>
-                        <img src={logo} height='85px' width='205px'></img>
+                            <Nav.Link as={Link} to={"/Home"}><img src={logo} height='85px' width='205px' /></Nav.Link>
                         </NavbarBrand>
                         
                         <Navbar.Toggle/>
@@ -152,6 +156,7 @@ function Menu() {
                 </Navbar>
                 <div>
                     <Routes>
+                        <Route path='*' element={<Home />} />
                         <Route path="/Usuarios" element={<Usuarios />} />
                         <Route path="/ConfigRegistroLogin" element={<ConfigRegistroLogin />} />
                         <Route path='/Logout' element={<Logout />} />
