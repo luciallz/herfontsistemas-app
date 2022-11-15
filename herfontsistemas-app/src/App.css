@@ -1,6 +1,7 @@
-.bg-green{
-  background-color: #387e59;
+.bg-green {
+    background-color: #387e59;
 }
+
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
 * {
@@ -21,12 +22,12 @@ body {
 }
 
 .App {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh; 
-  padding: 1rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem 0.5rem;
 }
 
 section {
@@ -37,7 +38,7 @@ section {
     flex-direction: column;
     justify-content: flex-start;
     padding: 1rem;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 form {
@@ -48,7 +49,8 @@ form {
     padding-bottom: 1rem;
 }
 
-a, a:visited {
+a,
+a:visited {
     color: #fff;
 }
 
@@ -56,19 +58,19 @@ input[type="text"],
 input[type="password"],
 button,
 textarea {
-  font-family: 'Nunito', sans-serif;
-  font-size: 22px;
-  padding: 0.25rem;
-  border-radius: 0.5rem;
+    font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+    padding: 0.25rem;
+    border-radius: 0.5rem;
 }
 
 label,
 button {
-  margin-top: 1rem;
+    margin-top: 1rem;
 }
 
 button {
-  padding: 0.5rem;
+    padding: 0.5rem;
 }
 
 .instructions {
@@ -81,7 +83,7 @@ button {
     bottom: -10px;
 }
 
-.instructions > svg {
+.instructions>svg {
     margin-right: 0.25rem;
 }
 
@@ -114,4 +116,97 @@ button {
 
 .line {
     display: inline-block;
+}
+
+/* Carrito */
+body {
+    font-family: 'Helvetica';
+}
+
+h1,
+h2,
+h3 {
+    margin: 0.5rem 0;
+}
+
+h1 {
+    font-size: 1.5rem;
+}
+
+h2 {
+    font-size: 1.2rem;
+}
+
+h3 {
+    font-size: 1rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.row.center {
+    align-items: center;
+}
+
+.col-1 {
+    flex: 1;
+}
+
+.col-2 {
+    flex: 2;
+    
+}
+
+.block {
+    background-color: #e0e0e0;
+    padding: 1rem;
+    margin: 0.5rem;
+    border-radius: 0.5rem;
+    min-width: 300px;
+}
+
+.text-right {
+    text-align: right;
+}
+
+img.small {
+    max-height: 8rem;
+}
+
+button {
+    font-size: 0.8rem;
+    padding: 0.2rem;
+    margin: 0.1rem;
+    border-radius: 0.5rem;
+    border: 0.1rem #404040 solid;
+    background-color: #f0c040;
+    width: 100%;
+    cursor: pointer;
+}
+
+button.add {
+    background-color: #40c0f0;
+    width: 1.5rem;
+}
+
+button.remove {
+    background-color: #f04040;
+    width: 1.5rem;
+}
+
+button.badge {
+    background-color: #f04040;
+    border: none;
+    color: #ffffff;
+    width: 1.5rem;
+}
+#divCarrito{
+    width: 100%;
+    height: 100%;
 }

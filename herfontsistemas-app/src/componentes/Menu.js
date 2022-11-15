@@ -43,6 +43,9 @@ function Menu() {
                 <Nav>
                 <Nav.Link as={Link} to={"/Registro1"}><i className="bi bi-person fs-1 text-white text-right"></i></Nav.Link>
                 <i className="bi bi-cart3 fs-1 text-white text-right"></i>
+                
+                <Nav.Link as={Link} to={"/Carrito"}><i className="bi bi-person fs-1 text-white text-right"></i></Nav.Link>
+                <i className="bi bi-cart3 fs-1 text-white text-right"></i>
                 </Nav>
         </Navbar>
         <div>

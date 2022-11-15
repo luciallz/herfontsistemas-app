@@ -33,7 +33,7 @@ function FormProductos(props) {
         {props.producto ? (
             
             <div className="mb-3">
-                <h1>Insetar</h1>
+                <h1>Insertar</h1>
                 <label htmlFor='nom_producto' className='form-label'>nombre</label>
                 <input type="text" className='form-control'
                 placeholder="Ingrese el nombre"

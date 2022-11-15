@@ -53,4 +53,13 @@ export default class APIService {
             headers:{"Content-type": "application/json"},
           })
     }
+
+    static ListarProductos(){
+        return fetch("http://127.0.0.1:5000",{
+            'method':'GET',
+            headers:{"Content-type": "application/json"}
+          }).then(
+            res=>res.json()
+          )
+    }
 }

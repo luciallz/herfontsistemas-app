@@ -39,8 +39,6 @@ function Registro1() {
     
   
     }
-    
-
 
   return (
     <div className='container'>
