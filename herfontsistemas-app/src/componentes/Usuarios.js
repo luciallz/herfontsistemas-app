@@ -25,6 +25,7 @@ function Usuarios() {
 
     setEditadoUsuario(usuario)
   }
+
   const datoModificado = (usuario) => {
     const nuevo_usuario = usuarios.map(mi_usuario => {
       if(mi_usuario.id === usuario.id){
@@ -64,7 +65,7 @@ function Usuarios() {
           >Insertar Usuario</button>
         </div>
           
-     <UsuariosList usuarios={usuarios} editarUsuario= {editarUsuario} borrarUsuario = {borrarUsuario}/>
+     <UsuariosList usuarios={usuarios} editarUsuario= {editarUsuario}borrarUsuario = {borrarUsuario}/>
 
      {editadoUsuario ? <FormUsuarios usuario = {editadoUsuario} datoModificado = {datoModificado} usuarioInsertado={usuarioInsertado}/> : null}
 

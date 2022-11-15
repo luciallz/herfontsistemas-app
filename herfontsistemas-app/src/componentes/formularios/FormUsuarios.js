@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import APIService from '../APIService';
 
-
 function FormUsuarios(props) {
     const NOMBRE_VAL = /^[A-z][A-z0-9-_]{3,23}$/;
     const APE_VAL=/^[A-z][A-Za-z]+(\s[A-Za-z])$/;
