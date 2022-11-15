@@ -72,20 +72,20 @@ function Menu() {
                         <Navbar.Collapse>
                             <Nav activeKey="/Usuarios">
                                 <NavDropdown title="Productos">
-                                <NavDropdown.Item href="productos/abrazaderas">Abrazaderas de tuberia</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Conectores SML</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Accesorios de montaje</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Sistemas de montaje para ventilación</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">CENTUM</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Carriles de perfil</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Aisladores de resorte</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Abrazaderas de tubería aisladas</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Accesorios de trabajo, heramientas...</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Sistemas de montaje para rociadortes</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Puntos fijos</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Elementos deslizantes</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Recubrumiento TSP-3</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Sistemas de montaje acero inoxidable</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Abrazaderas de tuberia</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Conectores SML</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Accesorios de montaje</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Sistemas de montaje para ventilación</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>CENTUM</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Carriles de perfil</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Aisladores de resorte</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Abrazaderas de tubería aisladas</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Accesorios de trabajo, heramientas...</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Sistemas de montaje para rociadortes</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Puntos fijos</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Elementos deslizantes</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Recubrumiento TSP-3</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Sistemas de montaje acero inoxidable</NavDropdown.Item>
                                 </NavDropdown>
         
                                 <Nav.Link href="servicios">Servicios</Nav.Link>
@@ -124,20 +124,20 @@ function Menu() {
                         <Navbar.Collapse>
                             <Nav activeKey="/Usuarios">
                                 <NavDropdown title="Productos">
-                                <NavDropdown.Item href="productos/abrazaderas">Abrazaderas de tuberia</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Conectores SML</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Accesorios de montaje</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Sistemas de montaje para ventilación</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">CENTUM</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Carriles de perfil</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Aisladores de resorte</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Abrazaderas de tubería aisladas</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Accesorios de trabajo, heramientas...</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Sistemas de montaje para rociadortes</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Puntos fijos</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Elementos deslizantes</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Recubrumiento TSP-3</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Sistemas de montaje acero inoxidable</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Abrazaderas de tuberia</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Conectores SML</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Accesorios de montaje</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Sistemas de montaje para ventilación</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>CENTUM</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Carriles de perfil</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Aisladores de resorte</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Abrazaderas de tubería aisladas</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Accesorios de trabajo, heramientas...</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Sistemas de montaje para rociadortes</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Puntos fijos</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Elementos deslizantes</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Recubrumiento TSP-3</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Sistemas de montaje acero inoxidable</NavDropdown.Item>
                                 </NavDropdown>
         
                                 <Nav.Link href="servicios">Servicios</Nav.Link>

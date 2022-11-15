@@ -1,8 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import APIService from '../APIService'
 function UsuariosList(props) {
-
- 
   
   const [busqueda, setBusqueda]=useState("")
 
