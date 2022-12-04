@@ -7,7 +7,7 @@ function FormUsuarios(props) {
     const CORREO_VAL = /^[\w\.\_]{3,5}\+?[\w]{0,10}@[\w]{3,}\.\w{2,5}$/;
     const TEL_VAL = /^[0-9]{9}$/;
     const CONTRASENA_VAL = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-    const DIR_VAL = /^[A-Za-z]+(\s[A-Za-z])*([0-9])*$/; //nose si está bien
+    const DIR_VAL = /^[A-Za-z]+(\s[A-Za-z])*([0-9])*$/; 
     const CIUPROV_VAL = /^[A-z][A-Za-z]+(\s[A-Za-z])$/;
     const CODPOST_VAL=/^[0-9]{1,5}$/;
     const DESC_VAL=/^[0-9]{1,3}$/;

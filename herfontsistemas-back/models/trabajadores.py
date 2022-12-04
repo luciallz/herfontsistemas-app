@@ -1,5 +1,7 @@
-from sqlalchemy import Table, Column, Integer, String, Float, MetaData
+from sqlalchemy import Table, Column, Integer, String, Float, MetaData, Date
 from sqlalchemy.ext.declarative import declarative_base
+import json
+from json import JSONEncoder
 
 metaTrabajadores = MetaData()
 trabajadores = Table(
@@ -9,7 +11,7 @@ trabajadores = Table(
     Column('primer_ape_trabajador', String(100)),
     Column('segundo_ape_trabajador', String(100)),
     Column('dni_trabajador', String(100)),
-    Column('fecha_nacimiento_trabajador', String(50)),
+    Column('fecha_nacimiento_trabajador', String(255)),
     Column('direccion_trabajador', String(50)),
     Column('poblacion_trabajador', String(50)),
     Column('correo_trabajador', String(50)),
@@ -20,8 +22,8 @@ trabajadores = Table(
     Column('persona_emergencias', String(50)),
     Column('tel_emergencias', String(50)),
     Column('banco', String(50)),
-    Column('iban', Integer),
-    Column('bic', String(100)),
+    Column('iban', String(100)),
+    Column('bic', String(50)),
 )
 
 Base = declarative_base()
@@ -66,3 +68,28 @@ class Trabajadores(Base):
         self.banco = banco
         self.iban = iban
         self.bic = bic
+class Encoder(json.JSONEncoder):
+    def default(self, o):
+        if isinstance(o,Trabajadores):
+            return {
+                "id":o.id,
+                "nom_trabajador":o.nom_trabajador,
+                "primer_ape_trabajador":o.primer_ape_trabajador,
+                "segundo_ape_trabajador":o.segundo_ape_trabajador,
+                "dni_trabajador":o.dni_trabajador,
+                "fecha_nacimiento_trabajador":o.fecha_nacimiento_trabajador,
+                "direccion_trabajador":o.direccion_trabajador,
+                "poblacion_trabajador":o.poblacion_trabajador,
+                "correo_trabajador":o.correo_trabajador,
+                "codigo_postal_trabajador":o.codigo_postal_trabajador,
+                "tel_fijo_trabajador":o.tel_fijo_trabajador,
+                "tel_movil_personal":o.tel_movil_personal,
+                "tel_movil_empresa":o.tel_movil_empresa,
+                "persona_emergencias":o.persona_emergencias,
+                "tel_emergencias":o.tel_emergencias,
+                "banco":o.banco,
+                "iban":o.iban,
+                "bic":o.bic
+
+            }
+        return super().default(o)

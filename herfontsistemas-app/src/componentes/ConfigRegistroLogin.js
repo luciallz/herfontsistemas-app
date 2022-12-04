@@ -52,6 +52,12 @@ function ConfigRegistroLogin() {
     }else{
       const nuevo_usuario = [...usuarios, usuario]
       setUsuario(nuevo_usuario)
+      Swal.fire({
+        title:"¡ÉXITO!",
+        text: "Se ha añadido un usuario nuevo",
+        icon: "suscess",
+      })
+      
     }
     
   
@@ -93,7 +99,6 @@ function ConfigRegistroLogin() {
           >Insertar Usuario</button> */}
         <h1>Está a un paso de autenticarse</h1>
         <p>¿Ya está registrado?</p>
-        <p><a href='./Login'> Iniciar sesión </a></p>
         <button className='btn btn-success'
         onClick={abrirFormLogin}>Iniciar Sesión</button>
         <p>¿No está registrado?</p>
@@ -101,8 +106,6 @@ function ConfigRegistroLogin() {
           className='btn btn-success'
           onClick={abrirForm}
           >Registrarse</button>
-
-
         </div>
           
 

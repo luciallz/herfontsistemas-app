@@ -6,6 +6,8 @@ import Usuarios from './Usuarios';
 import Logout from './Logout';
 import Home from './Home'
 import ConfigRegistroLogin from './ConfigRegistroLogin'
+import Trabajadores from './Trabajadores';
+import Mail from './Mail/Mail';
 
 function Menu() {
     var sesion=sessionStorage.getItem("nombre");
@@ -41,8 +43,7 @@ function Menu() {
         
                                 <Nav.Link href="servicios">Servicios</Nav.Link>
                                 <Nav.Link href="sobre nosotros">Sobre nosotros</Nav.Link>
-                                <Nav.Link href="contacto">Contacto</Nav.Link>
-                                <Nav.Link href="trabajadores">Trabajadores</Nav.Link> 
+                                <Nav.Link as={Link} to={"/Mail"} href="contacto">Contacto</Nav.Link>
         
                             </Nav>
                         </Navbar.Collapse>
@@ -54,6 +55,7 @@ function Menu() {
                 <div>
                     <Routes>
                         <Route path="/ConfigRegistroLogin" element={<ConfigRegistroLogin />} />
+                        <Route path="/Mail" element={<Mail />} />
                         <Route path='*' element={<Home />} />
                     </Routes>
                 </div>
@@ -90,8 +92,7 @@ function Menu() {
         
                                 <Nav.Link href="servicios">Servicios</Nav.Link>
                                 <Nav.Link href="sobre nosotros">Sobre nosotros</Nav.Link>
-                                <Nav.Link href="contacto">Contacto</Nav.Link>
-                                <Nav.Link href="trabajadores">Trabajadores</Nav.Link> 
+                                <Nav.Link as={Link} to={"/Mail"} href="contacto">Contacto</Nav.Link>
                                 <Nav.Link as={Link} to={"/Logout"}>Cerrar sesión</Nav.Link>
         
                             </Nav>
@@ -105,6 +106,7 @@ function Menu() {
                     <Routes>
                         <Route path='*' element={<Home />} />
                         <Route path="/ConfigRegistroLogin" element={<ConfigRegistroLogin />} />
+                        <Route path="/Mail" element={<Mail />} />
                         <Route path='/Logout' element={<Logout />} />
 
                     </Routes>
@@ -142,14 +144,14 @@ function Menu() {
         
                                 <Nav.Link href="servicios">Servicios</Nav.Link>
                                 <Nav.Link href="sobre nosotros">Sobre nosotros</Nav.Link>
-                                <Nav.Link href="contacto">Contacto</Nav.Link>
+                                <Nav.Link as={Link} to={"/Mail"} href="contacto">Contacto</Nav.Link>
                                 <Nav.Link as={Link} to={"/Usuarios"}>Usuarios</Nav.Link>
-                                <Nav.Link href="trabajadores">Trabajadores</Nav.Link> 
+                                <Nav.Link as={Link} to={"/Trabajadores"}>Trabajadores</Nav.Link> 
+                                {/* <Nav.Link href="trabajadores">Dar de alta trbajador</Nav.Link>  */}
                                 <Nav.Link as={Link} to={"/logout"} >Cerrar sesión</Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
                         <Nav>
-
                         <Nav.Link as={Link} to={"/ConfigRegistroLogin"}><i className="bi bi-person fs-1 text-white text-right"></i></Nav.Link>
                         <i className="bi bi-cart3 fs-1 text-white text-right"></i>
                         </Nav>
@@ -157,15 +159,19 @@ function Menu() {
                 <div>
                     <Routes>
                         <Route path='*' element={<Home />} />
+                        <Route path="/Mail" element={<Mail />} />
+                        <Route path="/Trabajadores" element={<Trabajadores />} />
                         <Route path="/Usuarios" element={<Usuarios />} />
                         <Route path="/ConfigRegistroLogin" element={<ConfigRegistroLogin />} />
                         <Route path='/Logout' element={<Logout />} />
+
                     </Routes>
                 </div>
             </Router>
-          )
+    
+        )
+
     }
 
 }
-
 export default Menu
