@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import ListaProductos from './listar/ListaProductos';
+import FormProductos from './formularios/FormProductos';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import ListarProductosMenu from './listar/ListarProductosMenu';
-import ListarCarrito from './listar/ListarCarrito';
+import Carrito from './Carrito';
 
 
-function Carrito() {
+function Productos() {
     const [productos, setProducto] = useState([])
 
     useEffect(() => {
@@ -51,10 +53,10 @@ function Carrito() {
             <div className='col'>
                 <h1>Productos Carrito</h1>
             </div>
-            <ListarCarrito productos={productos} anadirProductoCesta={anadirProductoCesta} eliminarCesta={eliminarCesta} />
+            <ListarProductosMenu productos={productos} anadirProductoCesta={anadirProductoCesta} />
         </div>
     )
 
 }
 
-export default Carrito
+export default Productos

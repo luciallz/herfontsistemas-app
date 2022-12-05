@@ -1,76 +1,81 @@
-from flask import  Flask,Blueprint, current_app,render_template,request,url_for,redirect,flash,current_app
-from sqlalchemy.orm import sessionmaker,Session
-from models.productos import productos,Productos
-from sqlalchemy import Integer, insert,Column,String, true
+from flask import Flask, Blueprint, current_app, render_template, request, url_for, redirect, flash, current_app
+from sqlalchemy.orm import sessionmaker, Session
+from models.productos import productos, Productos, Encoder
+from sqlalchemy import Integer, insert, Column, String, true
 from werkzeug.utils import secure_filename
-from utils.db import engine,db
+from utils.db import engine, db
 import os
-productos=Blueprint('productos',__name__)
+import json
+
+productos = Blueprint('productos', __name__)
 
 @productos.route("/productos")
 def productosList():
-    SessionListar=sessionmaker(bind=engine)
-    session=SessionListar()
-    result=session.query(Productos).all()
-    return render_template('productos.html',result=result)
+    SessionListarProductos = sessionmaker(bind=engine)
+    session = SessionListarProductos()
+    result = session.query(Productos).all()
+    jsonProductos = json.dumps(result, cls=Encoder, indent=4)
+    print(jsonProductos)
+    return jsonProductos
 
-@productos.route("/nuevoProducto",methods=['POST'])
+
+@productos.route("/nuevoProducto", methods=['POST'])
 def nuevoProducto():
-    print("ENTRA")
-    _nom_producto=request.form['nomproducto']
-    _descripcion=request.form['descripcion']
-    _cantidad=request.form['cantidad']
-    _precio=request.form['precio']
+    _nom_producto = request.json['nom_producto']
+    _descripcion = request.json['descripcion']
+    _cantidad = request.json['cantidad']
+    _precio = request.json['precio']
     if 'imagen' in request.files:
-        print("TIENE IMAGENES")
-        _imagen=request.files['imagen']
+        _imagen = request.files['imagen']
         if _imagen.filename:
-            imagen_name=secure_filename(_imagen.filename)
+            imagen_name = secure_filename(_imagen.filename)
             print(imagen_name)
 
-            current_app.config['imagenes']="./imagenes"
-            imagen_dir=current_app.config['imagenes']
+            current_app.config['imagenes'] = "./imagenes"
+            imagen_dir = current_app.config['imagenes']
             print(imagen_dir)
 
             os.makedirs(imagen_dir, exist_ok=True)
-            imagen_path=os.path.join(imagen_dir,imagen_name)
+            imagen_path = os.path.join(imagen_dir, imagen_name)
             _imagen.save(imagen_path)
             print("PATH")
             print(imagen_path)
-            nuevoProducto=Productos(_nom_producto,_descripcion,_cantidad,imagen_name,_precio)
+            nuevoProducto = Productos(_nom_producto, _descripcion, _cantidad, imagen_name, _precio)
     else:
-        nuevoProducto=Productos(_nom_producto,_descripcion,_cantidad,'None',_precio)
+        nuevoProducto = Productos(_nom_producto, _descripcion, _cantidad, 'None', _precio)
     print(nuevoProducto)
     with Session(engine) as session:
         session.add(nuevoProducto)
         session.commit()
         flash("¡Producto añadido sactifactoriamente!")
-        return redirect("/productos")
+        jsonProductoInsertado = json.dumps(nuevoProducto, cls=Encoder, indent=4)
+        return jsonProductoInsertado
+
 
 @productos.route("/borrarProducto/<id>")
 def borrarProducto(id):
     with Session(engine) as session:
-        producto=session.query(Productos).get(id)
+        producto = session.query(Productos).get(id)
         session.delete(producto)
         session.commit()
     flash("¡Producto eliminado sactifactoriamente!")
-    return redirect("/productos")
+    jsonProductoBorrado = json.dumps(producto, cls=Encoder, indent=4)
+    return jsonProductoBorrado
 
-@productos.route("/modificarProducto/<id>",methods=['POST', 'GET'])
+
+@productos.route("/modificarProducto/<id>", methods=['POST', 'GET'])
 def modificarProducto(id):
     with Session(engine) as session:
         if request.method == 'POST':
-            producto=session.query(Productos).get(id)
-            producto.nom_producto=request.form['nom_producto']
-            producto.descripcion=request.form['descripcion']
-            producto.cantidad=request.form['cantidad']
-            producto.imagen=request.form['imagen']
-            producto.precio=request.form['precio']
-            
-            print(producto)
+            producto = session.query(Productos).get(id)
+            producto.nom_producto = request.json['nom_producto']
+            producto.descripcion = request.json['descripcion']
+            producto.cantidad = request.json['cantidad']
+            producto.imagen = request.json['imagen']
+            producto.precio = request.json['precio']
             session.commit()
-            return redirect("/productos")
-        producto=session.query(Productos).get(id)
+            # return redirect("/productos")
+        producto = session.query(Productos).get(id)
     flash("¡Producto modificado sactifactoriamente!")
-    
-    return render_template("modificarProducto.html",producto=producto)
+    jsonProductoModificado = json.dumps(producto, cls=Encoder, indent=4)
+    return jsonProductoModificado

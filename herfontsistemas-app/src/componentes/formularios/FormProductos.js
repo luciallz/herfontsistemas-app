@@ -72,14 +72,6 @@ function FormProductos(props) {
                 onChange={(u) => setPrecio(u.target.value)}
 
                 />
-
-                <label htmlFor='descripcion' className='form-label'>descripcion</label>
-                <input type="text" className='form-control'
-                placeholder="Ingrese la descripcion"
-                value={descripcion}
-                onChange={(u) => setDescripcion(u.target.value)}
-
-                />
                 {
                     props.producto.id ? <button 
                     onClick={modificarProducto}

@@ -3,9 +3,12 @@ import { Nav, Navbar, NavbarBrand, NavDropdown } from 'react-bootstrap'
 import logo from './img/logo.jpg';
 import {BrowserRouter as Router, Route, Routes,Link} from 'react-router-dom'
 import Usuarios from './Usuarios';
+import Productos from './Productos';
+import Carrito from './Carrito';
 import Logout from './Logout';
 import Home from './Home'
 import ConfigRegistroLogin from './ConfigRegistroLogin'
+import ListarProductosMenu from './listar/ListarProductosMenu';
 
 function Menu() {
     var sesion=sessionStorage.getItem("nombre");
@@ -43,18 +46,21 @@ function Menu() {
                                 <Nav.Link href="sobre nosotros">Sobre nosotros</Nav.Link>
                                 <Nav.Link href="contacto">Contacto</Nav.Link>
                                 <Nav.Link href="trabajadores">Trabajadores</Nav.Link> 
+                                <Nav.Link as={Link} to={"/ProductosMenu"}>Productos</Nav.Link>
         
                             </Nav>
                         </Navbar.Collapse>
                         <Nav>
                         <Nav.Link as={Link} to={"/ConfigRegistroLogin"}><i className="bi bi-person fs-1 text-white text-right"></i></Nav.Link>
-                        <i className="bi bi-cart3 fs-1 text-white text-right"></i>
+                        <Nav.Link as={Link} to={"/Carrito"}><i className="bi bi-cart3 fs-1 text-white text-right"></i></Nav.Link>
                         </Nav>
                 </Navbar>
                 <div>
                     <Routes>
                         <Route path="/ConfigRegistroLogin" element={<ConfigRegistroLogin />} />
                         <Route path='*' element={<Home />} />
+                        <Route path='/Carrito' element={<Carrito />} />
+                        <Route path="/ProductosMenu" element={<ListarProductosMenu />} />
                     </Routes>
                 </div>
             </Router>
@@ -87,7 +93,8 @@ function Menu() {
                                 <NavDropdown.Item href="productos/abrazaderas">Recubrumiento TSP-3</NavDropdown.Item>
                                 <NavDropdown.Item href="productos/abrazaderas">Sistemas de montaje acero inoxidable</NavDropdown.Item>
                                 </NavDropdown>
-        
+
+                                
                                 <Nav.Link href="servicios">Servicios</Nav.Link>
                                 <Nav.Link href="sobre nosotros">Sobre nosotros</Nav.Link>
                                 <Nav.Link href="contacto">Contacto</Nav.Link>
@@ -98,7 +105,7 @@ function Menu() {
                         </Navbar.Collapse>
                         <Nav>
                         <Nav.Link as={Link} to={"/ConfigRegistroLogin"}><i className="bi bi-person fs-1 text-white text-right"></i></Nav.Link>
-                        <i className="bi bi-cart3 fs-1 text-white text-right"></i>
+                        <Nav.Link as={Link} to={"/Carrito"}><i className="bi bi-cart3 fs-1 text-white text-right"></i></Nav.Link>
                         </Nav>
                 </Navbar>
                 <div>
@@ -106,7 +113,8 @@ function Menu() {
                         <Route path='*' element={<Home />} />
                         <Route path="/ConfigRegistroLogin" element={<ConfigRegistroLogin />} />
                         <Route path='/Logout' element={<Logout />} />
-
+                        <Route path='/Productos' element={<Productos />} />
+                        <Route path='/Carrito' element={<Carrito />} />
                     </Routes>
                 </div>
             </Router>
@@ -150,26 +158,6 @@ function Menu() {
                         </Navbar.Collapse>
                         <Nav>
 
-<<<<<<< HEAD
-                    </Nav>
-                </Navbar.Collapse>
-                <Nav>
-                <Nav.Link as={Link} to={"/Registro1"}><i className="bi bi-person fs-1 text-white text-right"></i></Nav.Link>
-                <i className="bi bi-cart3 fs-1 text-white text-right"></i>
-                
-                <Nav.Link as={Link} to={"/Carrito"}><i className="bi bi-person fs-1 text-white text-right"></i></Nav.Link>
-                <i className="bi bi-cart3 fs-1 text-white text-right"></i>
-                </Nav>
-        </Navbar>
-        <div>
-            <Routes>
-                <Route path="/Usuarios" element={<Usuarios />} />
-                <Route path="/Registro1" element={<Registro1 />} />
-            </Routes>
-        </div>
-    </Router>
-  )
-=======
                         <Nav.Link as={Link} to={"/ConfigRegistroLogin"}><i className="bi bi-person fs-1 text-white text-right"></i></Nav.Link>
                         <i className="bi bi-cart3 fs-1 text-white text-right"></i>
                         </Nav>
@@ -185,7 +173,6 @@ function Menu() {
             </Router>
           )
     }
->>>>>>> c8f894c01bebe6ffd12f99b44ec4fc3a60dc7bf0
 
 }
 

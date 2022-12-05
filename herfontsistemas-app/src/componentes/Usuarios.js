@@ -51,7 +51,6 @@ function Usuarios() {
       }
       return true;
     })
-
     setUsuario(nuevo_usuario)
   }
 

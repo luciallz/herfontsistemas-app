@@ -1,7 +1,11 @@
 import React from 'react';
+import Main from './componentes/formularios/FormDatos';
+import Carrito from './componentes/Carrito';
+import data from './ejemplodatos';
 import { useState } from 'react';
 import Carrito from './componentes/Carrito';
 function App() {
+  const { products } = data;
   const [listaProductos, setlistaProductos] = useState([]);
   const onAdd = (product) => {
     const encontrarProductos = listaProductos.find((x) => x.id === product.id);
@@ -30,21 +34,7 @@ function App() {
   return (
     <div className="App">
       <div className="row">
-        <main className="block col-2">
-          <h2>Productos</h2>
-          <div className="row">
-            {props.productos.map((producto) => (
-              <div>
-                <img className="small" src={producto.imagen} alt={producto.nom_producto} />
-                <h3>{producto.nom_producto}</h3>
-                <div>{producto.cantidad}€</div>
-                <div>
-                  <button onClick={() => onAdd(props)}>Añadir al carrito</button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </main>
+        <Main products={products} onAdd={onAdd}></Main>
         <Carrito
           listaProductos={listaProductos}
           onAdd={onAdd}

@@ -1,5 +1,7 @@
-from sqlalchemy import Table, Column, Integer, String, Float, MetaData
+from sqlalchemy import Table, Column, Integer, String, MetaData
 from sqlalchemy.ext.declarative import declarative_base
+from json import JSONEncoder
+import json
 metaProductos = MetaData()
 productos = Table(
     'productos', metaProductos,
@@ -22,9 +24,23 @@ class Productos(Base):
     imagen = Column(String)
     precio = Column(Integer)
 
-def __init__(self, nom_producto, descripcion, cantidad, imagen, precio):
-    self.nom_producto = nom_producto
-    self.descripcion = descripcion
-    self.cantidad = cantidad
-    self.imagen = imagen
-    self.precio = precio
+    def __init__(self, nom_producto, descripcion, cantidad, imagen, precio):
+        self.nom_producto = nom_producto
+        self.descripcion = descripcion
+        self.cantidad = cantidad
+        self.imagen = imagen
+        self.precio = precio
+
+
+class Encoder(json.JSONEncoder):
+    def default(self, o):
+        if isinstance(o, Productos):
+            return {
+                "id": o.id,
+                "nom_producto": o.nom_producto,
+                "descripcion": o.descripcion,
+                "cantidad": o.cantidad,
+                "imagen": o.imagen,
+                "precio": o.precio
+            }
+        return super().default(o)
