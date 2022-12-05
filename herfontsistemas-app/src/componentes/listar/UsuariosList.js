@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react'
 import APIService from '../APIService'
 
 function UsuariosList(props) {
-  const [busqueda, setBusqueda] = useState("")
+  
+  const [busqueda, setBusqueda]=useState("")
 
-  const editarUsuario = (usuario) => {
+
+  const editarUsuario = (usuario)=>{
     props.editarUsuario(usuario)
   }
 

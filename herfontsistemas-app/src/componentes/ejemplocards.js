@@ -29,5 +29,3 @@ export default function Product(props) {
     </div>
   );
 }
-
-//PRODUCTOS.JS

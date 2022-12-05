@@ -3,15 +3,18 @@ import Swal from 'sweetalert2';
 import {Navigate, Route} from "react-router-dom"
 
 
-function Logout() {
+async function Logout() {
     sessionStorage.removeItem("nombre")
-    Swal.fire({
-    title:"¡Hasta pronto!",
-    text: "Ha cerrado sesión",
-    icon: "success",})
-
+    const{value:accept}=await Swal.fire({
+        title:"¡Hasta pronto!",
+        text: "Ha cerrado sesión",
+        icon: "success",})
+        if(accept){
+          window.location.reload(true);
+        }
     return (
         <Navigate to="/Home" />
+
     )
   
 }

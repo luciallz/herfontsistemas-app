@@ -9,6 +9,8 @@ import Logout from './Logout';
 import Home from './Home'
 import ConfigRegistroLogin from './ConfigRegistroLogin'
 import ListarProductosMenu from './listar/ListarProductosMenu';
+import Trabajadores from './Trabajadores';
+import Mail from './Mail/Mail';
 
 function Menu() {
     var sesion=sessionStorage.getItem("nombre");
@@ -44,8 +46,7 @@ function Menu() {
         
                                 <Nav.Link href="servicios">Servicios</Nav.Link>
                                 <Nav.Link href="sobre nosotros">Sobre nosotros</Nav.Link>
-                                <Nav.Link href="contacto">Contacto</Nav.Link>
-                                <Nav.Link href="trabajadores">Trabajadores</Nav.Link> 
+                                <Nav.Link as={Link} to={"/Mail"} href="contacto">Contacto</Nav.Link>
                                 <Nav.Link as={Link} to={"/ProductosMenu"}>Productos</Nav.Link>
         
                             </Nav>
@@ -58,6 +59,7 @@ function Menu() {
                 <div>
                     <Routes>
                         <Route path="/ConfigRegistroLogin" element={<ConfigRegistroLogin />} />
+                        <Route path="/Mail" element={<Mail />} />
                         <Route path='*' element={<Home />} />
                         <Route path='/Carrito' element={<Carrito />} />
                         <Route path="/ProductosMenu" element={<ListarProductosMenu />} />
@@ -78,27 +80,26 @@ function Menu() {
                         <Navbar.Collapse>
                             <Nav activeKey="/Usuarios">
                                 <NavDropdown title="Productos">
-                                <NavDropdown.Item href="productos/abrazaderas">Abrazaderas de tuberia</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Conectores SML</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Accesorios de montaje</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Sistemas de montaje para ventilación</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">CENTUM</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Carriles de perfil</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Aisladores de resorte</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Abrazaderas de tubería aisladas</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Accesorios de trabajo, heramientas...</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Sistemas de montaje para rociadortes</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Puntos fijos</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Elementos deslizantes</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Recubrumiento TSP-3</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Sistemas de montaje acero inoxidable</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Abrazaderas de tuberia</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Conectores SML</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Accesorios de montaje</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Sistemas de montaje para ventilación</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>CENTUM</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Carriles de perfil</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Aisladores de resorte</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Abrazaderas de tubería aisladas</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Accesorios de trabajo, heramientas...</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Sistemas de montaje para rociadortes</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Puntos fijos</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Elementos deslizantes</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Recubrumiento TSP-3</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Sistemas de montaje acero inoxidable</NavDropdown.Item>
                                 </NavDropdown>
 
                                 
                                 <Nav.Link href="servicios">Servicios</Nav.Link>
                                 <Nav.Link href="sobre nosotros">Sobre nosotros</Nav.Link>
-                                <Nav.Link href="contacto">Contacto</Nav.Link>
-                                <Nav.Link href="trabajadores">Trabajadores</Nav.Link> 
+                                <Nav.Link as={Link} to={"/Mail"} href="contacto">Contacto</Nav.Link>
                                 <Nav.Link as={Link} to={"/Logout"}>Cerrar sesión</Nav.Link>
         
                             </Nav>
@@ -112,6 +113,7 @@ function Menu() {
                     <Routes>
                         <Route path='*' element={<Home />} />
                         <Route path="/ConfigRegistroLogin" element={<ConfigRegistroLogin />} />
+                        <Route path="/Mail" element={<Mail />} />
                         <Route path='/Logout' element={<Logout />} />
                         <Route path='/Productos' element={<Productos />} />
                         <Route path='/Carrito' element={<Carrito />} />
@@ -132,27 +134,28 @@ function Menu() {
                         <Navbar.Collapse>
                             <Nav activeKey="/Usuarios">
                                 <NavDropdown title="Productos">
-                                <NavDropdown.Item href="productos/abrazaderas">Abrazaderas de tuberia</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Conectores SML</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Accesorios de montaje</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Sistemas de montaje para ventilación</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">CENTUM</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Carriles de perfil</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Aisladores de resorte</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Abrazaderas de tubería aisladas</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Accesorios de trabajo, heramientas...</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Sistemas de montaje para rociadortes</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Puntos fijos</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Elementos deslizantes</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Recubrumiento TSP-3</NavDropdown.Item>
-                                <NavDropdown.Item href="productos/abrazaderas">Sistemas de montaje acero inoxidable</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Abrazaderas de tuberia</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Conectores SML</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Accesorios de montaje</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Sistemas de montaje para ventilación</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>CENTUM</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Carriles de perfil</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Aisladores de resorte</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Abrazaderas de tubería aisladas</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Accesorios de trabajo, heramientas...</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Sistemas de montaje para rociadortes</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Puntos fijos</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Elementos deslizantes</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Recubrumiento TSP-3</NavDropdown.Item>
+                                <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Sistemas de montaje acero inoxidable</NavDropdown.Item>
                                 </NavDropdown>
         
                                 <Nav.Link href="servicios">Servicios</Nav.Link>
                                 <Nav.Link href="sobre nosotros">Sobre nosotros</Nav.Link>
-                                <Nav.Link href="contacto">Contacto</Nav.Link>
+                                <Nav.Link as={Link} to={"/Mail"} href="contacto">Contacto</Nav.Link>
                                 <Nav.Link as={Link} to={"/Usuarios"}>Usuarios</Nav.Link>
-                                <Nav.Link href="trabajadores">Trabajadores</Nav.Link> 
+                                <Nav.Link as={Link} to={"/Trabajadores"}>Trabajadores</Nav.Link> 
+                                {/* <Nav.Link href="trabajadores">Dar de alta trbajador</Nav.Link>  */}
                                 <Nav.Link as={Link} to={"/logout"} >Cerrar sesión</Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
@@ -165,15 +168,19 @@ function Menu() {
                 <div>
                     <Routes>
                         <Route path='*' element={<Home />} />
+                        <Route path="/Mail" element={<Mail />} />
+                        <Route path="/Trabajadores" element={<Trabajadores />} />
                         <Route path="/Usuarios" element={<Usuarios />} />
                         <Route path="/ConfigRegistroLogin" element={<ConfigRegistroLogin />} />
                         <Route path='/Logout' element={<Logout />} />
+
                     </Routes>
                 </div>
             </Router>
-          )
+    
+        )
+
     }
 
 }
-
 export default Menu
