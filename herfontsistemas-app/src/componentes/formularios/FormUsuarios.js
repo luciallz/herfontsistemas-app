@@ -145,7 +145,7 @@ function FormUsuarios(props) {
         {props.usuario ? (
             
             <div className="mb-3">
-                <h1>Inserar</h1>
+                <h1>Insertar</h1>
                 <label htmlFor='nombre' className='form-label'>nombre</label>
                 <input type="text" className='form-control'
                 placeholder="Ingrese el nombre"

@@ -4,13 +4,14 @@ import logo from './img/logo.jpg';
 import {BrowserRouter as Router, Route, Routes,Link} from 'react-router-dom'
 import Usuarios from './Usuarios';
 import Productos from './Productos';
-import Carrito from './Carrito';
 import Logout from './Logout';
 import Home from './Home'
 import ConfigRegistroLogin from './ConfigRegistroLogin'
-import ListarProductosMenu from './listar/ListarProductosMenu';
 import Trabajadores from './Trabajadores';
 import Mail from './Mail/Mail';
+import ListarCarrito from './listar/ListarCarrito';
+import Servicios from './Servicios';
+import SobreNosotros from './SobreNosotros';
 
 function Menu() {
     var sesion=sessionStorage.getItem("nombre");
@@ -18,15 +19,14 @@ function Menu() {
     if(sesion==null){
         return (
             <Router>
-                
                 <Navbar bg="green" variant="dark" sticky='top' expand='lg'>
                         <NavbarBrand>
                             <Nav.Link as={Link} to={"/Home"}><img src={logo} height='85px' width='205px' /></Nav.Link>
                         </NavbarBrand>
-                        
                         <Navbar.Toggle/>
                         <Navbar.Collapse>
                             <Nav activeKey="/Usuarios" >
+                            <Nav.Link as={Link} to={"/Productos"}>Productos</Nav.Link>
                             <NavDropdown title="Productos" >
                                 <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}} >Abrazaderas de tuberia</NavDropdown.Item>
                                 <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}} >Conectores SML</NavDropdown.Item>
@@ -44,11 +44,9 @@ function Menu() {
                                 <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}} >Sistemas de montaje acero inoxidable</NavDropdown.Item>
                                 </NavDropdown>
         
-                                <Nav.Link href="servicios">Servicios</Nav.Link>
-                                <Nav.Link href="sobre nosotros">Sobre nosotros</Nav.Link>
+                                <Nav.Link as={Link} to={"/Servicios"} href="servicios">Servicios</Nav.Link>
+                                <Nav.Link as={Link} to={"/SobreNosotros"} href="sobre nosotros">Sobre nosotros</Nav.Link>
                                 <Nav.Link as={Link} to={"/Mail"} href="contacto">Contacto</Nav.Link>
-                                <Nav.Link as={Link} to={"/ProductosMenu"}>Productos</Nav.Link>
-        
                             </Nav>
                         </Navbar.Collapse>
                         <Nav>
@@ -61,8 +59,10 @@ function Menu() {
                         <Route path="/ConfigRegistroLogin" element={<ConfigRegistroLogin />} />
                         <Route path="/Mail" element={<Mail />} />
                         <Route path='*' element={<Home />} />
-                        <Route path='/Carrito' element={<Carrito />} />
-                        <Route path="/ProductosMenu" element={<ListarProductosMenu />} />
+                        <Route path='/Carrito' element={<ListarCarrito />} />
+                        <Route path="/Productos" element={<Productos />} />
+                        <Route path='/Servicios' element={<Servicios />} />
+                        <Route path='/SobreNosotros' element={<SobreNosotros />} />
                     </Routes>
                 </div>
             </Router>
@@ -95,10 +95,9 @@ function Menu() {
                                 <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Recubrumiento TSP-3</NavDropdown.Item>
                                 <NavDropdown.Item href="productos/abrazaderas" style={{ backgroundColor:'#387e59'}}>Sistemas de montaje acero inoxidable</NavDropdown.Item>
                                 </NavDropdown>
-
                                 
-                                <Nav.Link href="servicios">Servicios</Nav.Link>
-                                <Nav.Link href="sobre nosotros">Sobre nosotros</Nav.Link>
+                                <Nav.Link as={Link} to={"/Servicios"} href="servicios">Servicios</Nav.Link>
+                                <Nav.Link as={Link} to={"/SobreNosotros"} href="sobre nosotros">Sobre nosotros</Nav.Link>
                                 <Nav.Link as={Link} to={"/Mail"} href="contacto">Contacto</Nav.Link>
                                 <Nav.Link as={Link} to={"/Logout"}>Cerrar sesión</Nav.Link>
         
@@ -116,7 +115,9 @@ function Menu() {
                         <Route path="/Mail" element={<Mail />} />
                         <Route path='/Logout' element={<Logout />} />
                         <Route path='/Productos' element={<Productos />} />
-                        <Route path='/Carrito' element={<Carrito />} />
+                        <Route path='/Carrito' element={<ListarCarrito />} />
+                        <Route path='/Servicios' element={<Servicios />} />
+                        <Route path='/SobreNosotros' element={<SobreNosotros />} />
                     </Routes>
                 </div>
             </Router>
@@ -173,14 +174,11 @@ function Menu() {
                         <Route path="/Usuarios" element={<Usuarios />} />
                         <Route path="/ConfigRegistroLogin" element={<ConfigRegistroLogin />} />
                         <Route path='/Logout' element={<Logout />} />
-
+                        <Route path='/Servicios' element={<Servicios />} />
                     </Routes>
                 </div>
             </Router>
-    
         )
-
     }
-
 }
 export default Menu

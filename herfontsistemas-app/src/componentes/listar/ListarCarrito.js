@@ -1,51 +1,53 @@
 import React from 'react';
 
-export default function ListarCarrito(props) {
-  console.log('dddddddddd')
-  console.log(props.productos)
-  const { anadirProductoCesta, eliminarCesta } = props.productos;
-  const listaProductos = props.productos
-  console.log('eeeeeeeeee')
-  console.log(listaProductos)
-  const precioProducto = Array.isArray(listaProductos) ? listaProductos.reduce((a, c) => a + c.cantidad * c.cantidad, 0) : 0;
-  const precioEnvio = precioProducto > 2000 ? 0 : 20;
-  const precioTotal = precioProducto + precioEnvio;
+export default function ListarCarrito() {
+  var listaCarrito = []
+  if (localStorage.getItem('listaCarrito')){
+    listaCarrito = JSON.parse(localStorage.getItem('listaCarrito'))
+  }
+  const eliminarCesta = (producto) => {
+    var posicion = listaCarrito.findIndex((x) => x.id === producto.id);
+    console.log(posicion)
+    if(posicion != -1){
+        listaCarrito.splice(posicion, 1);
+        localStorage.setItem("listaCarrito", JSON.stringify(listaCarrito));
+    }
+  }
+  //const listaCarrito = props.listaCarrito
+  const precioProducto = listaCarrito.reduce((a, c) => a + c.cantidad * c.cantidad, 0);
+  console.log(precioProducto)
+  //const precioEnvio = precioProducto > 2000 ? 0 : 20;
+  const precioTotal = precioProducto; //+ precioEnvio;
   return (
     <aside className="block col-1">
       <h2>Carrito</h2>
       <div id='divCarrito'>
-        {listaProductos.length === 0 && <div>Carrito vacío</div>}
-        {Array.isArray(listaProductos) ? listaProductos.map((producto) => (
+        {listaCarrito.length === 0 && <div>Carrito vacío</div>}
+        {listaCarrito.map((producto) => (
           <div key={producto.id} className="row">
-            <div className="col-2">{producto.nom_producto}</div>
-            <div className="col-2">
-              <button onClick={() => eliminarCesta(producto)} className="remove">
-                -
-              </button>{' '}
-              <button onClick={() => anadirProductoCesta(producto)} className="add">
-                +
-              </button>
-            </div>
-
+            <div className="col-2">{producto.nombre}</div>
             <div className="col-2 text-right">
-              {producto.cantidad} x €{producto.cantidad.toFixed(2)}
+              {producto.cantidad} x €{producto.precio.toFixed(2)}
+              <button onClick={() => eliminarCesta(producto)} className="remove">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+              </button>{' '}
             </div>
           </div>
-        )) : null}
+        ))}
 
-        {listaProductos.length !== 0 && (
+        {listaCarrito.length !== 0 && (
           <>
             <hr></hr>
             <div className="row">
               <div className="col-2">Precio Productos</div>
               <div className="col-1 text-right">{precioProducto.toFixed(2)}€</div>
             </div>
-            <div className="row">
+            {/* <div className="row">
               <div className="col-2">Precio Envio</div>
               <div className="col-1 text-right">
                 {precioEnvio.toFixed(2)}€
               </div>
-            </div>
+            </div> */}
 
             <div className="row">
               <div className="col-2">

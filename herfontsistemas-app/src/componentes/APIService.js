@@ -1,7 +1,8 @@
-
+import React, { useState, useEffect } from 'react';
 export default class APIService {
+    static rutaMaquina = 'http://127.0.0.1:5000'
     static ModificarUsuario(id, body){
-        return fetch(`http://127.0.0.1:5000/modificar/${id}`,{
+        return fetch(this.rutaMaquina + `/modificar/${id}`,{
             'method':'PUT',
             headers:{"Content-type": "application/json"},
             body: JSON.stringify(body)
@@ -10,7 +11,7 @@ export default class APIService {
     }
 
     static InsertarUsuario(body){
-        return fetch(`http://127.0.0.1:5000/nuevo`,{
+        return fetch(this.rutaMaquina + `/nuevo`,{
             'method':'POST',
             headers:{"Content-type": "application/json"},
             body: JSON.stringify(body)
@@ -18,7 +19,7 @@ export default class APIService {
           .then(resp=>resp.json())
     }
     static IniciarSesion(body){
-        return fetch(`http://127.0.0.1:5000/login`,{
+        return fetch(this.rutaMaquina + `/login`,{
             'method':'POST',
             headers:{"Content-type": "application/json"},
             body: JSON.stringify(body)
@@ -27,7 +28,7 @@ export default class APIService {
     }
 
     static BorrarUsuario(id){
-        return fetch(`http://127.0.0.1:5000/borrar/${id}`,{
+        return fetch(this.rutaMaquina + `/borrar/${id}`,{
             'method':'DELETE',
             headers:{"Content-type": "application/json"},
           })
@@ -35,7 +36,7 @@ export default class APIService {
     //RUTAS TRABAJADORES
 
     static ModificarTrabajador(id, body){
-      return fetch(`http://127.0.0.1:5000/modificarTrabajador/${id}`,{
+      return fetch(this.rutaMaquina + `/modificarTrabajador/${id}`,{
           'method':'PUT',
           headers:{"Content-type": "application/json"},
           body: JSON.stringify(body)
@@ -45,7 +46,7 @@ export default class APIService {
 
 
   static InsertarTrabajador(body){
-      return fetch(`http://127.0.0.1:5000/nuevoTrabajador`,{
+      return fetch(this.rutaMaquina + `/nuevoTrabajador`,{
           'method':'POST',
           headers:{"Content-type": "application/json"},
           body: JSON.stringify(body)
@@ -54,7 +55,7 @@ export default class APIService {
   }
 
   static BorrarTrabajador(id){
-      return fetch(`http://127.0.0.1:5000/borrarTrabajador/${id}`,{
+      return fetch(this.rutaMaquina + `/borrarTrabajador/${id}`,{
           'method':'DELETE',
           headers:{"Content-type": "application/json"},
         })
@@ -63,7 +64,7 @@ export default class APIService {
     // RUTAS PRODUCTO
     
     static ModificarProducto(id, body){
-        return fetch(`http://127.0.0.1:5000/modificarProducto/${id}`,{
+        return fetch(this.rutaMaquina + `/modificarProducto/${id}`,{
             'method':'PUT',
             headers:{"Content-type": "application/json"},
             body: JSON.stringify(body)
@@ -73,7 +74,7 @@ export default class APIService {
 
 
     static InsertarProducto(body){
-        return fetch(`http://127.0.0.1:5000/nuevoProducto`,{
+        return fetch(this.rutaMaquina + `/nuevoProducto`,{
             'method':'POST',
             headers:{"Content-type": "application/json"},
             body: JSON.stringify(body)
@@ -82,7 +83,7 @@ export default class APIService {
     }
 
     static BorrarProducto(id){
-        return fetch(`http://127.0.0.1:5000/borrarProducto/${id}`,{
+        return fetch(this.rutaMaquina + `/borrarProducto/${id}`,{
             'method':'DELETE',
             headers:{"Content-type": "application/json"},
           })
