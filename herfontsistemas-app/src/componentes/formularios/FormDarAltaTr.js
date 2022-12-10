@@ -10,8 +10,7 @@ import 'primereact/resources/primereact.css';
 // import Calendar from 'react-calendar';
 // import 'react-calendar/dist/Calendar.css';
 import { addLocale,locale } from 'primereact/api';
-import {format,formatDate, getDate, getMonth} from 'date-fns'
-import dayjs from 'dayjs'
+
 import { Calendar } from 'primereact/calendar'
 function FormDarAltaTr(props) {
   
