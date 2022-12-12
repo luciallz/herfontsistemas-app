@@ -1,6 +1,46 @@
 .bg-green {
     background-color: #387e59;
 }
+.pointer {
+    cursor: pointer;
+  }
+.hidden{
+    display:none; 
+}
+.pwd-icon {
+    color:  #387e59;
+    bottom: 25%;
+    right: 5%;
+}
+.pwd-icon:hover {
+    filter: brightness(1.2);
+}
+.form-control {
+    letter-spacing: 0.1rem !important;
+    color:  black !important;
+  }
+.centrado{
+	width: 900px;
+	height: 600px;
+	background-color: white;
+	border:2px solid #387e59;
+	/* centrar vertical y horizontalmente */
+	position: absolute;
+	top: 30%;
+	left: 30%;
+	margin: -25px 0 0 -25px;
+}
+.centrado2{
+	width: 1000px;
+	height: 1600px;
+	background-color: white;
+	border:2px solid #387e59;
+	/* centrar vertical y horizontalmente */
+	position: absolute;
+	top: 30%;
+	left: 30%;
+	margin: -25px 0 0 -25px;
+}
 
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
@@ -91,6 +131,7 @@ button {
     position: absolute;
     left: -9999px;
 }
+
 
 .hide {
     display: none;

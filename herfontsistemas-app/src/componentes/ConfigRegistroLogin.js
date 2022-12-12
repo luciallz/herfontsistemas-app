@@ -1,4 +1,5 @@
 import React, {useState,useEffect} from 'react';
+import {BrowserRouter as Router, Route, Routes,Link} from 'react-router-dom';
 import FormRegistro from './formularios/FormRegistro';
 import FormLogin from './formularios/FormLogin';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -88,24 +89,25 @@ function ConfigRegistroLogin() {
     }
   }
     
-
+  
 
   return (
     <div className='container'>
         <div className='col'>
-          {/* <button
-          className='btn btn-success'
-          onClick={abrirForm}
-          >Insertar Usuario</button> */}
-        <h1>Está a un paso de autenticarse</h1>
-        <p>¿Ya está registrado?</p>
-        <button className='btn btn-success'
-        onClick={abrirFormLogin}>Iniciar Sesión</button>
-        <p>¿No está registrado?</p>
-        <button
-          className='btn btn-success'
-          onClick={abrirForm}
-          >Registrarse</button>
+          <h1>Está a un paso de autenticarse</h1>
+          <p>¿Ya está registrado?</p>
+          <button className='btn btn-success'
+          onClick={abrirFormLogin}
+          >Iniciar Sesión</button>
+          <p>¿No está registrado?</p>
+          <button
+            className='btn btn-success'
+            onClick={abrirForm}
+            >Registrarse</button>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
         </div>
           
 
