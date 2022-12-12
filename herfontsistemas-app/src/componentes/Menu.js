@@ -12,14 +12,13 @@ import Mail from './Mail/Mail';
 import ListarCarrito from './listar/ListarCarrito';
 import Servicios from './Servicios';
 import SobreNosotros from './SobreNosotros';
-
 function Menu() {
     var sesion=sessionStorage.getItem("nombre");
     console.log(sesion)
     if(sesion==null){
         return (
             <Router>
-                <Navbar bg="green" variant="dark" sticky='top' expand='lg'>
+                <Navbar bg="green" variant="dark" sticky='top' expand='lg' >
                         <NavbarBrand>
                             <Nav.Link as={Link} to={"/Home"}><img src={logo} height='85px' width='205px' /></Nav.Link>
                         </NavbarBrand>
@@ -100,7 +99,7 @@ function Menu() {
                                 <Nav.Link as={Link} to={"/SobreNosotros"} href="sobre nosotros">Sobre nosotros</Nav.Link>
                                 <Nav.Link as={Link} to={"/Mail"} href="contacto">Contacto</Nav.Link>
                                 <Nav.Link as={Link} to={"/Logout"}>Cerrar sesión</Nav.Link>
-        
+                                <p>Hola ${sesion}</p>
                             </Nav>
                         </Navbar.Collapse>
                         <Nav>
