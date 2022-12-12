@@ -1,4 +1,6 @@
 import React from 'react';
+import {BrowserRouter as Router, Route, Routes,Link} from 'react-router-dom';
+import FinalizarCompra from '../FinalizarCompra';
 
 export default function ListarCarrito() {
   var listaCarrito = []
@@ -13,8 +15,7 @@ export default function ListarCarrito() {
         localStorage.setItem("listaCarrito", JSON.stringify(listaCarrito));
     }
   }
-  //const listaCarrito = props.listaCarrito
-  const precioProducto = listaCarrito.reduce((a, c) => a + c.cantidad * c.cantidad, 0);
+  const precioProducto = listaCarrito.reduce((a, c) =>  a + c.precio * c.cantidad, 0);
   console.log(precioProducto)
   //const precioEnvio = precioProducto > 2000 ? 0 : 20;
   const precioTotal = precioProducto; //+ precioEnvio;
@@ -59,9 +60,10 @@ export default function ListarCarrito() {
             </div>
             <hr />
             <div className="row">
-              <button onClick={() => alert('Compra Finalizada!')}>
-                Finalizar Compra
-              </button>
+              <Link to="/FinalizarCompra" className="btn btn-primary">Finalizar Compra</Link>
+              <Routes>
+                  <Route path="/FinalizarCompra" element={<FinalizarCompra />} />
+              </Routes>
             </div>
           </>
         )}

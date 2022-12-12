@@ -89,4 +89,31 @@ export default class APIService {
           })
     }
 
+    //RUTAS PEDIDOS
+
+    static ModificarPedido(id, body){
+      return fetch(this.rutaMaquina + `/modificarPedido/${id}`,{
+          'method':'PUT',
+          headers:{"Content-type": "application/json"},
+          body: JSON.stringify(body)
+        })
+        .then(resp=>resp.json())
+      }
+
+
+  static InsertarPedido(body){
+      return fetch(this.rutaMaquina + `/nuevoPedido`,{
+          'method':'POST',
+          headers:{"Content-type": "application/json"},
+          body: JSON.stringify(body)
+        })
+        .then(resp=>resp.json())
+    }
+
+  static BorrarPedido(id){
+      return fetch(this.rutaMaquina + `/borrarPedido/${id}`,{
+          'method':'DELETE',
+          headers:{"Content-type": "application/json"},
+        })
+    }
 }

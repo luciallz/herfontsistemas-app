@@ -107,8 +107,6 @@ function ConfigRegistroLogin() {
           onClick={abrirForm}
           >Registrarse</button>
         </div>
-          
-
      {editadoUsuario ? <FormRegistro usuario = {editadoUsuario} usuarioInsertado={usuarioInsertado} /> : null}
      {logueadoUsuario? <FormLogin usuario={logueadoUsuario} usuarioLogueado={usuarioLogueado} /> : null}
     </div>

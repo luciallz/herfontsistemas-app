@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import ListaProductos from './listar/ListaProductos';
 import FormProductos from './formularios/FormProductos';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap-icons/font/bootstrap-icons.css'
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 
 function Productos() {
@@ -96,7 +98,7 @@ function Productos() {
   });
 
   var sesion = sessionStorage.getItem("nombre");
-  if (sesion == null) {
+  if (sesion != null && sesion != "admin") {
     return (
       <div className='container'>
         <div>
@@ -107,7 +109,7 @@ function Productos() {
                 <img className="small" src={producto.imagen} alt={producto.nom_producto} />
                 <h3>Nombre: {producto.nom_producto}</h3>
                 <div>Precio: {producto.precio}€</div>
-                <div>Cantidad: <input id='productoCantidad' type="number" min='1' onChange={(u) => setCantidad(u.target.value)}></input></div>
+                <div>Cantidad: <input id='productoCantidad' type="text" min='1' aria-invalid={validCantidad ? "false" : "true"} onChange={(u) => setCantidad(u.target.value)}></input></div>
                 <div>
                   <button onClick={() => anadirProductoCesta(producto)}>Añadir al carrito</button>
                 </div>
@@ -118,7 +120,33 @@ function Productos() {
         </div>
       </div>
     )
-  } else if (sesion != null && sesion != "admin") {
+  }else if(sesion == null){
+    return (
+      <div className='container'>
+        <div>
+          <p>Productos</p>
+          {productos.map(producto => {
+            return (
+              <div>
+                <img className="small" src={producto.imagen} alt={producto.nom_producto} />
+                <h3>Nombre: {producto.nom_producto}</h3>
+                <div>Precio: {producto.precio}€</div>
+                <div>Cantidad: <input id='productoCantidad' type="text" min='1' aria-invalid={validCantidad ? "false" : "true"} onChange={(u) => setCantidad(u.target.value)}></input></div>
+                <p id="cantidadValid" className={cantidad && !validCantidad ? "instructions" : "offscreen"}>
+                    <FontAwesomeIcon icon={faInfoCircle} />
+                    Solo se permiten números
+                </p>
+                <div>
+                  <button onClick={() => anadirProductoCesta(producto)}>Añadir al carrito</button>
+                </div>
+              </div>
+            )}
+          )
+          }
+        </div>
+      </div>
+    )
+  }else if (sesion == "admin") {
     return (
       <div className='container'>
         <div className='col'>
