@@ -106,7 +106,7 @@ def nuevo():
         # devolverError=json.dumps(error, cls=Encoder, indent=4)
         print(error)
         print(type(error))
-        session["usuario_id"]=Usuarios.id
+        #session["usuario_id"]=Usuarios.id
         return jsonify(error)
     else:
         session.add(nuevoUsuario)
