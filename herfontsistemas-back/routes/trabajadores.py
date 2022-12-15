@@ -6,6 +6,7 @@ from werkzeug.utils import secure_filename
 from utils.db import engine,db
 import os
 import json
+from datetime import datetime
 
 
 trabajadores=Blueprint('trabajadores',__name__)
@@ -93,6 +94,7 @@ def modificarTrabajador(id):
             trabajador.iban=request.json['iban']
             trabajador.bic=request.json['bic']
         session.commit()
+
         trabajador=session.query(Trabajadores).get(id)
     flash("¡Trabajador modificado sactifactoriamente!")
     jsonTrabajModificado=json.dumps(trabajador, cls=Encoder, indent=4)

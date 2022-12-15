@@ -2,7 +2,7 @@ import React from 'react'
 import { Nav, Navbar, NavbarBrand, NavDropdown } from 'react-bootstrap'
 import logo from './img/logo.jpg';
 import {BrowserRouter as Router, Route, Routes,Link} from 'react-router-dom'
-import Usuarios from './Usuarios';
+// import Usuarios from './Usuarios';
 import Logout from './Logout';
 import Home from './Home'
 import ConfigRegistroLogin from './ConfigRegistroLogin'
@@ -16,7 +16,7 @@ function Menu() {
         return (
             <Router>
                 
-                <Navbar bg="green" variant="dark" sticky='top' expand='lg'>
+                <Navbar bg="green" variant="dark" sticky='top' expand='lg' >
                         <NavbarBrand>
                             <Nav.Link as={Link} to={"/Home"}><img src={logo} height='85px' width='205px' /></Nav.Link>
                         </NavbarBrand>
@@ -44,6 +44,7 @@ function Menu() {
                                 <Nav.Link href="servicios">Servicios</Nav.Link>
                                 <Nav.Link href="sobre nosotros">Sobre nosotros</Nav.Link>
                                 <Nav.Link as={Link} to={"/Mail"} href="contacto">Contacto</Nav.Link>
+                                
         
                             </Nav>
                         </Navbar.Collapse>
@@ -94,7 +95,8 @@ function Menu() {
                                 <Nav.Link href="sobre nosotros">Sobre nosotros</Nav.Link>
                                 <Nav.Link as={Link} to={"/Mail"} href="contacto">Contacto</Nav.Link>
                                 <Nav.Link as={Link} to={"/Logout"}>Cerrar sesión</Nav.Link>
-        
+
+                                <p>Hola {sesion}</p>
                             </Nav>
                         </Navbar.Collapse>
                         <Nav>
@@ -145,10 +147,12 @@ function Menu() {
                                 <Nav.Link href="servicios">Servicios</Nav.Link>
                                 <Nav.Link href="sobre nosotros">Sobre nosotros</Nav.Link>
                                 <Nav.Link as={Link} to={"/Mail"} href="contacto">Contacto</Nav.Link>
-                                <Nav.Link as={Link} to={"/Usuarios"}>Usuarios</Nav.Link>
+                                {/* <Nav.Link as={Link} to={"/Usuarios"}>Usuarios</Nav.Link> */}
                                 <Nav.Link as={Link} to={"/Trabajadores"}>Trabajadores</Nav.Link> 
                                 {/* <Nav.Link href="trabajadores">Dar de alta trbajador</Nav.Link>  */}
                                 <Nav.Link as={Link} to={"/logout"} >Cerrar sesión</Nav.Link>
+
+                                <p>Hola {sesion}</p>
                             </Nav>
                         </Navbar.Collapse>
                         <Nav>
@@ -161,7 +165,7 @@ function Menu() {
                         <Route path='*' element={<Home />} />
                         <Route path="/Mail" element={<Mail />} />
                         <Route path="/Trabajadores" element={<Trabajadores />} />
-                        <Route path="/Usuarios" element={<Usuarios />} />
+                        {/* <Route path="/Usuarios" element={<Usuarios />} /> */}
                         <Route path="/ConfigRegistroLogin" element={<ConfigRegistroLogin />} />
                         <Route path='/Logout' element={<Logout />} />
 
