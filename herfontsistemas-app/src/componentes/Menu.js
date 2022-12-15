@@ -2,7 +2,6 @@ import React from 'react'
 import { Nav, Navbar, NavbarBrand, NavDropdown } from 'react-bootstrap'
 import logo from './img/logo.jpg';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
-import {BrowserRouter as Router, Route, Routes,Link} from 'react-router-dom'
 // import Usuarios from './Usuarios';
 
 function Menu() {
