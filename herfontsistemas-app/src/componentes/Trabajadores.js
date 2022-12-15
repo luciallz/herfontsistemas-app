@@ -25,18 +25,19 @@ function Trabajadores() {
     const datoModificadoTr=(trabajador)=>{
         const nuevo_trabajador=trabajadores.map(mi_trabajador=>{
             if(mi_trabajador.id===trabajador.id){
-                Swal.fire({
-                  title:"¡Exito!",
-                  text:"Se ha modificado correctamente",
-                  icon:"success"
-                })
+              Swal.fire({
+                title:"¡Exito!",
+                text:"Se ha modificado correctamente",
+                icon:"success"
+              })
                 return trabajador
             }else{
               Swal.fire({
-                title:"¡Error!",
-                text:"Algo ha ocurrido, no se ha podido modificar",
-                icon:"error"
+                title:"¡Exito!",
+                text:"Se ha modificado correctamente",
+                icon:"success"
               })
+              
 
                 return mi_trabajador
             }

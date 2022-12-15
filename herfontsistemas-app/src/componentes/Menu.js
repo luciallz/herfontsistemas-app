@@ -2,6 +2,8 @@ import React from 'react'
 import { Nav, Navbar, NavbarBrand, NavDropdown } from 'react-bootstrap'
 import logo from './img/logo.jpg';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
+import {BrowserRouter as Router, Route, Routes,Link} from 'react-router-dom'
+// import Usuarios from './Usuarios';
 
 function Menu() {
     var sesion = sessionStorage.getItem("nombre");
@@ -75,6 +77,8 @@ function Menu() {
                                 <Nav.Link><Link to="/Servicios">Servicios</Link></Nav.Link>
                                 <Nav.Link><Link to="/SobreNosotros">Sobre nosotros</Link></Nav.Link>
                                 <Nav.Link><Link to="/Contacto">Contacto</Link></Nav.Link>
+                                <Nav.Link href="servicios">Servicios</Nav.Link>
+                                <p>Hola {sesion}</p>
                             </Nav>
                         </Navbar.Collapse>
                         <Nav>
@@ -116,6 +120,12 @@ function Menu() {
                                 <Nav.Link><Link to="/Contacto">Contacto</Link></Nav.Link>
                                 <Nav.Link><Link to="/Trabajadores">Trabajadores</Link></Nav.Link> 
                                 <Nav.Link href="trabajadores">Dar de alta trbajador</Nav.Link>
+                                <Nav.Link href="servicios">Servicios</Nav.Link>
+                                <Nav.Link href="sobre nosotros">Sobre nosotros</Nav.Link>
+                                <Nav.Link as={Link} to={"/Mail"} href="contacto">Contacto</Nav.Link>
+                                {/* <Nav.Link as={Link} to={"/Usuarios"}>Usuarios</Nav.Link> */}
+
+                                <p>Hola {sesion}</p>
                             </Nav>
                         </Navbar.Collapse>
                         <Nav>

@@ -52,7 +52,6 @@ function FormRegistro(props) {
     const [matchPasswd, setMatchPasswd] = useState('');
     const [validMatch, setValidMatch] = useState(false)
     const [matchFocus, setMatchFocus] = useState(false)
-    const [verPwd, setVerPwd] = useState(false)
 
     const [direccion, setDireccion] = useState('')
     const [validDir, setValidDir] = useState(false)
@@ -186,21 +185,18 @@ function FormRegistro(props) {
 
 
     }
-    const borrarDiv=()=>{
-        document.getElementsByClassName('centrado2')[0].remove()
-    }
 
+    const [verPwd, setVerPwd] = useState(false)
+    const [verPwd2, setVerPwd2] = useState(false)
 
     return (
         <div>
             {props.usuario ? (
 
-                <div className="shadow-lg p-3 mb-5 bg-white rounded">
+                <div className="mb-3">
 
-                    
-                    
-                    <h1>Registro</h1> 
- 
+
+                    <h1>Inserar</h1>
                     <label htmlFor='nombre' className='form-label'>nombre
                         <span className={validNombre ? "valid" : "hide"}>
                             <FontAwesomeIcon icon={faCheck} />
@@ -322,7 +318,6 @@ function FormRegistro(props) {
                                 <path d="M6.75 12c0-.619.107-1.213.304-1.764l-3.1-3.1a11.25 11.25 0 00-2.63 4.31c-.12.362-.12.752 0 1.114 1.489 4.467 5.704 7.69 10.675 7.69 1.5 0 2.933-.294 4.242-.827l-2.477-2.477A5.25 5.25 0 016.75 12z" />
                             </svg>}
                         </div>
-
                     </div>
                     <p id="contrasenanote" className={contrasenaFocus && contrasena && !validContrasena ? "instructions" : "offscreen"}>
                         <FontAwesomeIcon icon={faInfoCircle} />
@@ -339,8 +334,7 @@ function FormRegistro(props) {
                     </label>
                     <div className='form-floating mt-3'>
                         <input
-                            type={verPwd ? "text" : "password"}
-                            className='form-control'
+                            type={verPwd2 ? "text" : "password"} className='form-control'
                             id="confirm_passwd"
                             onChange={(e) => setMatchPasswd(e.target.value)}
                             value={matchPasswd}
@@ -350,8 +344,8 @@ function FormRegistro(props) {
                             onFocus={() => setMatchFocus(true)}
                             onBlur={() => setMatchFocus(false)}
                         />
-                        <div className="position-absolute pointer pwd-icon" onClick={() => setVerPwd(!verPwd)}>
-                            {verPwd ? <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" height={"1.5rem"}>
+                        <div className="position-absolute pointer pwd-icon" onClick={() => setVerPwd2(!verPwd2)}>
+                            {verPwd2 ? <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" height={"1.5rem"}>
                                 <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
                                 <path fillRule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 010-1.113zM17.25 12a5.25 5.25 0 11-10.5 0 5.25 5.25 0 0110.5 0z" clipRule="evenodd" />
                             </svg> : <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" height={"1.5rem"}>
@@ -361,7 +355,6 @@ function FormRegistro(props) {
                             </svg>}
                         </div>
                     </div>
-                    
                     <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
                         <FontAwesomeIcon icon={faInfoCircle} />
                         Debe coincidir con la contraseña que ha puesto en la casilla de antes.
@@ -492,13 +485,12 @@ function FormRegistro(props) {
                         <FontAwesomeIcon icon={faInfoCircle} />
                         Si tiene descuento, dene introducirlo, solo se admiten números
                     </p>
-                    <br></br>
                     <button
                         onClick={insertarUsuario}
                         className='btn btn-success mt3'
                     >Registrarme</button>
 
-                <br></br>
+
 
                 </div>
             ) : null}

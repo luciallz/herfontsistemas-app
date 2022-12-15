@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React,{useState} from 'react'
 import APIService from '../APIService'
 
 function ListarTrabajadores(props) {
@@ -36,7 +36,7 @@ function ListarTrabajadores(props) {
 
     console.log("resultado")
     console.log(resultado)
-    if (resultado == "") {
+    if(resultado===""){
       console.log("Sin datos")
     }
   }

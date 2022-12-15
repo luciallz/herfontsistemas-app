@@ -3,7 +3,7 @@ import UsuariosList from './listar/UsuariosList';
 import FormUsuarios from './formularios/FormUsuarios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css'
-
+import Swal from 'sweetalert2';
 function Usuarios() {
   const [usuarios, setUsuario]=useState([])
   const [editadoUsuario, setEditadoUsuario]=useState(null)
@@ -29,8 +29,19 @@ function Usuarios() {
   const datoModificado = (usuario) => {
     const nuevo_usuario = usuarios.map(mi_usuario => {
       if(mi_usuario.id === usuario.id){
+        Swal.fire({
+          title:"¡Exito!",
+          text:"Se ha modificado correctamente",
+          icon:"success"
+        })
         return usuario
       }else{
+        Swal.fire({
+          title:"¡Exito!",
+          text:"Se ha modificado correctamente",
+          icon:"success"
+        })
+        
         return mi_usuario
       }
     })

@@ -3,21 +3,26 @@ import APIService from '../APIService';
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Swal from 'sweetalert2';
+import PrimeReact from 'primereact/api';
 import 'primeicons/primeicons.css';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import 'primereact/resources/primereact.css';
+
+import { locale, addLocale, updateLocaleOption, updateLocaleOptions, localeOption, localeOptions } from 'primereact/api';
+import { format as formatDate, isDate } from "date-fns"; 
+import { es } from "date-fns/locale";
+import { Calendar } from 'primereact/calendar'
+
 //import 'primeflex/primeflex.css';
 // import Calendar from 'react-calendar';
 // import 'react-calendar/dist/Calendar.css';
-import { addLocale,locale } from 'primereact/api';
 
-import { Calendar } from 'primereact/calendar'
 function FormDarAltaTr(props) {
-  
+
   const NOM_VAL = /^(?=.{3,20})[A-ZÑÁÉÍÓÚÜü][a-zñáéíóúü]+((\s|-)[A-ZÑÁÉÍÓÚÜ][a-zñáéíóúü]+)*$/;
   const PRIAPE_VAL = /^(?=.{3,30})[A-ZÑÁÉÍÓÚÜ][a-zñáéíóúü]+((\s|-)[A-ZÑÁÉÍÓÚÜ][a-zñáéíóúü]+)*$/;
   const SEGAPE_VAL = /^(?=.{3,30})[A-ZÑÁÉÍÓÚÜ][a-zñáéíóúü]+((\s|-)[A-ZÑÁÉÍÓÚÜ][a-zñáéíóúü]+)*$/;
-  const BANCO_VAL=/^(?=.{3,20})[A-ZÑÁÉÍÓÚÜ][A-ZÁÉÍÓÚÜa-zñáéíóúü]+((\s|-)[A-ZÑÁÉÍÓÚÜ][A-ZÁÉÍÓÚÜa-zñáéíóúü]+)*$/;
+  const BANCO_VAL = /^(?=.{3,20})[A-ZÑÁÉÍÓÚÜ][A-ZÁÉÍÓÚÜa-zñáéíóúü]+((\s|-)[A-ZÑÁÉÍÓÚÜ][A-ZÁÉÍÓÚÜa-zñáéíóúü]+)*$/;
   const DNI_VAL = /^[0-9]{8}[A-Z]{1}$/; //MIRAR PARA LOS NIE
   // const FECHA_VAL = /^[0-9]{4}[-]{1}[0-9]{2}[-]{1}[0-9]{2}$/;
   const CORREO_VAL = /^[\w\.\_]{3,5}\+?[\w]{0,10}@[\w]{3,}\.\w{2,5}$/;
@@ -25,7 +30,7 @@ function FormDarAltaTr(props) {
   const TELPER_VAL = /^[0-9]{9}$/;
   const TELEMP_VAL = /^[0-9]{9}$/;
   const TELEMERG_VAL = /^[0-9]{9}$/;
-  const PERSEMERG_VAL=/^[A-ZÑÁÉÍÓÚÜ][a-zñáéíóúü]+((\s|-)[A-ZÑÁÉÍÓÚÜa-zñáéíóúüº]+(\s|-)*[0-9]*)*$/;
+  const PERSEMERG_VAL = /^[A-ZÑÁÉÍÓÚÜ][a-zñáéíóúü]+((\s|-)[A-ZÑÁÉÍÓÚÜa-zñáéíóúüº]+(\s|-)*[0-9]*)*$/;
   const DIR_VAL = /^[A-ZÑÁÉÍÓÚÜ][a-zñáéíóúü]+((\s|-)[A-ZÑÁÉÍÓÚÜa-zñáéíóúüº]+(\s|-)*[0-9]*)*$/;
   const CIUPROV_VAL = /^[A-ZÑÁÉÍÓÚÜ][a-zñáéíóúü]+((\s|-)[A-ZÑÁÉÍÓÚÜa-zñáéíóúüº]+(\s|-)*[0-9]*)*$/;
   const CODPOST_VAL = /^[0-9]{1,5}$/;
@@ -66,24 +71,7 @@ function FormDarAltaTr(props) {
   const [dni_trabajador, setDni] = useState('')
   const [validDni, setValidDni] = useState(false)
   const [dniFocus, setDniFocus] = useState(false)
-  // var fecha=format( new Date(),"dd MM yyyy")
 
-  let today = new Date();
-  let day=today.getDate();
-  let month = today.getMonth();
-  let year = today.getFullYear();
-  addLocale('es', {
-    firstDayOfWeek: 1,
-    dayNames: ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'],
-    dayNamesShort: ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'],
-    dayNamesMin: ['D', 'L', 'M', 'X', 'J', 'V', 'S'],
-    monthNames: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
-    monthNamesShort: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'],
-    today: 'Hoy',
-    clear: 'Limpiar'
-});
-
-  
   const [fecha_nacimiento_trabajador, setFecha_nacimiento] = useState(null)
   const [validFecha_nacimiento, setValidFecha_nacimiento] = useState(false)
   const [fecha_nacimientoFocus, setFecha_nacimientoFocus] = useState(false)
@@ -158,7 +146,7 @@ function FormDarAltaTr(props) {
   }, [props.trabajador])
   useEffect(() => {
     const result = NOM_VAL.test(nom_trabajador);
-    console.log("Nombre "+result);
+    console.log("Nombre " + result);
     setValidNom(result);
   }, [nom_trabajador])
   useEffect(() => {
@@ -172,15 +160,17 @@ function FormDarAltaTr(props) {
   }, [segundo_ape_trabajador])
   useEffect(() => {
     const result = DNI_VAL.test(dni_trabajador);
-    console.log("DNI "+result);
+    console.log("DNI " + result);
 
     setValidDni(result);
   }, [dni_trabajador])
   useEffect(() => {
     // const result = FECHA_VAL.test(fecha_nacimiento_trabajador);
-    if(fecha_nacimiento_trabajador != ""){
+    if (fecha_nacimiento_trabajador != "") {
+      console.log("FECHAAA NACIMIENTOOOOO "+fecha_nacimiento_trabajador)
+
       setValidFecha_nacimiento(true);
-    }else{
+    } else {
       setValidFecha_nacimiento(false);
 
     }
@@ -233,73 +223,102 @@ function FormDarAltaTr(props) {
     const result = BIC_VAL.test(bic);
     setValidBic(result);
   }, [bic])
-  
+
 
   const modificarTrabajador = () => {
-    if(NOM_VAL.test(nom_trabajador)===true && PRIAPE_VAL.test(primer_ape_trabajador)===true && SEGAPE_VAL.test(segundo_ape_trabajador)===true && DNI_VAL.test(dni_trabajador)===true && 
-    DIR_VAL.test(direccion_trabajador)===true && CIUPROV_VAL.test(poblacion_trabajador)===true && CORREO_VAL.test(correo_trabajador)===true 
-    && CODPOST_VAL.test(codigo_postal_trabajador)===true && TELFIJ_VAL.test(tel_fijo_trabajador)===true && TELPER_VAL.test(tel_movil_personal)===true && 
-    TELEMP_VAL.test(tel_movil_empresa)===true && PERSEMERG_VAL.test(persona_emergencias)===true && TELEMERG_VAL.test(tel_emergencias)===true 
-    && BANCO_VAL.test(banco)===true && IBAN_VAL.test(iban)===true && BIC_VAL.test(bic)===true){
-      if(fecha_nacimiento_trabajador != ""){
+    if (NOM_VAL.test(nom_trabajador) === true && PRIAPE_VAL.test(primer_ape_trabajador) === true && SEGAPE_VAL.test(segundo_ape_trabajador) === true && DNI_VAL.test(dni_trabajador) === true &&
+      DIR_VAL.test(direccion_trabajador) === true && CIUPROV_VAL.test(poblacion_trabajador) === true && CORREO_VAL.test(correo_trabajador) === true
+      && CODPOST_VAL.test(codigo_postal_trabajador) === true && TELFIJ_VAL.test(tel_fijo_trabajador) === true && TELPER_VAL.test(tel_movil_personal) === true &&
+      TELEMP_VAL.test(tel_movil_empresa) === true && PERSEMERG_VAL.test(persona_emergencias) === true && TELEMERG_VAL.test(tel_emergencias) === true
+      && BANCO_VAL.test(banco) === true && IBAN_VAL.test(iban) === true && BIC_VAL.test(bic) === true) {
+      if (fecha_nacimiento_trabajador != "") {
         APIService.ModificarTrabajador(props.trabajador.id, {
           nom_trabajador, primer_ape_trabajador, segundo_ape_trabajador, dni_trabajador, fecha_nacimiento_trabajador, direccion_trabajador, poblacion_trabajador, correo_trabajador, codigo_postal_trabajador,
           tel_fijo_trabajador, tel_movil_personal, tel_movil_empresa, persona_emergencias, tel_emergencias, banco, iban, bic
         })
           .then(resp => props.datoModificadoTr(resp))
           .catch(error => console.log(error))
-      }else {
+      } else {
         Swal.fire({
-          title:"¡Error!",
+          title: "¡Error!",
           text: "Algo ha ido mal con la FECHA",
-          icon: "error",})
-        }   
-    }else{
+          icon: "error",
+        })
+      }
+    } else {
       Swal.fire({
-        title:"¡Error!",
+        title: "¡Error!",
         text: "Faltan registros por completar bien.",
-        icon: "error",})
+        icon: "error",
+      })
     }
-    
+
   }
   //fecha_nacimiento_trabajador=format( fecha_nacimiento_trabajador,"dd MM yyyy")
   // setFecha_nacimiento(format(fecha_nacimiento_trabajador,"dd MM yyyy"))
   // setFecha_nacimiento=()=>{
   //   fecha_nacimiento_trabajador=format( fecha_nacimiento_trabajador,"dd MM yyyy")
   // }
- 
+
   const insertarTrabajador = () => {
-    if(NOM_VAL.test(nom_trabajador)===true && PRIAPE_VAL.test(primer_ape_trabajador)===true && SEGAPE_VAL.test(segundo_ape_trabajador)===true && DNI_VAL.test(dni_trabajador)===true && 
-      DIR_VAL.test(direccion_trabajador)===true && CIUPROV_VAL.test(poblacion_trabajador)===true && CORREO_VAL.test(correo_trabajador)===true 
-      && CODPOST_VAL.test(codigo_postal_trabajador)===true && TELFIJ_VAL.test(tel_fijo_trabajador)===true && TELPER_VAL.test(tel_movil_personal)===true && 
-      TELEMP_VAL.test(tel_movil_empresa)===true && PERSEMERG_VAL.test(persona_emergencias)===true && TELEMERG_VAL.test(tel_emergencias)===true 
-      && BANCO_VAL.test(banco)===true && IBAN_VAL.test(iban)===true && BIC_VAL.test(bic)===true){
-      
-      if(fecha_nacimiento_trabajador != ""){  
-        
+    if (NOM_VAL.test(nom_trabajador) === true && PRIAPE_VAL.test(primer_ape_trabajador) === true && SEGAPE_VAL.test(segundo_ape_trabajador) === true && DNI_VAL.test(dni_trabajador) === true &&
+      DIR_VAL.test(direccion_trabajador) === true && CIUPROV_VAL.test(poblacion_trabajador) === true && CORREO_VAL.test(correo_trabajador) === true
+      && CODPOST_VAL.test(codigo_postal_trabajador) === true && TELFIJ_VAL.test(tel_fijo_trabajador) === true && TELPER_VAL.test(tel_movil_personal) === true &&
+      TELEMP_VAL.test(tel_movil_empresa) === true && PERSEMERG_VAL.test(persona_emergencias) === true && TELEMERG_VAL.test(tel_emergencias) === true
+      && BANCO_VAL.test(banco) === true && IBAN_VAL.test(iban) === true && BIC_VAL.test(bic) === true) {
+
+      if (fecha_nacimiento_trabajador != "") {
+
         APIService.InsertarTrabajador({
           nom_trabajador, primer_ape_trabajador, segundo_ape_trabajador, dni_trabajador, fecha_nacimiento_trabajador, direccion_trabajador, poblacion_trabajador, correo_trabajador, codigo_postal_trabajador,
           tel_fijo_trabajador, tel_movil_personal, tel_movil_empresa, persona_emergencias, tel_emergencias, banco, iban, bic
         })
           .then(resp => props.trabajadorInsertado(resp))
           .catch(error => console.log(error))
-      }else{
+      } else {
         Swal.fire({
-          title:"¡Error!",
+          title: "¡Error!",
           text: "Algo ha ido mal con la FECHA",
-          icon: "error",})
-        } 
-    }else{
+          icon: "error",
+        })
+      }
+    } else {
       Swal.fire({
-        title:"¡Error!",
+        title: "¡Error!",
         text: "Faltan registros por completar bien.",
-        icon: "error",})
+        icon: "error",
+      })
     }
     console.log("eeeeeeeeeee")
     console.log(nom_trabajador)
 
   }
-  
+  let today = new Date();
+  let month = today.getMonth()+1;
+  let year = today.getFullYear();
+  let prevMonth = (month === 0) ? 11 : month - 1;
+  let prevYear = (prevMonth === 11) ? year - 1 : year;
+  let nextMonth = (month === 11) ? 0 : month + 1;
+  let nextYear = (nextMonth === 0) ? year + 1 : year;
+  let minDate = new Date();
+  minDate.setMonth(prevMonth);
+  minDate.setFullYear(prevYear);
+
+  let maxDate = new Date();
+  maxDate.setMonth(nextMonth);
+  maxDate.setFullYear(nextYear);
+
+  let invalidDates = [today];
+  addLocale('es', {
+    firstDayOfWeek: 1,
+    dayNames: ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'],
+    dayNamesShort: ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'],
+    dayNamesMin: ['D', 'L', 'M', 'X', 'J', 'V', 'S'],
+    monthNames: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
+    monthNamesShort: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'],
+    today: 'Hoy',
+    clear: 'Limpiar'
+});
 
   return (
     <div>
@@ -408,28 +427,17 @@ function FormDarAltaTr(props) {
             Dni válido
           </p>
           
-            
-            {/* <Calendar onChange={setFecha_nacimiento} 
-             //value={new Date(fecha_nacimiento_trabajador)}
-            value={ fecha_nacimiento_trabajador}
-            locale={"en-GB"}
-            /> */}
-            <div className="field col-12 md:col-4">
             <label htmlFor='fech_nacimiento' className='form-label'>Fecha nacimiento
-            <span className={validFecha_nacimiento ? "valid" : "hide"}>
-              <FontAwesomeIcon icon={faCheck} />
-            </span>
-            <span className={validFecha_nacimiento || !fecha_nacimiento_trabajador ? "hide" : "invalid"}>
-              <FontAwesomeIcon icon={faTimes} />
-            </span>
-          </label>
-              <Calendar locale='es'  id="fech_nacimiento" value={fecha_nacimiento_trabajador} onChange={(e) => setFecha_nacimiento(e.value+"T00:00:00:000Z")} showIcon dateFormat="dd-mm-yy"/>
-            </div>
-          
-          {/* <div className="text-center">  
-          Fecha seleccionada: {fecha_nacimiento_trabajador.toLocaleString()}
-          </div>   */}
-          {/* <input type="text" className='form-control'
+              <span className={validFecha_nacimiento ? "valid" : "hide"}>
+                <FontAwesomeIcon icon={faCheck} />
+              </span>
+              <span className={validFecha_nacimiento || !fecha_nacimiento_trabajador ? "hide" : "invalid"}>
+                <FontAwesomeIcon icon={faTimes} />
+              </span>
+            </label>
+
+
+          <input type="date" className='form-control'
             placeholder="Ingrese la fecha de nacimiento"
             value={fecha_nacimiento_trabajador}
             onChange={(u) => setFecha_nacimiento(u.target.value)}
@@ -443,9 +451,9 @@ function FormDarAltaTr(props) {
           <p id="fnacnote" className={fecha_nacimientoFocus && fecha_nacimiento_trabajador && !validFecha_nacimiento ? "instructions" : "offscreen"}>
             <FontAwesomeIcon icon={faInfoCircle} />
             Fecha válida
-          </p> */}
+          </p>
 
-          
+
           <label htmlFor='dir' className='form-label'>Dirección
             <span className={validDireccion ? "valid" : "hide"}>
               <FontAwesomeIcon icon={faCheck} />
@@ -726,10 +734,10 @@ function FormDarAltaTr(props) {
           </p>
           {
             props.trabajador.id ?
-            <button onClick={modificarTrabajador} className='btn btn-success mt3'>Modificar</button>
-            :
-            <button onClick={insertarTrabajador} className='btn btn-success mt3'>Insertar</button>
-            
+              <button onClick={modificarTrabajador} className='btn btn-success mt3'>Modificar</button>
+              :
+              <button onClick={insertarTrabajador} className='btn btn-success mt3'>Insertar</button>
+
           }
 
         </div>
