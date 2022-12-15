@@ -1,3 +1,4 @@
+/* INICAR SESION */
 .bg-green {
     background-color: #387e59;
 }
@@ -91,7 +92,7 @@ form {
 
 a,
 a:visited {
-    color: #fff;
+    color: black;
 }
 
 input[type="text"],
@@ -158,6 +159,8 @@ button {
 .line {
     display: inline-block;
 }
+
+/* CALENDARIO */
 .react-calendar { 
     width: 400px;
     max-width: 100%;

@@ -1,5 +1,5 @@
-import React, {useState,useEffect} from 'react';
-import {BrowserRouter as Router, Route, Routes,Link} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import FormRegistro from './formularios/FormRegistro';
 import FormLogin from './formularios/FormLogin';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -8,109 +8,100 @@ import APIService from './APIService';
 import Swal from 'sweetalert2';
 
 function ConfigRegistroLogin() {
-  const [usuarios, setUsuario]=useState([])
-  const [editadoUsuario, setEditadoUsuario]=useState(null)
-  const [logueadoUsuario, setLogueadoUsuario]=useState(null)
-  useEffect(()=>{
-    fetch("http://127.0.0.1:5000",{
-      'method':'GET',
-      headers:{"Content-type": "application/json"}
+  const [usuarios, setUsuario] = useState([])
+  const [editadoUsuario, setEditadoUsuario] = useState(null)
+  const [logueadoUsuario, setLogueadoUsuario] = useState(null)
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:5000", {
+      'method': 'GET',
+      headers: { "Content-type": "application/json" }
+      
     }).then(
-      res=>res.json()
+      res => res.json()
     ).then(
-      res=>{
+      res => {
         setUsuario(res)
       }
-    ).catch(error=>console.log(error))
+    ).catch(error => console.log(error))
   }, [])
 
   const editarUsuario = (usuario) => {
-
     setEditadoUsuario(usuario)
   }
-  const loguearUsuario=(usuario)=>{
+  const loguearUsuario = (usuario) => {
     setLogueadoUsuario(usuario)
   }
 
-  
-  const abrirForm = ()=>{
-    setEditadoUsuario({nombre:'', apellidos:'', correo:'', telefono:'', contrasena:'', direccion:'', ciudad:'', provincia:'', codigo_postal:'', descuento:''})
+  const abrirForm = () => {
+    setEditadoUsuario({ nombre: '', apellidos: '', correo: '', telefono: '', contrasena: '', direccion: '', ciudad: '', provincia: '', codigo_postal: '', descuento: '' })
   }
-  const abrirFormLogin = ()=>{
-    setLogueadoUsuario({correo:'', contrasena:''})
+  const abrirFormLogin = () => {
+    setLogueadoUsuario({ correo: '', contrasena: '' })
   }
 
-
-
-
-  const usuarioInsertado = (usuario)=>{
+  const usuarioInsertado = (usuario) => {
     console.log(usuario)
-    if(usuario.errorDuplicado){
+    if (usuario.errorDuplicado) {
       Swal.fire({
-        title:"¡Error!",
+        title: "¡Error!",
         text: "El correo electrónico insertado ya existe.",
-        icon: "error",})
-    }else{
+        icon: "error",
+      })
+    } else {
       const nuevo_usuario = [...usuarios, usuario]
       setUsuario(nuevo_usuario)
       Swal.fire({
-        title:"¡ÉXITO!",
+        title: "¡ÉXITO!",
         text: "Se ha añadido un usuario nuevo",
         icon: "suscess",
       })
-      
     }
-    
-  
   }
-  async function usuarioLogueado(usuario){
+
+  async function usuarioLogueado(usuario) {
     console.log("entra")
     console.log(usuario)
     console.log(usuario.nombre)
-    
-    if(usuario.errorLog){
-      
+
+    if (usuario.errorLog) {
       Swal.fire({
-        title:"¡Error!",
+        title: "¡Error!",
         text: "No se ha podido iniciar sesion.",
-        icon: "error",})
-    }else{
+        icon: "error",
+      })
+    } else {
       setLogueadoUsuario(true)
-      sessionStorage.setItem("nombre",usuario.nombre)
-      var sesion=sessionStorage.getItem("nombre")
-      const{value:accept}=await Swal.fire({
-        title:"¡Nos encanta tenerte de vuelta!",
-        text: sesion+" acaba de iniciar sesión.",
-        icon: "success",})
-        if(accept){
-          window.location.reload(true);
-        }
-      
+      sessionStorage.setItem("nombre", usuario.nombre)
+      var sesion = sessionStorage.getItem("nombre")
+      const { value: accept } = await Swal.fire({
+        title: "¡Nos encanta tenerte de vuelta!",
+        text: sesion + " acaba de iniciar sesión.",
+        icon: "success",
+      })
+
+      if (accept) {
+        window.location.reload(true);
+      }
+
     }
   }
-    
-  
 
   return (
     <div className='container'>
-        <div className='col'>
-          <h1>Está a un paso de autenticarse</h1>
-          <p>¿Ya está registrado?</p>
-          <button className='btn btn-success'
-          onClick={abrirFormLogin}
-          >Iniciar Sesión</button>
-          <p>¿No está registrado?</p>
-          <button
-            className='btn btn-success'
-            onClick={abrirForm}
-            >Registrarse</button>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-        </div>
-     {editadoUsuario ? <FormRegistro usuario = {editadoUsuario} usuarioInsertado={usuarioInsertado} /> : null}
-     {logueadoUsuario? <FormLogin usuario={logueadoUsuario} usuarioLogueado={usuarioLogueado} /> : null}
+      <div className='col'>
+        <h1>Está a un paso de autenticarse</h1>
+        <p>¿Ya está registrado?</p>
+        <button className='btn btn-success'onClick={abrirFormLogin}>Iniciar Sesión</button>
+        <p>¿No está registrado?</p>
+        <button className='btn btn-success' onClick={abrirForm}>Registrarse</button>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+      </div>
+      {editadoUsuario ? <FormRegistro usuario={editadoUsuario} usuarioInsertado={usuarioInsertado} /> : null}
+      {logueadoUsuario ? <FormLogin usuario={logueadoUsuario} usuarioLogueado={usuarioLogueado} /> : null}
     </div>
   )
 }
