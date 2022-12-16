@@ -61,9 +61,6 @@ export default function ListarCarrito() {
             <hr />
             <div className="row">
               <Link to="/FinalizarCompra" className="btn btn-primary">Finalizar Compra</Link>
-              <Routes>
-                  <Route path="/FinalizarCompra" element={<FinalizarCompra />} />
-              </Routes>
             </div>
           </>
         )}

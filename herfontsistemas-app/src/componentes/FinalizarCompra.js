@@ -10,12 +10,12 @@ function FinalizarCompra() {
         return(
             <div class="creditCardForm">
                 <div class="heading">
-                    <h1>Confirm Purchase</h1>
+                    <h1>Confirmar Compra</h1>
                 </div>
                 <div class="payment">
                 <form>
                     <div class="form-group owner">
-                        <label for="owner">Owner</label>
+                        <label for="owner">Titular de la Cuenta</label>
                         <input type="text" class="form-control" id="owner" />
                     </div>
                     <div class="form-group CVV">
@@ -23,32 +23,32 @@ function FinalizarCompra() {
                         <input type="text" class="form-control" id="cvv" />
                     </div>
                     <div class="form-group" id="card-number-field">
-                        <label for="cardNumber">Card Number</label>
+                        <label for="cardNumber">Número tarjeta</label>
                         <input type="text" class="form-control" id="cardNumber" />
                     </div>
                     <div class="form-group" id="expiration-date">
-                        <label>Expiration Date</label>
+                        <label>Fecha caducidad</label>
                         <select>
-                            <option value="01">January</option>
-                            <option value="02">February </option>
-                            <option value="03">March</option>
-                            <option value="04">April</option>
-                            <option value="05">May</option>
-                            <option value="06">June</option>
-                            <option value="07">July</option>
-                            <option value="08">August</option>
-                            <option value="09">September</option>
-                            <option value="10">October</option>
-                            <option value="11">November</option>
-                            <option value="12">December</option>
+                            <option value="01">Enero</option>
+                            <option value="02">Febrero </option>
+                            <option value="03">Marzo</option>
+                            <option value="04">Abril</option>
+                            <option value="05">Mayo</option>
+                            <option value="06">Junio</option>
+                            <option value="07">Julio</option>
+                            <option value="08">Agosto</option>
+                            <option value="09">Septiembre</option>
+                            <option value="10">Octubre</option>
+                            <option value="11">Noviembre</option>
+                            <option value="12">Deciembre</option>
                         </select>
                         <select>
-                            <option value="16"> 2016</option>
-                            <option value="17"> 2017</option>
-                            <option value="18"> 2018</option>
-                            <option value="19"> 2019</option>
-                            <option value="20"> 2020</option>
-                            <option value="21"> 2021</option>
+                            <option value="16"> 2021</option>
+                            <option value="17"> 2022</option>
+                            <option value="18"> 2023</option>
+                            <option value="19"> 2024</option>
+                            <option value="20"> 2025</option>
+                            <option value="21"> 2026</option>
                         </select>
                     </div>
                     <div class="form-group" id="credit_cards">
@@ -57,7 +57,7 @@ function FinalizarCompra() {
                         <img src="assets/images/amex.jpg" id="amex" />
                     </div>
                     <div class="form-group" id="pay-now">
-                        <button type="submit" class="btn btn-default" id="confirm-purchase">Confirm</button>
+                        <button type="submit" class="btn btn-default" id="confirm-purchase">Confirmar</button>
                     </div>
                     </form>
                 </div>

@@ -19,11 +19,13 @@ import Logistica from './componentes/Logistica';
 // CARRITO Y PRODUCTOS
 import Productos from './componentes/Productos';
 import ListarCarrito from './componentes/listar/ListarCarrito';
+import FinalizarCompra from './componentes/FinalizarCompra';
 
 // PÁGINAS
 import SobreNosotros from './componentes/SobreNosotros';
 import Mail from './componentes/Mail/Mail';
 import Trabajadores from './componentes/Trabajadores';
+import FormDarAltaTr from './componentes/formularios/FormDarAltaTr';
 
 // SESIONES
 import ConfigRegistroLogin from './componentes/ConfigRegistroLogin';
@@ -44,6 +46,7 @@ function App() {
           <Route path="/Servicios/Premontaje" element={<Premontaje />}></Route>
           <Route path="/Servicios/Logistica" element={<Logistica />}></Route>
           <Route path="/Carrito" element={<ListarCarrito />} />
+          <Route path="/FinalizarCompra" element={<FinalizarCompra />} />
           <Route path="/SobreNosotros" element={<SobreNosotros />} />
           <Route path="/Contacto" element={<Mail />} />
           <Route path="/Trabajadores" element={<Trabajadores />} />

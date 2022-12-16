@@ -11,7 +11,7 @@ async function Logout() {
         icon: "success",
     })
     if (accept) {
-        window.location.href = "//localhost:3000/Menu";
+        window.location.href = "//localhost:3000/";
         //window.location.protocol + "//" + window.location.host + Path
     }
     return (
