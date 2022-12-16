@@ -3,12 +3,6 @@ import { useState } from 'react'
 import { Router, Route, Switch, Link, Navigate } from 'react-router-dom'
 import "../App.css";
 function Servicios() {
-
-    const [toGamaServicios, setToGamaServicios] = React.useState(false)
-    if (toGamaServicios) {
-        return <Navigate to="/GamaCompleta" />
-    }
-
     return (
         <div>
             <ul>

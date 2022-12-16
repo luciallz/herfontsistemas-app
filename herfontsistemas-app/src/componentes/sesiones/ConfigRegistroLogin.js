@@ -1,9 +1,9 @@
 import React, {useState,useEffect} from 'react';
-import FormRegistro from './formularios/FormRegistro';
-import FormLogin from './formularios/FormLogin';
+import FormRegistro from '../formularios/FormRegistro';
+import FormLogin from '../formularios/FormLogin';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css'
-import APIService from './APIService';
+import APIService from '../APIService';
 import Swal from 'sweetalert2';
 
 function ConfigRegistroLogin() {
