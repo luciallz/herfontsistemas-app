@@ -24,7 +24,6 @@ import FinalizarCompra from './componentes/FinalizarCompra';
 // PÁGINAS
 import SobreNosotros from './componentes/SobreNosotros';
 import Mail from './componentes/Mail/Mail';
-import Trabajadores from './componentes/Trabajadores';
 import FormDarAltaTr from './componentes/formularios/FormDarAltaTr';
 
 // SESIONES
@@ -49,7 +48,7 @@ function App() {
           <Route path="/FinalizarCompra" element={<FinalizarCompra />} />
           <Route path="/SobreNosotros" element={<SobreNosotros />} />
           <Route path="/Contacto" element={<Mail />} />
-          <Route path="/Trabajadores" element={<Trabajadores />} />
+          <Route path="/Trabajadores" element={<FormDarAltaTr />} />
           <Route path="/Login" element={<ConfigRegistroLogin />} />
           <Route path="/LogOut" element={<Logout />} />
         </Routes>

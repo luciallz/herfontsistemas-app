@@ -119,7 +119,6 @@ function Menu() {
                                 <Nav.Link href="SobreNosotros">Sobre nosotros</Nav.Link>
                                 <Nav.Link href="Contacto">Contacto</Nav.Link>
                                 <Nav.Link href="Trabajadores">Trabajadores</Nav.Link>
-                                <Nav.Link href="DarTrabajadores">Dar de alta trabajador</Nav.Link>
                                 {/* <Nav.Link as={Link} to={"/Usuarios"}>Usuarios</Nav.Link> */}
                                 <p>Hola {sesion}</p>
                             </Nav>
