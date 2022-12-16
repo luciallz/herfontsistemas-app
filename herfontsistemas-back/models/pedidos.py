@@ -29,12 +29,12 @@ class Pedidos(Base):
     #children = relationship('usuarios')
 
 
-def __init__(self, id, id_cliente, id_producto, cantidad, precio_total):
-    self.id = id
-    self.id_cliente = id_cliente
-    self.id_producto = id_producto
-    self.cantidad = cantidad
-    self.precio_total = precio_total
+    def __init__(self, id, id_cliente, id_producto, cantidad, precio_total):
+        self.id = id
+        self.id_cliente = id_cliente
+        self.id_producto = id_producto
+        self.cantidad = cantidad
+        self.precio_total = precio_total
 
 
 class Encoder(json.JSONEncoder):

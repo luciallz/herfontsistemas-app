@@ -60,10 +60,7 @@ function FormLogin(props) {
                 text: " Faltan registros por completar correctamente.",
                 icon: "Error"
             })
-
         }
-
-
     }
 
     const [verPwd, setVerPwd] = useState(false)
