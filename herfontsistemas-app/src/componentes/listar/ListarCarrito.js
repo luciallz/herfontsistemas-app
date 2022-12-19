@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {BrowserRouter as Router, Route, Routes,Link} from 'react-router-dom';
-import FinalizarCompra from '../FinalizarCompra';
 
 export default function ListarCarrito() {
   var listaCarrito = []
