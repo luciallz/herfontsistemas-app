@@ -29,6 +29,7 @@ import FormDarAltaTr from './componentes/formularios/FormDarAltaTr';
 // SESIONES
 import ConfigRegistroLogin from './componentes/ConfigRegistroLogin';
 import Logout from './componentes/Logout';
+import ForgotPsswd from './componentes/ForgotPsswd';
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
           <Route path="/Contacto" element={<Mail />} />
           <Route path="/Trabajadores" element={<FormDarAltaTr />} />
           <Route path="/Login" element={<ConfigRegistroLogin />} />
+          <Route path='/ForgotPsswd' element={<ForgotPsswd />} />
           <Route path="/LogOut" element={<Logout />} />
         </Routes>
       </BrowserRouter>

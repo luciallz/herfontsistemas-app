@@ -1,7 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
 import APIService from '../APIService';
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Router, Route, Switch, Link, Navigate } from 'react-router-dom'
 import Swal from 'sweetalert2';
 
 
@@ -132,6 +133,8 @@ function FormLogin(props) {
                         
                     <div>
                         <p>¿Has olvido tu contraseña? </p>
+                        <Link to="/ForgotPsswd">Recuperar contraseña</Link>
+
                     </div>
 
                     <button

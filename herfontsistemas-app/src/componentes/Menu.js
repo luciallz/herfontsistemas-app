@@ -118,6 +118,7 @@ function Menu() {
                                 <Nav.Link><Link to="/SobreNosotros">Sobre nosotros</Link></Nav.Link>
                                 <Nav.Link><Link to="/Contacto">Contacto</Link></Nav.Link>
                                 <Nav.Link><Link to="/Trabajadores">Trabajadores</Link></Nav.Link>
+
                                 {/* <Nav.Link as={Link} to={"/Usuarios"}>Usuarios</Nav.Link> */}
 
                                 <p>Hola {sesion}</p>
