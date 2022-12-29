@@ -10,11 +10,11 @@ import Home from './componentes/Home';
 
 // SERVICIOS
 import Servicios from './componentes/Servicios';
-import GamaCompleta from './componentes/GamaCompleta';
-import Soluciones from './componentes/Soluciones';
-import Apoyo from './componentes/Apoyo';
-import Premontaje from './componentes/Premontaje';
-import Logistica from './componentes/Logistica';
+import GamaCompleta from './componentes/servicios/GamaCompleta';
+import Soluciones from './componentes/servicios/Soluciones';
+import Apoyo from './componentes/servicios/Apoyo';
+import Premontaje from './componentes/servicios/Premontaje';
+import Logistica from './componentes/servicios/Logistica';
 
 // CARRITO Y PRODUCTOS
 import Productos from './componentes/Productos';
@@ -27,9 +27,11 @@ import Mail from './componentes/Mail/Mail';
 import FormDarAltaTr from './componentes/formularios/FormDarAltaTr';
 
 // SESIONES
-import ConfigRegistroLogin from './componentes/ConfigRegistroLogin';
-import Logout from './componentes/Logout';
-import ForgotPsswd from './componentes/ForgotPsswd';
+
+import ConfigRegistroLogin from './componentes/sesiones/ConfigRegistroLogin';
+import Logout from './componentes/sesiones/Logout';
+import ForgotPsswd from './componentes/sesiones/ForgotPsswd';
+import ChangePasswd from './componentes/sesiones/ChangePasswd'
 
 function App() {
   return (
@@ -52,6 +54,7 @@ function App() {
           <Route path="/Trabajadores" element={<FormDarAltaTr />} />
           <Route path="/Login" element={<ConfigRegistroLogin />} />
           <Route path='/ForgotPsswd' element={<ForgotPsswd />} />
+          <Route path='/ChangePasswd/<token>' element={<ChangePasswd />} />
           <Route path="/LogOut" element={<Logout />} />
         </Routes>
       </BrowserRouter>

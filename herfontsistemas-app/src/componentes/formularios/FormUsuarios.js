@@ -4,7 +4,7 @@ import APIService from '../APIService';
 function FormUsuarios(props) {
     const NOMBRE_VAL = /^[A-z][A-z0-9-_]{3,23}$/;
     const APE_VAL=/^[A-z][A-Za-z]+(\s[A-Za-z])$/;
-    const CORREO_VAL = /^[\w\.\_]{3,5}\+?[\w]{0,10}@[\w]{3,}\.\w{2,5}$/;
+    const CORREO_VAL = /^[\w\.\_]{3,5}\+?[\w\.\_]{0,20}@[\w]{3,}\.\w{2,5}$/;
     const TEL_VAL = /^[0-9]{9}$/;
     const CONTRASENA_VAL = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
     const DIR_VAL = /^[A-Za-z]+(\s[A-Za-z])*([0-9])*$/; 

@@ -1,16 +1,30 @@
 import React from 'react'
 import { useState, useEffect, useRef } from 'react'
-import APIService from './APIService';
+import APIService from '../APIService';
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Swal from 'sweetalert2';
 function ForgotPsswd() {
-    const CORREO_VAL = /^[\w\.\_]{3,5}\+?[\w]{0,10}@[\w]{3,}\.\w{2,5}$/;
-    const correoRef = useRef();
-
     const [correo, setCorreo] = useState('')
     const [validCorreo, setValidCorreo] = useState(false)
     const [correoFocus, setCorreoFocus] = useState(false)
+    useEffect(() => {
+        fetch("http://127.0.0.1:5000", {
+          'method': 'GET',
+          headers: { "Content-type": "application/json" }
+          
+        }).then(
+          res => res.json()
+        // ).then(
+        //   res => {
+        //     setCorreo(res)
+        //   }
+        ).catch(error => console.log(error))
+      }, [])
+      const CORREO_VAL = /^[\w\.\_]{3,5}\+?[\w\.\_]{0,20}@[\w]{3,}\.\w{2,5}$/;
+    const correoRef = useRef();
+
+    
 
     useEffect(() => {
         setCorreo(correo)
@@ -27,6 +41,19 @@ function ForgotPsswd() {
     // }, [correo])
     const handleSubmit = e => {
         e.preventDefault();
+        APIService.ForgotPsswd({ correo })
+                .then(resp => Swal.fire({
+                    title: "CORREO ENVIADO",
+                    text: " Chequea tu correo electrónico para cambiar la contraseña ",
+                    icon: "success",
+                    
+                }))
+                .catch(error => Swal.fire({
+                    title: "¡Error!",
+                    text: " No se reconoce el correo.",
+                    icon: "error"
+                }))
+        
     }
 
     return (
@@ -58,6 +85,7 @@ function ForgotPsswd() {
                 <button
 
                     className='btn btn-success mt3'
+                    onClick={handleSubmit}
                 >Enviar</button>
 
 

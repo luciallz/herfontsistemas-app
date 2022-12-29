@@ -1,9 +1,15 @@
 from sqlalchemy import Table,Column,Integer,String,Float,Boolean,MetaData
+from itsdangerous import URLSafeSerializer 
 from sqlalchemy.ext.declarative import declarative_base
 from json import JSONEncoder
 import json
 from flask_login import UserMixin
+from sqlalchemy.orm import sessionmaker,scoped_session
+from sqlalchemy import create_engine
+engine=create_engine("mysql://root:lucia@localhost/herfontsistemasdb",echo=True)
+Session=sessionmaker(bind=engine)
 
+session=Session()
 metaUsuarios=MetaData()
 usuarios=Table(
     'usuarios',metaUsuarios,
@@ -37,6 +43,24 @@ class Usuarios(Base, UserMixin):
     descuento=Column(String)
     admin=Column(Boolean)
     
+    def get_token(self):
+        serial=URLSafeSerializer('fMvFlCt2002')
+        return serial.dumps({'usuario_id':self.id})
+        
+    @staticmethod
+    def verify_token(token):
+        serial=URLSafeSerializer('fMvFlCt2002')
+        try:
+            usuario_id=serial.loads(token)['usuario_id']
+            print(usuario_id)
+        except:
+            return None
+        # session.query(Usuarios).get(usuario_id) 
+        # jsonUserid = json.dumps(usuario_id, cls=Encoder, indent=4)
+        # return jsonUserid  
+        return session.query(Usuarios).get(usuario_id) 
+        # return Usuarios.query.get(usuario_id)
+        
 
     def __init__(self, nombre, apellidos, correo, telefono, contrasena, direccion, ciudad, provincia, codigo_postal, descuento,admin):
         self.nombre=nombre

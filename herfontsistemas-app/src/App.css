@@ -89,9 +89,19 @@ form {
     flex-grow: 1;
     padding-bottom: 1rem;
 }
+a{
+    color: black;
+}
 
-a,
-a:visited {
+a:link, a:visited, a:active{
+    text-decoration:none;
+    color: #000;
+}
+a:hover{
+    color: #000;
+}
+
+a:focus {
     color: black;
 }
 

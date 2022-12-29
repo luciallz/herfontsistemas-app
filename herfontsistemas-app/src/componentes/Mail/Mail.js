@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 
 const Mail = () => {
     const NOMBRE_VAL = /^(?=.{3,20})[A-ZÑÁÉÍÓÚ][a-zñáéíóú]+((\s|-)[A-ZÑÁÉÍÓÚ][a-zñáéíóú]+)*$/;
-    const CORREO_VAL = /^[\w\.\_]{3,5}\+?[\w]{0,10}@[\w]{3,}\.\w{2,5}$/;
+    const CORREO_VAL = /^[\w\.\_]{3,5}\+?[\w\.\_]{0,20}@[\w]{3,}\.\w{2,5}$/;
     const MENSAJE_VAL = /^[a-zA-Z0-9(\s)$%/!.,=?¿+_-]*$/;
 
     const nombreRef = useRef();

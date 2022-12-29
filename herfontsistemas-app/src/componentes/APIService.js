@@ -26,6 +26,24 @@ export default class APIService {
     })
       .then(resp => resp.json())
   }
+  static ForgotPsswd(body){
+    return fetch(this.rutaMaquina + `/ForgotPsswd`, {
+      'method': ('GET','POST'),
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(body)
+    })
+      .then(resp => resp.json())
+  }
+  static ChangePsswd(token){
+    return fetch(this.rutaMaquina + `/ChangePsswd/${token}`, {
+      'method': ('GET','POST'),
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(token)
+    })
+      .then(resp => resp.json())
+  }
+
+  
 
   static BorrarUsuario(id) {
     return fetch(this.rutaMaquina + `/borrar/${id}`, {
