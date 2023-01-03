@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-
+import { rutaMaquina } from './Rutas';
 
 function Productos() {
   const [productos, setProducto] = useState([])
@@ -17,7 +17,7 @@ function Productos() {
   localStorage.setItem('listaCarrito', JSON.stringify(listaCarrito))
   console.log(listaCarrito)
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/productos", {
+    fetch(rutaMaquina + `/productos`, {
       'method': 'GET',
       headers: { "Content-type": "application/json" }
     }).then(

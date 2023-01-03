@@ -4,12 +4,13 @@ import FormUsuarios from './formularios/FormUsuarios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import Swal from 'sweetalert2';
+import { rutaMaquina } from './Rutas';
 function Usuarios() {
   const [usuarios, setUsuario]=useState([])
   const [editadoUsuario, setEditadoUsuario]=useState(null)
 
   useEffect(()=>{
-    fetch("http://127.0.0.1:5000",{
+    fetch(rutaMaquina ,{
       'method':'GET',
       headers:{"Content-type": "application/json"}
     }).then(

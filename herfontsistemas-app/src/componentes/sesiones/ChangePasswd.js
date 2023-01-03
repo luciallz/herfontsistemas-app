@@ -4,6 +4,7 @@ import APIService from '../APIService';
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Swal from 'sweetalert2';
+import { rutaMaquina } from '../Rutas';
 function ChangePsswd() {
     const [contrasena, setContrasena] = useState('')
     const [validContrasena, setValidContrasena] = useState(false)
@@ -14,7 +15,7 @@ function ChangePsswd() {
     const [verPwd, setVerPwd] = useState(false)
     const [verPwd2, setVerPwd2] = useState(false)
     useEffect(() => {
-        fetch("http://127.0.0.1:5000/ChangePsswd/${token}", {
+        fetch(rutaMaquina + "/ChangePsswd/${token}", {
           'method': ('GET','POST'),
           headers: { "Content-type": "application/json" }
           

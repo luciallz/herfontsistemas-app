@@ -4,12 +4,13 @@ import APIService from '../APIService';
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Swal from 'sweetalert2';
+import { rutaMaquina } from '../Rutas';
 function ForgotPsswd() {
     const [correo, setCorreo] = useState('')
     const [validCorreo, setValidCorreo] = useState(false)
     const [correoFocus, setCorreoFocus] = useState(false)
     useEffect(() => {
-        fetch("http://127.0.0.1:5000", {
+        fetch(rutaMaquina , {
           'method': 'GET',
           headers: { "Content-type": "application/json" }
           

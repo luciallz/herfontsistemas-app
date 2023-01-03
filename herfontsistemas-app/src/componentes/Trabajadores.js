@@ -4,11 +4,12 @@ import FormDarAltaTr from './formularios/FormDarAltaTr';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import Swal from 'sweetalert2';
+import { rutaMaquina } from './Rutas';
 function Trabajadores() {
     const [trabajadores, setTrabajador]=useState([])
     const [editadoTrabajador, setEditadoTrabajador]=useState(null)
     useEffect(()=>{
-        fetch("http://127.0.0.1:5000/trabajadores",{
+        fetch(rutaMaquina + `/trabajadores`,{
           'method':'GET',
           headers:{"Content-type": "application/json"}
         }).then(
