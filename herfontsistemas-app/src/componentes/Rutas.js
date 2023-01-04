@@ -1,1 +1,1 @@
-export const rutaMaquina = "http://ec2-13-48-128-165.eu-north-1.compute.amazonaws.com:5000"
+export const rutaMaquina = "http://www.herfontsistemas.es"
