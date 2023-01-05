@@ -1,12 +1,13 @@
 import React, { useRef, useState, useEffect } from 'react';
 import APIService from '../APIService';
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Router, Route, Switch, Link, Navigate } from 'react-router-dom'
 import Swal from 'sweetalert2';
 
 
 function FormLogin(props) {
-    const CORREO_VAL = /^[\w\.\_]{3,5}\+?[\w]{0,10}@[\w]{3,}\.\w{2,5}$/;
+    const CORREO_VAL = /^[\w\.\_]{3,5}\+?[\w\.\_]{0,20}@[\w]{3,}\.\w{2,5}$/;
     const CONTRASENA_VAL = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
     const correoRef = useRef();
@@ -132,6 +133,8 @@ function FormLogin(props) {
                         
                     <div>
                         <p>¿Has olvido tu contraseña? </p>
+                        <Link to="/ForgotPsswd">Recuperar contraseña</Link>
+
                     </div>
 
                     <button

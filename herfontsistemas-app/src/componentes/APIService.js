@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { rutaMaquina } from './Rutas';
-
 export default class APIService {
   static ModificarUsuario(id, body) {
     return fetch(rutaMaquina + `/modificar/${id}`, {
@@ -12,7 +11,7 @@ export default class APIService {
   }
 
   static InsertarUsuario(body) {
-    return fetch(rutaMaquina + `/nuevo`, {
+    return fetch(`/nuevo`, {
       'method': 'POST',
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(body)
@@ -27,6 +26,24 @@ export default class APIService {
     })
       .then(resp => resp.json())
   }
+  static ForgotPsswd(body){
+    return fetch(rutaMaquina + `/ForgotPsswd`, {
+      'method': ('GET','POST'),
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(body)
+    })
+      .then(resp => resp.json())
+  }
+  static ChangePsswd(token){
+    return fetch(rutaMaquina + `/ChangePsswd/${token}`, {
+      'method': ('GET','POST'),
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(token)
+    })
+      .then(resp => resp.json())
+  }
+
+  
 
   static BorrarUsuario(id) {
     return fetch(rutaMaquina + `/borrar/${id}`, {

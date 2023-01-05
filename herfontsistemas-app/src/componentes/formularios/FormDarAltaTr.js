@@ -25,7 +25,7 @@ function FormDarAltaTr(props) {
   const BANCO_VAL = /^(?=.{3,20})[A-ZÑÁÉÍÓÚÜ][A-ZÁÉÍÓÚÜa-zñáéíóúü]+((\s|-)[A-ZÑÁÉÍÓÚÜ][A-ZÁÉÍÓÚÜa-zñáéíóúü]+)*$/;
   const DNI_VAL = /^[0-9]{8}[A-Z]{1}$/; //MIRAR PARA LOS NIE
   // const FECHA_VAL = /^[0-9]{4}[-]{1}[0-9]{2}[-]{1}[0-9]{2}$/;
-  const CORREO_VAL = /^[\w\.\_]{3,5}\+?[\w]{0,10}@[\w]{3,}\.\w{2,5}$/;
+  const CORREO_VAL = /^[\w\.\_]{3,5}\+?[\w\.\_]{0,20}@[\w]{3,}\.\w{2,5}$/;
   const TELFIJ_VAL = /^[0-9]{9}$/;
   const TELPER_VAL = /^[0-9]{9}$/;
   const TELEMP_VAL = /^[0-9]{9}$/;

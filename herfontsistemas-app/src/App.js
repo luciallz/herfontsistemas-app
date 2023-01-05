@@ -29,8 +29,9 @@ import FormDarAltaTr from './componentes/formularios/FormDarAltaTr';
 // SESIONES
 import ConfigRegistroLogin from './componentes/sesiones/ConfigRegistroLogin';
 import PaginaPersonal from './componentes/PaginaPersonal';
-import ForgotPsswd from './componentes/sesiones/ForgotPsswd';
 import Logout from './componentes/sesiones/Logout';
+import ForgotPsswd from './componentes/sesiones/ForgotPsswd';
+import ChangePasswd from './componentes/sesiones/ChangePasswd';
 
 function App() {
   return (
@@ -54,6 +55,8 @@ function App() {
           <Route path="/Login" element={<ConfigRegistroLogin />} />
           <Route path="/PaginaPrincipal" element={<PaginaPersonal />} />
           <Route path="/RecuperarContrasena" element={<ForgotPsswd />} />
+          <Route path='/ForgotPsswd' element={<ForgotPsswd />} />
+          <Route path='/ChangePasswd/<token>' element={<ChangePasswd />} />
           <Route path="/LogOut" element={<Logout />} />
         </Routes>
       </BrowserRouter>

@@ -3,15 +3,21 @@ from flask import Flask, Blueprint, jsonify, render_template, request, url_for, 
 from sqlalchemy.orm import sessionmaker, Session
 from models.usuarios import usuarios, Usuarios, Encoder
 from sqlalchemy import Integer, insert, Column, String, true
-from utils.db import engine, db, session
+from utils.db import engine, db, session, mail
 from flask_bcrypt import Bcrypt
 import json
 from flask_login import LoginManager, login_user, logout_user, login_required
+from itsdangerous import URLSafeSerializer
+from flask_mail import Message,Mail
+from smtplib import SMTPException
+
+
 
 usuarios = Blueprint('usuarios', __name__)
 
 bcrypt = Bcrypt(None)
 login_manager_app = LoginManager(usuarios)
+mail=Mail()
 # @login_manager_app.user_loader
 # def load_user(id):
 #     cursor=engine.connect()
@@ -89,6 +95,77 @@ def login():
 def logout():
     logout_user()
 
+def send_mail(user):
+    print("ENTRO A FORGOTPSSWD SEND_MAIL")
+
+    token=user.get_token()
+    print(token)
+    print("USUARIO CORREO "+ user.correo)
+# {url_for('usuarios.reset_token',token=token,_external=True)}
+    msg=Message('Password Resset',recipients=[user.correo],sender='lleraszarzal@gmail.com')
+    msg.body=f''' Para resetear tu contraseña, porfavor haz click en el siguiente enlaze.
+    http://127.0.0.1:3000/ChangePasswd/{token}
+    
+    '''
+    print(msg)
+
+
+    mail.send(msg)
+    
+
+@usuarios.route("/ForgotPsswd", methods=['GET','POST'])
+def forgotPsswd():
+    print("ENTRO A FORGOTPSSWD")
+
+    correoForm = request.json['correo']
+    print(correoForm)
+
+    correo_exist = session.query(Usuarios).filter_by(
+        correo=correoForm).first()
+    print("COOOOOORREEEEOOOO")
+    print(correo_exist)
+    if correo_exist: 
+        forgotPsswd = {"forgotPsswd": "Correo enviado"}
+        print(forgotPsswd)
+        #send_mail(correo_exist.correo)
+        send_mail(correo_exist)
+        return jsonify(forgotPsswd)
+    else:
+        errorForgotPsswd = {"errorForgotPsswd": "Correo inválido"}
+        print(errorForgotPsswd)
+        return jsonify(errorForgotPsswd)
+    
+    # jsonUserForgot = json.dumps(correo_exist, cls=Encoder, indent=4)
+    # return jsonUserForgot
+@usuarios.route("/ChangePasswd/<token>", methods=['GET','POST'])
+def reset_token(token):
+    print("ENTRO A FORGOTPSSWD TOKEN")
+    user=Usuarios.verify_token(token)
+    print("TOKEN USEEER: ")
+    print(user)
+    
+    if user is None:
+        print("ENTRO AL if")
+
+        errorToken = {"errorToken": "Token invalido o ha expirado, porfavor hágalo de nuevo"}
+        print(errorToken)
+        return jsonify(errorToken)
+    
+    contrasenaForm = request.json['contrasena']
+    print("CONTRASEÑA COGIDA DE FORM:")
+    print(contrasenaForm)
+    
+    
+    pw_hass = bcrypt.generate_password_hash(contrasenaForm).decode('utf-8')
+    user.contrasena=pw_hass
+    print("CONTRASEÑA HASEADA:")
+    print(pw_hass)
+    db.session.commit()
+    success = {"susscess": "Contraseña cambiada correctamente"}
+    print("SUSSCEEEEEEEEEEES")
+    print(success)
+    # return jsonify(success)
+    return render_template('ChangePasswd',token=token)
 
 @usuarios.route("/nuevo", methods=['POST'])
 def nuevo():
