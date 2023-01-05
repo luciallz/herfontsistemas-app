@@ -5,6 +5,7 @@ import { Navigate, Route } from "react-router-dom"
 
 async function Logout() {
     sessionStorage.removeItem("nombre")
+    localStorage.removeItem("listaCarrito")
     const { value: accept } = await Swal.fire({
         title: "¡Hasta pronto!",
         text: "Ha cerrado sesión",

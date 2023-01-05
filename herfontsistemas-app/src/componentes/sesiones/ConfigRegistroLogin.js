@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import APIService from '../APIService';
 import Swal from 'sweetalert2';
+import { rutaMaquina } from '../Rutas';
 
 function ConfigRegistroLogin() {
   const [usuarios, setUsuario] = useState([])
@@ -12,7 +13,7 @@ function ConfigRegistroLogin() {
   const [logueadoUsuario, setLogueadoUsuario] = useState(null)
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000", {
+    fetch(rutaMaquina, {
       'method': 'GET',
       headers: { "Content-type": "application/json" }
       

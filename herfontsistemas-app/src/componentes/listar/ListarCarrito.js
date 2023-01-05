@@ -13,6 +13,7 @@ export default function ListarCarrito() {
         listaCarrito.splice(posicion, 1);
         localStorage.setItem("listaCarrito", JSON.stringify(listaCarrito));
     }
+    window.location.reload(true);
   }
   const precioProducto = listaCarrito.reduce((a, c) =>  a + c.precio * c.cantidad, 0);
   console.log(precioProducto)
@@ -59,6 +60,7 @@ export default function ListarCarrito() {
             </div>
             <hr />
             <div className="row">
+              <p>El pago se hará al entregar los productos.</p>
               <Link to="/FinalizarCompra" className="btn btn-primary">Finalizar Compra</Link>
             </div>
           </>

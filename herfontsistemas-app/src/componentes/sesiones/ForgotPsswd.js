@@ -32,12 +32,8 @@ function ForgotPsswd(props) {
     return (
         <div>
             {props.usuario ? (
-
                 <div className="mb-3">
-
-
                     <h1>Reestablecer contraseña</h1>
-
                     <label htmlFor='correo' className='form-label'>correo
                         <span className={validCorreo ? "valid" : "hide"}>
                             <FontAwesomeIcon icon={faCheck} />
@@ -54,15 +50,7 @@ function ForgotPsswd(props) {
                         required
                         aria-invalid={validCorreo ? "false" : "true"}
                     />
-
-
-                    <button
-
-                        className='btn btn-success mt3'
-                    >Enviar</button>
-
-
-
+                    <button className='btn btn-success mt3'>Enviar</button>
                 </div>
             ) : null}
         </div>

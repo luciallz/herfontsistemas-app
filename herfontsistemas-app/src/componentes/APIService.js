@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { rutaMaquina } from './Rutas';
+
 export default class APIService {
-  static rutaMaquina = 'http://127.0.0.1:5000'
   static ModificarUsuario(id, body) {
-    return fetch(this.rutaMaquina + `/modificar/${id}`, {
+    return fetch(rutaMaquina + `/modificar/${id}`, {
       'method': 'PUT',
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(body)
@@ -11,7 +12,7 @@ export default class APIService {
   }
 
   static InsertarUsuario(body) {
-    return fetch(this.rutaMaquina + `/nuevo`, {
+    return fetch(rutaMaquina + `/nuevo`, {
       'method': 'POST',
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(body)
@@ -19,7 +20,7 @@ export default class APIService {
       .then(resp => resp.json())
   }
   static IniciarSesion(body) {
-    return fetch(this.rutaMaquina + `/login`, {
+    return fetch(rutaMaquina + `/login`, {
       'method': 'POST',
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(body)
@@ -28,7 +29,7 @@ export default class APIService {
   }
 
   static BorrarUsuario(id) {
-    return fetch(this.rutaMaquina + `/borrar/${id}`, {
+    return fetch(rutaMaquina + `/borrar/${id}`, {
       'method': 'DELETE',
       headers: { "Content-type": "application/json" },
     })
@@ -36,7 +37,7 @@ export default class APIService {
 
   //RUTAS TRABAJADORES
   static ModificarTrabajador(id, body) {
-    return fetch(this.rutaMaquina + `/modificarTrabajador/${id}`, {
+    return fetch(rutaMaquina + `/modificarTrabajador/${id}`, {
       'method': 'PUT',
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(body)
@@ -46,7 +47,7 @@ export default class APIService {
 
 
   static InsertarTrabajador(body) {
-    return fetch(this.rutaMaquina + `/nuevoTrabajador`, {
+    return fetch(rutaMaquina + `/nuevoTrabajador`, {
       'method': 'POST',
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(body)
@@ -55,7 +56,7 @@ export default class APIService {
   }
 
   static BorrarTrabajador(id) {
-    return fetch(this.rutaMaquina + `/borrarTrabajador/${id}`, {
+    return fetch(rutaMaquina + `/borrarTrabajador/${id}`, {
       'method': 'DELETE',
       headers: { "Content-type": "application/json" },
     })
@@ -63,7 +64,7 @@ export default class APIService {
 
   // RUTAS PRODUCTO
   static ModificarProducto(id, body) {
-    return fetch(this.rutaMaquina + `/modificarProducto/${id}`, {
+    return fetch(rutaMaquina + `/modificarProducto/${id}`, {
       'method': 'PUT',
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(body)
@@ -73,7 +74,7 @@ export default class APIService {
 
 
   static InsertarProducto(body) {
-    return fetch(this.rutaMaquina + `/nuevoProducto`, {
+    return fetch(rutaMaquina + `/nuevoProducto`, {
       'method': 'POST',
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(body)
@@ -82,7 +83,7 @@ export default class APIService {
   }
 
   static BorrarProducto(id) {
-    return fetch(this.rutaMaquina + `/borrarProducto/${id}`, {
+    return fetch(rutaMaquina + `/borrarProducto/${id}`, {
       'method': 'DELETE',
       headers: { "Content-type": "application/json" },
     })
@@ -90,7 +91,7 @@ export default class APIService {
 
   //RUTAS PEDIDOS
   static ModificarPedido(id, body) {
-    return fetch(this.rutaMaquina + `/modificarPedido/${id}`, {
+    return fetch(rutaMaquina + `/modificarPedido/${id}`, {
       'method': 'PUT',
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(body)
@@ -99,7 +100,7 @@ export default class APIService {
   }
 
   static InsertarPedido(body) {
-    return fetch(this.rutaMaquina + `/nuevoPedido`, {
+    return fetch(rutaMaquina + `/nuevoPedido`, {
       'method': 'POST',
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(body)
@@ -108,7 +109,7 @@ export default class APIService {
   }
 
   static BorrarPedido(id) {
-    return fetch(this.rutaMaquina + `/borrarPedido/${id}`, {
+    return fetch(rutaMaquina + `/borrarPedido/${id}`, {
       'method': 'DELETE',
       headers: { "Content-type": "application/json" },
     })
