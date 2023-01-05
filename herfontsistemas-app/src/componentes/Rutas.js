@@ -1,1 +1,1 @@
-export const rutaMaquina = "127.0.0.1:5000"
+export const rutaMaquina = "http://www.herfontsistemas.es"
