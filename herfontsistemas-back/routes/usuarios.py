@@ -167,7 +167,7 @@ def reset_token(token):
     # return jsonify(success)
     return render_template('ChangePasswd',token=token)
 
-@usuarios.route("/nuevo", methods=['POST'])
+@usuarios.route("/APIService/nuevo", methods=['POST'])
 def nuevo():
     print("entra en usuario")
     _nombre = request.json['nombre']
