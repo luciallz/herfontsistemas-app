@@ -11,7 +11,7 @@ export default class APIService {
   }
 
   static InsertarUsuario(body) {
-    return fetch(rutaMaquina + `/nuevo`, {
+    return fetch(`/nuevo`, {
       'method': 'POST',
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(body)
