@@ -27,11 +27,11 @@ import Mail from './componentes/Mail/Mail';
 import FormDarAltaTr from './componentes/formularios/FormDarAltaTr';
 
 // SESIONES
-
 import ConfigRegistroLogin from './componentes/sesiones/ConfigRegistroLogin';
+import PaginaPersonal from './componentes/PaginaPersonal';
 import Logout from './componentes/sesiones/Logout';
 import ForgotPsswd from './componentes/sesiones/ForgotPsswd';
-import ChangePasswd from './componentes/sesiones/ChangePasswd'
+import ChangePasswd from './componentes/sesiones/ChangePasswd';
 
 function App() {
   return (
@@ -53,6 +53,8 @@ function App() {
           <Route path="/Contacto" element={<Mail />} />
           <Route path="/Trabajadores" element={<FormDarAltaTr />} />
           <Route path="/Login" element={<ConfigRegistroLogin />} />
+          <Route path="/PaginaPrincipal" element={<PaginaPersonal />} />
+          <Route path="/RecuperarContrasena" element={<ForgotPsswd />} />
           <Route path='/ForgotPsswd' element={<ForgotPsswd />} />
           <Route path='/ChangePasswd/<token>' element={<ChangePasswd />} />
           <Route path="/LogOut" element={<Logout />} />

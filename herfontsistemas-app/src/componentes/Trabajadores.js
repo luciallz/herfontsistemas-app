@@ -6,6 +6,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import Swal from 'sweetalert2';
 import { rutaMaquina } from './Rutas';
 function Trabajadores() {
+    const rutaMaquina = "http://127.0.0.1:5000"
     const [trabajadores, setTrabajador]=useState([])
     const [editadoTrabajador, setEditadoTrabajador]=useState(null)
     useEffect(()=>{

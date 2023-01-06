@@ -12,7 +12,7 @@ function Menu() {
         return (
                 <Navbar bg="green" variant="dark" sticky='top' expand='lg' >
                         <NavbarBrand>
-                            <Nav.Link><Link to="/Home"><img src={logo} height='85px' width='205px' /></Link></Nav.Link>
+                            <Nav.Link><Link to="/"><img src={logo} height='85px' width='205px' /></Link></Nav.Link>
                         </NavbarBrand>
                         <Navbar.Toggle/>
                         <Navbar.Collapse>
@@ -82,7 +82,7 @@ function Menu() {
                         </Navbar.Collapse>
                         <Nav>
                         <Nav.Link><Link to="/LogOut">Cerrar sesión</Link></Nav.Link>
-                        <Nav.Link><Link to="/Login"><i className="bi bi-person fs-1 text-white text-right"></i></Link></Nav.Link>
+                        <Nav.Link><Link to="/PaginaPersonal"><i className="bi bi-person fs-1 text-white text-right"></i></Link></Nav.Link>
                         <Nav.Link><Link to="/Carrito"><i className="bi bi-cart3 fs-1 text-white text-right"></i></Link></Nav.Link>
                         </Nav>
                 </Navbar>
