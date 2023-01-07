@@ -17,7 +17,7 @@ function Productos() {
   localStorage.setItem('listaCarrito', JSON.stringify(listaCarrito))
   console.log(listaCarrito)
   useEffect(() => {
-    fetch(`http://www.herfontsistemas.es/herfontsistemas-back/productos`, {
+    fetch(rutaMaquina+`/api/productos`, {
       'method': 'GET',
       headers: { "Content-type": "application/json" }
     }).then(

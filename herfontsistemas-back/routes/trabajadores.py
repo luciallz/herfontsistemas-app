@@ -11,7 +11,7 @@ from datetime import datetime
 
 trabajadores=Blueprint('trabajadores',__name__)
 
-@trabajadores.route("/trabajadores")
+@trabajadores.route("/api/trabajadores")
 def trabajadoresList():
     SessionListar=sessionmaker(bind=engine)
     session=SessionListar()
@@ -20,7 +20,7 @@ def trabajadoresList():
     print(type(jsonTrabaj))
     print(jsonTrabaj)
     return jsonTrabaj
-@trabajadores.route("/nuevoTrabajador",methods=['POST'])
+@trabajadores.route("/api/nuevoTrabajador",methods=['POST'])
 def nuevoTrabajador():
     print("ENTRA")
     _nom_trabajador=request.json['nom_trabajador']
@@ -62,7 +62,7 @@ def nuevoTrabajador():
             jsonTrabajInsertado=json.dumps(newTrabajador, cls=Encoder, indent=4)
             return jsonTrabajInsertado
 
-@trabajadores.route("/borrarTrabajador/<id>",methods=['DELETE'])
+@trabajadores.route("/api/borrarTrabajador/<id>",methods=['DELETE'])
 def borrarTrabajador(id):
     with Session(engine) as session:
         trabajador=session.query(Trabajadores).get(id)
@@ -71,7 +71,7 @@ def borrarTrabajador(id):
     jsonTrabajBorrado=json.dumps(trabajador, cls=Encoder, indent=4)
     return jsonTrabajBorrado
 
-@trabajadores.route("/modificarTrabajador/<id>",methods=['PUT'])
+@trabajadores.route("/api/modificarTrabajador/<id>",methods=['PUT'])
 def modificarTrabajador(id):
     with Session(engine) as session:
         if request.method == 'PUT':

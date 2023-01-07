@@ -9,7 +9,7 @@ import json
 
 productos = Blueprint('productos', __name__)
 
-@productos.route("/herfontsistemas-back/productos")
+@productos.route("/api/productos")
 def productosList():
     SessionListarProductos = sessionmaker(bind=engine)
     session = SessionListarProductos()
@@ -19,7 +19,7 @@ def productosList():
     return jsonProductos
 
 
-@productos.route("/nuevoProducto", methods=['POST'])
+@productos.route("/api/nuevoProducto", methods=['POST'])
 def nuevoProducto():
     _nom_producto = request.json['nom_producto']
     _descripcion = request.json['descripcion']
@@ -52,7 +52,7 @@ def nuevoProducto():
         return jsonProductoInsertado
 
 
-@productos.route("/borrarProducto/<id>")
+@productos.route("/api/borrarProducto/<id>")
 def borrarProducto(id):
     with Session(engine) as session:
         producto = session.query(Productos).get(id)
@@ -63,7 +63,7 @@ def borrarProducto(id):
     return jsonProductoBorrado
 
 
-@productos.route("/modificarProducto/<id>", methods=['POST', 'GET'])
+@productos.route("/api/modificarProducto/<id>", methods=['POST', 'GET'])
 def modificarProducto(id):
     with Session(engine) as session:
         if request.method == 'POST':

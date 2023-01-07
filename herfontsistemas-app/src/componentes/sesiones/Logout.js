@@ -1,7 +1,7 @@
 import React from 'react'
 import Swal from 'sweetalert2';
 import { Navigate, Route } from "react-router-dom"
-
+import { rutaMaquina } from '../Rutas';
 
 async function Logout() {
     sessionStorage.removeItem("nombre")
@@ -12,7 +12,7 @@ async function Logout() {
         icon: "success",
     })
     if (accept) {
-        window.location.href = "//localhost:3000/";
+        window.location.href = rutaMaquina;
         //window.location.protocol + "//" + window.location.host + Path
     }
     return (
