@@ -17,7 +17,7 @@ function Productos() {
   localStorage.setItem('listaCarrito', JSON.stringify(listaCarrito))
   console.log(listaCarrito)
   useEffect(() => {
-    fetch(rutaMaquina+`/api/productos`, {
+    fetch(rutaMaquina+`/herfontisitemas-back/productos`, {
       'method': 'GET',
       headers: { "Content-type": "application/json" }
     }).then(

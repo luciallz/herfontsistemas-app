@@ -9,7 +9,7 @@ import json
 
 productos = Blueprint('productos', __name__)
 
-@productos.route("/api/productos")
+@productos.route("/herfontsistemas-back/productos")
 def productosList():
     SessionListarProductos = sessionmaker(bind=engine)
     session = SessionListarProductos()
