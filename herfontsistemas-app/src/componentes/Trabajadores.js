@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import Swal from 'sweetalert2';
 import { rutaMaquina } from './Rutas';
+
 function Trabajadores() {
     const [trabajadores, setTrabajador]=useState([])
     const [editadoTrabajador, setEditadoTrabajador]=useState(null)
