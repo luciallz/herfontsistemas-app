@@ -104,7 +104,7 @@ def send_mail(user):
 # {url_for('usuarios.reset_token',token=token,_external=True)}
     msg=Message('Password Resset',recipients=[user.correo],sender='lleraszarzal@gmail.com')
     msg.body=f''' Para resetear tu contraseña, porfavor haz click en el siguiente enlaze.
-    http://www.herfontsistemas.es/herfontsistemas-back/ChangePasswd/{token}
+    http://www.herfontsistemas.es/herfontsistemas-back/ChangePasswd/?token={token}
     
     '''
     print(msg)

@@ -15,7 +15,8 @@ function ChangePsswd() {
     const [verPwd, setVerPwd] = useState(false)
     const [verPwd2, setVerPwd2] = useState(false)
     useEffect(() => {
-        fetch(rutaMaquina + `/herfontsistemas-back/ChangePsswd/${token}`, {
+        const token=getParameterByName('token')
+        fetch(rutaMaquina + `/herfontsistemas-back/ChangePsswd/?token=${token}`, {
           'method': ('GET','POST'),
           headers: { "Content-type": "application/json" }
           
