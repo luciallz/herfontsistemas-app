@@ -10,7 +10,7 @@ function Usuarios() {
   const [editadoUsuario, setEditadoUsuario]=useState(null)
 
   useEffect(()=>{
-    fetch(rutaMaquina + `/api/usuarios`,{
+    fetch(rutaMaquina + `/herfontsistemas-back/usuarios`,{
       'method':'GET',
       headers:{"Content-type": "application/json"}
     }).then(

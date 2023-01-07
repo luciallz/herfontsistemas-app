@@ -25,7 +25,7 @@ mail=Mail()
 #     return ModelUser.get_by_id(db,id)
 
 
-@usuarios.route("/api/usuarios")
+@usuarios.route("/herfontsistemas-back/usuarios")
 def usuariosList():
     SessionListar = sessionmaker(bind=engine)
     session = SessionListar()
@@ -36,7 +36,7 @@ def usuariosList():
     return jsonUsers
 
 
-@usuarios.route("/api/login", methods=['POST'])
+@usuarios.route("/herfontsistemas-back/login", methods=['POST'])
 def login():
     if request.method == "POST":
         correoLog = request.json['correo']
@@ -91,7 +91,7 @@ def login():
         # return jsonify({"Mensaje":"Usted ha iniciado sesion"})
 
 
-@usuarios.route("/api/logout")
+@usuarios.route("/herfontsistemas-back/logout")
 def logout():
     logout_user()
 
@@ -113,7 +113,7 @@ def send_mail(user):
     mail.send(msg)
     
 
-@usuarios.route("/api/ForgotPsswd", methods=['GET','POST'])
+@usuarios.route("/herfontsistemas-back/ForgotPsswd", methods=['GET','POST'])
 def forgotPsswd():
     print("ENTRO A FORGOTPSSWD")
 
@@ -137,7 +137,7 @@ def forgotPsswd():
     
     # jsonUserForgot = json.dumps(correo_exist, cls=Encoder, indent=4)
     # return jsonUserForgot
-@usuarios.route("/api/ChangePasswd/<token>", methods=['GET','POST'])
+@usuarios.route("/herfontsistemas-back/ChangePasswd/<token>", methods=['GET','POST'])
 def reset_token(token):
     print("ENTRO A FORGOTPSSWD TOKEN")
     user=Usuarios.verify_token(token)
@@ -167,7 +167,7 @@ def reset_token(token):
     # return jsonify(success)
     return render_template('ChangePasswd',token=token)
 
-@usuarios.route("/api/nuevo", methods=['POST'])
+@usuarios.route("/herfontsistemas-back/nuevo", methods=['POST'])
 def nuevo():
     print("entra en usuario")
     _nombre = request.json['nombre']
@@ -202,7 +202,7 @@ def nuevo():
         return jsonUsersInsertado
 
 
-@usuarios.route("/api/borrar/<id>", methods=['DELETE'])
+@usuarios.route("/herfontsistemas-back/borrar/<id>", methods=['DELETE'])
 def borrar(id):
     # with Session(engine) as session:
     usuario = session.query(Usuarios).get(id)
@@ -213,7 +213,7 @@ def borrar(id):
     return jsonUsersBorrado
 
 
-@usuarios.route("/api/modificar/<id>", methods=['PUT'])
+@usuarios.route("/herfontsistemas-back/modificar/<id>", methods=['PUT'])
 def modificar(id):
     print(id)
     # with Session(engine) as session:

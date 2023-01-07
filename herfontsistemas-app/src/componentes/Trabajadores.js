@@ -9,7 +9,7 @@ function Trabajadores() {
     const [trabajadores, setTrabajador]=useState([])
     const [editadoTrabajador, setEditadoTrabajador]=useState(null)
     useEffect(()=>{
-        fetch(rutaMaquina + `/api/trabajadores`,{
+        fetch(rutaMaquina + `/herfontsistemas-back/trabajadores`,{
           'method':'GET',
           headers:{"Content-type": "application/json"}
         }).then(

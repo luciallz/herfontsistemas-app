@@ -8,7 +8,7 @@ import json
 
 pedidos = Blueprint('pedidos', __name__)
 
-@pedidos.route("/api/pedidos")
+@pedidos.route("/herfontsistemas-back/pedidos")
 def pedidosList():
     SessionListarPedidos = sessionmaker(bind=engine)
     session = SessionListarPedidos()
@@ -17,7 +17,7 @@ def pedidosList():
     print(jsonPedidos)
     return jsonPedidos
 
-@pedidos.route("/api/nuevoPedido", methods=['POST'])
+@pedidos.route("/herfontsistemas-back/nuevoPedido", methods=['POST'])
 def nuevoPedido():
     _id_cliente = request.json['idCliente']
     _id_producto = request.json['id']
@@ -34,7 +34,7 @@ def nuevoPedido():
         return jsonPedidoInsertado
 
 
-@pedidos.route("/api/borrarPedido/<id>")
+@pedidos.route("/herfontsistemas-back/borrarPedido/<id>")
 def borrarPedido(id):
     with Session(engine) as session:
         pedido = session.query(Pedidos).get(id)
@@ -45,7 +45,7 @@ def borrarPedido(id):
     return jsonPedidoBorrado
 
 
-@pedidos.route("/api/modificarPedido/<id>", methods=['POST', 'GET'])
+@pedidos.route("/herfontsistemas-back/modificarPedido/<id>", methods=['POST', 'GET'])
 def modificarPedido(id):
     with Session(engine) as session:
         if request.method == 'POST':

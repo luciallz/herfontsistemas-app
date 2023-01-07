@@ -11,7 +11,7 @@ export default class APIService {
   }
 
   static InsertarUsuario(body) {
-    return fetch(rutaMaquina + `/api/nuevo`, {
+    return fetch(rutaMaquina + `/herfontsistemas-back/nuevo`, {
       'method': 'POST',
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(body)
@@ -19,7 +19,7 @@ export default class APIService {
       .then(resp => resp.json())
   }
   static IniciarSesion(body) {
-    return fetch(rutaMaquina + `/api/login`, {
+    return fetch(rutaMaquina + `/herfontsistemas-back/login`, {
       'method': 'POST',
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(body)
@@ -27,7 +27,7 @@ export default class APIService {
       .then(resp => resp.json())
   }
   static ForgotPsswd(body){
-    return fetch(rutaMaquina + `/api/ForgotPsswd`, {
+    return fetch(rutaMaquina + `/herfontsistemas-back/ForgotPsswd`, {
       'method': ('GET','POST'),
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(body)
@@ -35,7 +35,7 @@ export default class APIService {
       .then(resp => resp.json())
   }
   static ChangePsswd(token){
-    return fetch(rutaMaquina + `/api/ChangePsswd/${token}`, {
+    return fetch(rutaMaquina + `/herfontsistemas-back/ChangePsswd/${token}`, {
       'method': ('GET','POST'),
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(token)
@@ -46,7 +46,7 @@ export default class APIService {
   
 
   static BorrarUsuario(id) {
-    return fetch(rutaMaquina + `/api/borrar/${id}`, {
+    return fetch(rutaMaquina + `/herfontsistemas-back/borrar/${id}`, {
       'method': 'DELETE',
       headers: { "Content-type": "application/json" },
     })
@@ -54,7 +54,7 @@ export default class APIService {
 
   //RUTAS TRABAJADORES
   static ModificarTrabajador(id, body) {
-    return fetch(rutaMaquina + `/api/modificarTrabajador/${id}`, {
+    return fetch(rutaMaquina + `/herfontsistemas-back/modificarTrabajador/${id}`, {
       'method': 'PUT',
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(body)
@@ -64,7 +64,7 @@ export default class APIService {
 
 
   static InsertarTrabajador(body) {
-    return fetch(rutaMaquina + `/api/nuevoTrabajador`, {
+    return fetch(rutaMaquina + `/herfontsistemas-back/nuevoTrabajador`, {
       'method': 'POST',
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(body)
@@ -73,7 +73,7 @@ export default class APIService {
   }
 
   static BorrarTrabajador(id) {
-    return fetch(rutaMaquina + `/api/borrarTrabajador/${id}`, {
+    return fetch(rutaMaquina + `/herfontsistemas-back/borrarTrabajador/${id}`, {
       'method': 'DELETE',
       headers: { "Content-type": "application/json" },
     })
@@ -81,7 +81,7 @@ export default class APIService {
 
   // RUTAS PRODUCTO
   static ModificarProducto(id, body) {
-    return fetch(rutaMaquina + `/api/modificarProducto/${id}`, {
+    return fetch(rutaMaquina + `/herfontsistemas-back/modificarProducto/${id}`, {
       'method': 'PUT',
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(body)
@@ -91,7 +91,7 @@ export default class APIService {
 
 
   static InsertarProducto(body) {
-    return fetch(rutaMaquina + `/api/nuevoProducto`, {
+    return fetch(rutaMaquina + `/herfontsistemas-back/nuevoProducto`, {
       'method': 'POST',
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(body)
@@ -100,7 +100,7 @@ export default class APIService {
   }
 
   static BorrarProducto(id) {
-    return fetch(rutaMaquina + `/api/borrarProducto/${id}`, {
+    return fetch(rutaMaquina + `/herfontsistemas-back/borrarProducto/${id}`, {
       'method': 'DELETE',
       headers: { "Content-type": "application/json" },
     })
@@ -108,7 +108,7 @@ export default class APIService {
 
   //RUTAS PEDIDOS
   static ModificarPedido(id, body) {
-    return fetch(rutaMaquina + `/api/modificarPedido/${id}`, {
+    return fetch(rutaMaquina + `/herfontsistemas-back/modificarPedido/${id}`, {
       'method': 'PUT',
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(body)
@@ -117,7 +117,7 @@ export default class APIService {
   }
 
   static InsertarPedido(body) {
-    return fetch(rutaMaquina + `/api/nuevoPedido`, {
+    return fetch(rutaMaquina + `/herfontsistemas-back/nuevoPedido`, {
       'method': 'POST',
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(body)
@@ -126,7 +126,7 @@ export default class APIService {
   }
 
   static BorrarPedido(id) {
-    return fetch(rutaMaquina + `/api/borrarPedido/${id}`, {
+    return fetch(rutaMaquina + `/herfontsistemas-back/borrarPedido/${id}`, {
       'method': 'DELETE',
       headers: { "Content-type": "application/json" },
     })

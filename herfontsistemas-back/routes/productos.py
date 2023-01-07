@@ -19,7 +19,7 @@ def productosList():
     return jsonProductos
 
 
-@productos.route("/api/nuevoProducto", methods=['POST'])
+@productos.route("/herfontsistemas-back/nuevoProducto", methods=['POST'])
 def nuevoProducto():
     _nom_producto = request.json['nom_producto']
     _descripcion = request.json['descripcion']
@@ -52,7 +52,7 @@ def nuevoProducto():
         return jsonProductoInsertado
 
 
-@productos.route("/api/borrarProducto/<id>")
+@productos.route("/herfontsistemas-back/borrarProducto/<id>")
 def borrarProducto(id):
     with Session(engine) as session:
         producto = session.query(Productos).get(id)
@@ -63,7 +63,7 @@ def borrarProducto(id):
     return jsonProductoBorrado
 
 
-@productos.route("/api/modificarProducto/<id>", methods=['POST', 'GET'])
+@productos.route("/herfontsistemas-back/modificarProducto/<id>", methods=['POST', 'GET'])
 def modificarProducto(id):
     with Session(engine) as session:
         if request.method == 'POST':
