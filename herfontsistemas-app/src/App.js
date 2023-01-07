@@ -1,5 +1,6 @@
 import React from 'react';
-import {BrowserRouter, BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+// import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+import {HashRouter, Routes, Route} from 'react-router-dom'
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -36,7 +37,7 @@ import ChangePasswd from './componentes/sesiones/ChangePasswd';
 function App() {
   return (
     <div>
-      <BrowserRouter>
+      <HashRouter>
         <Menu />
         <Routes>
           <Route path="/" element={<Home/>} />
@@ -59,7 +60,7 @@ function App() {
           <Route path='/ChangePasswd/<token>' element={<ChangePasswd />} />
           <Route path="/LogOut" element={<Logout />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </div>
     
   )
