@@ -24,6 +24,7 @@ function Trabajadores() {
     const editarTrabajador=(trabajador)=>{
         setEditadoTrabajador(trabajador)
     }
+
     const datoModificadoTr=(trabajador)=>{
         const nuevo_trabajador=trabajadores.map(mi_trabajador=>{
             if(mi_trabajador.id===trabajador.id){
@@ -46,6 +47,7 @@ function Trabajadores() {
         })
         setTrabajador(nuevo_trabajador)
     }
+
     const abrirFormT=()=>{
         setEditadoTrabajador({nom_trabajador:'', primer_ape_trabajador:'', segundo_ape_trabajador:'', dni_trabajador:'', fecha_nacimiento_trabajador:'', 
             direccion_trabajador:'', poblacion_trabajador:'', correo_trabajador:'', codigo_postal_trabajador:'', tel_fijo_trabajador:'', tel_movil_personal:'', 
@@ -84,7 +86,7 @@ function Trabajadores() {
         <div className='col'>
             <button className='btn btn-success' onClick={abrirFormT}>Insertar trabajador</button>
         </div>
-        <ListarTrabajadores trabajadores={trabajadores} editarTrabajador={editarTrabajador} borrarTrabajador={borrarTrabajador} />
+        <ListarTrabajadores trabajadores={trabajadores} editarTrabajador={editarTrabajador} borrarTrabajador={borrarTrabajador}/>
         {editadoTrabajador ? <FormDarAltaTr trabajador = {editadoTrabajador} datoModificadoTr = {datoModificadoTr} trabajadorInsertado={trabajadorInsertado} /> :null}
     </div>
   )
