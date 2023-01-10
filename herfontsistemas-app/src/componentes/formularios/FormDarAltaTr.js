@@ -7,11 +7,7 @@ import PrimeReact from 'primereact/api';
 import 'primeicons/primeicons.css';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import 'primereact/resources/primereact.css';
-
-import { locale, addLocale, updateLocaleOption, updateLocaleOptions, localeOption, localeOptions } from 'primereact/api';
-import { format as formatDate, isDate } from "date-fns"; 
-import { es } from "date-fns/locale";
-import { Calendar } from 'primereact/calendar'
+import moment from 'moment'
 
 //import 'primeflex/primeflex.css';
 // import Calendar from 'react-calendar';
@@ -146,12 +142,10 @@ function FormDarAltaTr(props) {
   }, [props.trabajador])
   useEffect(() => {
     const result = NOM_VAL.test(nom_trabajador);
-    console.log("Nombre " + result);
     setValidNom(result);
   }, [nom_trabajador])
   useEffect(() => {
     const result = PRIAPE_VAL.test(primer_ape_trabajador);
-    console.log(result);
     setValidPrimer_ape(result);
   }, [primer_ape_trabajador])
   useEffect(() => {
@@ -160,19 +154,24 @@ function FormDarAltaTr(props) {
   }, [segundo_ape_trabajador])
   useEffect(() => {
     const result = DNI_VAL.test(dni_trabajador);
-    console.log("DNI " + result);
 
     setValidDni(result);
   }, [dni_trabajador])
   useEffect(() => {
     // const result = FECHA_VAL.test(fecha_nacimiento_trabajador);
-    if (fecha_nacimiento_trabajador != "") {
-      console.log("FECHAAA NACIMIENTOOOOO "+fecha_nacimiento_trabajador)
 
-      setValidFecha_nacimiento(true);
+
+    if (fecha_nacimiento_trabajador != "") {
+      const dateToValid = fecha_nacimiento_trabajador;
+      const isValid = moment(dateToValid, "YYYY-MM-DD", true).isValid();
+      const mayorde16 = moment().diff(dateToValid, 'years') > 16;
+      if (isValid === true && mayorde16 === true) {
+        setValidFecha_nacimiento(true);
+      } else {
+        setValidFecha_nacimiento(false);
+      }
     } else {
       setValidFecha_nacimiento(false);
-
     }
   }, [fecha_nacimiento_trabajador])
   useEffect(() => {
@@ -289,36 +288,9 @@ function FormDarAltaTr(props) {
         icon: "error",
       })
     }
-    console.log("eeeeeeeeeee")
-    console.log(nom_trabajador)
 
   }
-  let today = new Date();
-  let month = today.getMonth()+1;
-  let year = today.getFullYear();
-  let prevMonth = (month === 0) ? 11 : month - 1;
-  let prevYear = (prevMonth === 11) ? year - 1 : year;
-  let nextMonth = (month === 11) ? 0 : month + 1;
-  let nextYear = (nextMonth === 0) ? year + 1 : year;
-  let minDate = new Date();
-  minDate.setMonth(prevMonth);
-  minDate.setFullYear(prevYear);
 
-  let maxDate = new Date();
-  maxDate.setMonth(nextMonth);
-  maxDate.setFullYear(nextYear);
-
-  let invalidDates = [today];
-  addLocale('es', {
-    firstDayOfWeek: 1,
-    dayNames: ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'],
-    dayNamesShort: ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'],
-    dayNamesMin: ['D', 'L', 'M', 'X', 'J', 'V', 'S'],
-    monthNames: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
-    monthNamesShort: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'],
-    today: 'Hoy',
-    clear: 'Limpiar'
-});
 
   return (
     <div>
@@ -426,16 +398,14 @@ function FormDarAltaTr(props) {
             <FontAwesomeIcon icon={faInfoCircle} />
             Dni válido
           </p>
-          
-            <label htmlFor='fech_nacimiento' className='form-label'>Fecha nacimiento
-              <span className={validFecha_nacimiento ? "valid" : "hide"}>
-                <FontAwesomeIcon icon={faCheck} />
-              </span>
-              <span className={validFecha_nacimiento || !fecha_nacimiento_trabajador ? "hide" : "invalid"}>
-                <FontAwesomeIcon icon={faTimes} />
-              </span>
-            </label>
-
+          <label htmlFor='fech_nacimiento' className='form-label'>Fecha nacimiento
+            <span className={validFecha_nacimiento ? "valid" : "hide"}>
+              <FontAwesomeIcon icon={faCheck} />
+            </span>
+            <span className={validFecha_nacimiento || !fecha_nacimiento_trabajador ? "hide" : "invalid"}>
+              <FontAwesomeIcon icon={faTimes} />
+            </span>
+          </label>
 
           <input type="date" className='form-control'
             placeholder="Ingrese la fecha de nacimiento"
