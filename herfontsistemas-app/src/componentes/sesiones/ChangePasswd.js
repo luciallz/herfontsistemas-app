@@ -5,7 +5,9 @@ import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Swal from 'sweetalert2';
 import { rutaMaquina } from '../Rutas';
-function ChangePsswd() {
+import { useLocation } from 'react-router-dom';
+
+function ChangePasswd() {
     const [contrasena, setContrasena] = useState('')
     const [validContrasena, setValidContrasena] = useState(false)
     const [contrasenaFocus, setContrasenaFocus] = useState(false)
@@ -16,19 +18,15 @@ function ChangePsswd() {
     const [verPwd2, setVerPwd2] = useState(false)
 
     // fetch(rutaMaquina + `/herfontsistemas-back/ChangePsswd/?token=${token}`, {
-    const [token, setToken] = useState(null);
-
-    useEffect(() => {
-        const searchParams = new URLSearchParams(window.location.search);
-        const token = searchParams.get('token');
-        setToken(token);
-    }, []);
+    const location = useLocation();
+    const token = new URLSearchParams(location.search).get('token');
+    // const token = new URLSearchParams(props.location.search).get('token');
     // fetch(rutaMaquina + "/herfontsistemas-back/ChangePsswd/${token}", {
+    console.log(token)
 
-    fetch(rutaMaquina + `/ChangePsswd/${token}`, {
-        'method': ('GET', 'POST'),
+    fetch(rutaMaquina + `/herfontsistemas-back/ChangePasswd`, {
+        'method': 'POST',
         headers: { "Content-type": "application/json" }
-
     }).then(
         res => res.json()
         // ).then(
@@ -57,8 +55,13 @@ function ChangePsswd() {
 
     const handleSubmit = e => {
         e.preventDefault();
-        APIService.ChangePsswd({ contrasena })
-            .then(resp => Swal.fire({
+        const data={
+            token:token,
+            contrasena:contrasena,
+        }
+        APIService.ChangePasswd({ data })
+            .then(resp => 
+                Swal.fire({
                 title: "¡Éxito!",
                 text: "Se ha cambiado la contraseña correctamente",
                 icon: "susccess"
@@ -73,7 +76,6 @@ function ChangePsswd() {
 
     return (
         <div>
-
             <div className="container">
 
 
@@ -158,10 +160,9 @@ function ChangePsswd() {
 
 
             </div>
-
         </div>
     )
 }
 
-export default ChangePsswd
+export default ChangePasswd
 

@@ -5,56 +5,75 @@ import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Swal from 'sweetalert2';
 import { rutaMaquina } from '../Rutas';
+import { ErrorResponse } from '@remix-run/router';
 function ForgotPsswd() {
     const [correo, setCorreo] = useState('')
     const [validCorreo, setValidCorreo] = useState(false)
     const [correoFocus, setCorreoFocus] = useState(false)
-    useEffect(() => {
-        fetch(rutaMaquina , {
-          'method': 'GET',
-          headers: { "Content-type": "application/json" }
-          
-        }).then(
-          res => res.json()
-        // ).then(
-        //   res => {
-        //     setCorreo(res)
-        //   }
-        ).catch(error => console.log(error))
-      }, [])
-      const CORREO_VAL = /^[\w\.\_]{3,5}\+?[\w\.\_]{0,20}@[\w]{3,}\.\w{2,5}$/;
+    const CORREO_VAL = /^[\w\.\_]{3,5}\+?[\w\.\_]{0,20}@[\w]{3,}\.\w{2,5}$/;
     const correoRef = useRef();
+    useEffect(() => {
+        fetch(rutaMaquina + `/herfontsistemas-back/ForgotPsswd`, {
+            'method': 'POST',
+            headers: { "Content-type": "application/json" }
 
-    
+        }).then(
+            res => res.json()
+
+        ).catch(error => console.log(error))
+    }, [])
 
     useEffect(() => {
+        const result = CORREO_VAL.test(correo);
         setCorreo(correo)
+        setValidCorreo(result);
     }, [correo])
 
-    // useEffect(() => {
-    //     correoRef.current.focus();
-    // }, [])
-    // useEffect(() => {
-    //     const result = CORREO_VAL.test(correo);
-    //     setValidCorreo(result);
-    //     console.log(result)
 
-    // }, [correo])
     const handleSubmit = e => {
         e.preventDefault();
-        APIService.ForgotPsswd({ correo })
-                .then(resp => Swal.fire({
-                    title: "CORREO ENVIADO",
-                    text: " Chequea tu correo electrónico para cambiar la contraseña ",
-                    icon: "success",
+        if (CORREO_VAL.test(correo) === true) {
+
+            APIService.ForgotPsswd({ correo })
+                .then((resp) =>{ 
+                    if(resp.correcto){
+                        Swal.fire({
+                        title: "CORREO ENVIADO",
+                        text: " Chequea tu correo electrónico para cambiar la contraseña ",
+                        icon: "success",
                     
-                }))
-                .catch(error => Swal.fire({
-                    title: "¡Error!",
-                    text: " No se reconoce el correo.",
-                    icon: "error"
-                }))
-        
+                        })
+                    }
+                    if(resp.errorForgotPsswd){
+                        Swal.fire({
+                            title: "ERROR",
+                            text: resp.errorForgotPsswd,
+                            icon: "error",
+                        
+                        })
+                    }
+            }).catch(error => {
+                    if (error.errorForgotPsswd) {
+                        Swal.fire({
+                            title: "¡Error!",
+                            text: error.errorForgotPsswd,
+                            icon: "error"
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "¡Error!",
+                            text: "No se reconoce el correo electrónico, escriba uno que ya este en nuestra base de datos.",
+                            icon: "error"
+                        })
+                    }
+                })
+        } else {
+            Swal.fire({
+                title: "¡Error!",
+                text: "No está bien escrito el correo electrónico, revíselo",
+                icon: "error"
+            })
+        }
     }
 
     return (

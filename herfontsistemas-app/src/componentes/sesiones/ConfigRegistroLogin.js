@@ -13,7 +13,7 @@ function ConfigRegistroLogin() {
   const [logueadoUsuario, setLogueadoUsuario] = useState(null)
 
   useEffect(() => {
-    fetch(rutaMaquina, {
+    fetch(rutaMaquina +`/herfontsistemas-back/login`, {
       'method': 'GET',
       headers: { "Content-type": "application/json" }
       

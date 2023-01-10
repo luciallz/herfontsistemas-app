@@ -3,13 +3,14 @@ from flask import Flask, Blueprint, jsonify, render_template, request, url_for, 
 from sqlalchemy.orm import sessionmaker, Session
 from models.usuarios import usuarios, Usuarios, Encoder
 from sqlalchemy import Integer, insert, Column, String, true
-from utils.db import engine, db, session, mail
+from utils.db import engine, db, session
 from flask_bcrypt import Bcrypt
 import json
 from flask_login import LoginManager, login_user, logout_user, login_required
 from itsdangerous import URLSafeSerializer
 from flask_mail import Message,Mail
 from smtplib import SMTPException
+from flask_cors import CORS, cross_origin
 
 
 
@@ -60,13 +61,10 @@ def login():
         print(dictContrasenaCorrecta["contrasena"])
         print(type(dictContrasenaCorrecta))
         contrasenaCorrecta = str(dictContrasenaCorrecta["contrasena"])
-        pw_hass = bcrypt.generate_password_hash(contrasenaCorrecta)
-        print(pw_hass)
-        print(type(pw_hass))
-        print("Contraseña a del form: ")
-        print(contrasenaLog)
-        print(type(contrasenaLog))
-        if not bcrypt.check_password_hash(pw_hass, contrasenaLog):
+        # pw_hass = bcrypt.generate_password_hash(contrasenaCorrecta)
+        # print(pw_hass)
+
+        if not bcrypt.check_password_hash(contrasenaCorrecta, contrasenaLog):
             errorLog = {"errorLog": "Contraseña incorrecta"}
             return jsonify(errorLog)
 
@@ -102,9 +100,10 @@ def send_mail(user):
     print(token)
     print("USUARIO CORREO "+ user.correo)
 # {url_for('usuarios.reset_token',token=token,_external=True)}
+# http://www.herfontsistemas.es/ChangePasswd/{token}
     msg=Message('Password Resset',recipients=[user.correo],sender='lleraszarzal@gmail.com')
     msg.body=f''' Para resetear tu contraseña, porfavor haz click en el siguiente enlaze.
-    http://www.herfontsistemas.es/ChangePasswd/{token}
+    http://localhost:3000/ChangePasswd?token={token}
     
     '''
     print(msg)
@@ -113,7 +112,7 @@ def send_mail(user):
     mail.send(msg)
     
 
-@usuarios.route("/herfontsistemas-back/ForgotPsswd", methods=['GET','POST'])
+@usuarios.route("/herfontsistemas-back/ForgotPsswd", methods=['POST'])
 def forgotPsswd():
     print("ENTRO A FORGOTPSSWD")
 
@@ -125,21 +124,30 @@ def forgotPsswd():
     print("COOOOOORREEEEOOOO")
     print(correo_exist)
     if correo_exist: 
-        forgotPsswd = {"forgotPsswd": "Correo enviado"}
-        print(forgotPsswd)
-        #send_mail(correo_exist.correo)
-        send_mail(correo_exist)
-        return jsonify(forgotPsswd)
+        try:
+            send_mail(correo_exist)
+            print({"correcto": "Correo enviado"})
+            return jsonify({"correcto": "Correo enviado"})
+        except:
+            print({"errorForgotPsswd":"Error al enviar el correo"})
+            return jsonify({"errorForgotPsswd":"Error al enviar el correo"})
     else:
-        errorForgotPsswd = {"errorForgotPsswd": "Correo inválido"}
-        print(errorForgotPsswd)
-        return jsonify(errorForgotPsswd)
+        print({"errorForgotPsswd": "Correo inválido, no existe en nuestra base de datos."})
+        return jsonify({"errorForgotPsswd": "Correo inválido, no existe en nuestra base de datos."})
     
     # jsonUserForgot = json.dumps(correo_exist, cls=Encoder, indent=4)
     # return jsonUserForgot
-@usuarios.route("/herfontsistemas-back/ChangePasswd/<token>", methods=['GET','POST'])
-def reset_token(token):
+cors=CORS(usuarios)
+@usuarios.route("/herfontsistemas-back/ChangePasswd", methods=['POST'])
+@cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
+def reset_token():
     print("ENTRO A FORGOTPSSWD TOKEN")
+    data=request.json
+    print(data)
+    token= data['data']['token']
+    contrasenaForm = data['data']['contrasena']
+    print("TOKEN= "+token)
+    print("CONTRASEÑA= "+contrasenaForm)
     user=Usuarios.verify_token(token)
     print("TOKEN USEEER: ")
     print(user)
@@ -151,23 +159,28 @@ def reset_token(token):
         print(errorToken)
         return jsonify(errorToken)
     
-    contrasenaForm = request.json['contrasena']
+    
     print("CONTRASEÑA COGIDA DE FORM:")
     print(contrasenaForm)
     
     
     pw_hass = bcrypt.generate_password_hash(contrasenaForm).decode('utf-8')
-    user.contrasena=pw_hass
+    # user.contrasena=pw_hass
+    session.query(Usuarios).filter(Usuarios.id==user.id).update({"contrasena": pw_hass})
     print("CONTRASEÑA HASEADA:")
     print(pw_hass)
+    print(user.contrasena)
+
     db.session.commit()
     success = {"susscess": "Contraseña cambiada correctamente"}
     print("SUSSCEEEEEEEEEEES")
     print(success)
     # return jsonify(success)
-    return render_template('ChangePasswd',token=token)
+    # return render_template('ChangePasswd',token=token)
+    # jsonToken = json.dumps(token, cls=Encoder, indent=4)
+    return success
 
-@usuarios.route("/herfontsistemas-back/nuevo", methods=['POST'])
+@usuarios.route("/herfontsistemas-back/nuevo", methods=['GET','POST'])
 def nuevo():
     print("entra en usuario")
     _nombre = request.json['nombre']
@@ -181,8 +194,8 @@ def nuevo():
     _codigo_postal = request.json['codigo_postal']
     _descuento = request.json['descuento']
     _admin = False
-
-    nuevoUsuario = Usuarios(_nombre, _apellidos, _correo, _telefono, _contrasena, _direccion, _ciudad, _provincia, _codigo_postal, _descuento, _admin)
+    pw_hass = bcrypt.generate_password_hash(_contrasena).decode('utf-8')
+    nuevoUsuario = Usuarios(_nombre, _apellidos, _correo, _telefono, pw_hass, _direccion, _ciudad, _provincia, _codigo_postal, _descuento, _admin)
     print(nuevoUsuario)
     # with Session(engine) as session:
     user_exist = session.query(Usuarios).filter_by(
@@ -224,7 +237,9 @@ def modificar(id):
         usuario.apellidos = request.json['apellidos']
         usuario.correo = request.json['correo']
         usuario.telefono = request.json['telefono']
-        usuario.contrasena = request.json['contrasena']
+        contrasenaForm = request.json['contrasena']
+        pw_hass = bcrypt.generate_password_hash(contrasenaForm).decode('utf-8')
+        # usuario.contrasena = request.json['contrasena']
         usuario.direccion = request.json['direccion']
         usuario.ciudad = request.json['ciudad']
         usuario.provincia = request.json['provincia']
@@ -234,6 +249,7 @@ def modificar(id):
         print(usuario)
     session.commit()
     usuario = session.query(Usuarios).get(id)
+    session.query(Usuarios).filter(Usuarios.id==usuario.id).update({"contrasena": pw_hass})
     flash("¡Usuario modificado sactifactoriamente!")
     jsonUsersModificado = json.dumps(usuario, cls=Encoder, indent=4)
     print(type(jsonUsersModificado))

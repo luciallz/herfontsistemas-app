@@ -18,7 +18,7 @@ usuarios=Table(
     Column('apellidos',String(100)),
     Column('correo',String(100)),
     Column('telefono',String(50)),
-    Column('contrasena',String(50)),
+    Column('contrasena',String(200)),
     Column('direccion',String(50)),
     Column('ciudad',String(50)),
     Column('provincia',String(50)),
