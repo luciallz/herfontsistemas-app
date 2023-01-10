@@ -86,8 +86,8 @@ function ListarTrabajadores(props) {
       {verMas && (
         <div className=" mx-auto d-block d-flex justify-content-center align-items-center container ">
           <table className='table table-striped table-hover table-responsive mt-5 shadow-lg table-success' >
-            <thead>
-              <tr>
+            <thead className='table bg-green'>
+              <tr className='text-light'>
                 <th >Campo</th>
                 <th>Datos</th>
               </tr>
