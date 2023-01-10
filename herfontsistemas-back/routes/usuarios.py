@@ -155,7 +155,7 @@ def reset_token():
     if user is None:
         print("ENTRO AL if")
 
-        errorToken = {"errorToken": "Token invalido o ha expirado, porfavor hágalo de nuevo"}
+        errorToken = {"errorToken": "Token invalido o ha expirado, porfavor vuelva a enviar el correo para cambiar la contraseña"}
         print(errorToken)
         return jsonify(errorToken)
     
@@ -172,7 +172,7 @@ def reset_token():
     print(user.contrasena)
 
     db.session.commit()
-    success = {"susscess": "Contraseña cambiada correctamente"}
+    success = {"success": "Contraseña cambiada correctamente"}
     print("SUSSCEEEEEEEEEEES")
     print(success)
     # return jsonify(success)

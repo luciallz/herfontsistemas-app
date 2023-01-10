@@ -34,11 +34,14 @@ export default class APIService {
     })
       .then(resp => resp.json())
   }
-  static ChangePsswd(token){
-    return fetch(rutaMaquina + `/herfontsistemas-back/ChangePsswd/${token}`, {
-      'method': ('GET','POST'),
+  
+  static ChangePasswd(data){
+    console.log("TOKEN Y CONTRASEÑA=")
+    console.log(data)
+    return fetch(rutaMaquina + `/herfontsistemas-back/ChangePasswd`, {
+      'method': 'POST',
       headers: { "Content-type": "application/json" },
-      body: JSON.stringify(token)
+      body: JSON.stringify(data)
     })
       .then(resp => resp.json())
   }

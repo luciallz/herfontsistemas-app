@@ -1,6 +1,7 @@
 import React from 'react';
 // import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
-import {HashRouter, Routes, Route} from 'react-router-dom'
+//import { BrowserRouter, HashRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, HashRouter, Routes, Route } from 'react-router-dom'
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -37,10 +38,11 @@ import ChangePasswd from './componentes/sesiones/ChangePasswd';
 function App() {
   return (
     <div>
-      <HashRouter>
+      <BrowserRouter>
+
         <Menu />
         <Routes>
-          <Route path="/" element={<Home/>} />
+          <Route path="/" element={<Home />} />
           <Route path="/Productos" element={<Productos />} />
           <Route path="/Servicios" element={<Servicios />} />
           <Route path="/Servicios/GamaCompleta" element={<GamaCompleta />}></Route>
@@ -57,13 +59,15 @@ function App() {
           <Route path="/PaginaPrincipal" element={<PaginaPersonal />} />
           <Route path="/RecuperarContrasena" element={<ForgotPsswd />} />
           <Route path='/ForgotPsswd' element={<ForgotPsswd />} />
-          <Route path='/ChangePasswd/<token>' element={<ChangePasswd />} />
+          <Route path='/ChangePasswd' element={<ChangePasswd />} />
           <Route path="/LogOut" element={<Logout />} />
         </Routes>
-      </HashRouter>
+      </BrowserRouter>
+
     </div>
-    
+
   )
 }
+
 
 export default App

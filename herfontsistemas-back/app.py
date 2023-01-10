@@ -5,7 +5,6 @@ from routes.trabajadores import trabajadores
 from flask import Flask, request, jsonify, make_response
 from flask_login import LoginManager,login_user,logout_user,login_required
 from flask_mail import Mail
-from utils.db import mail
 import smtplib,ssl
 
 #from flask_cors import CORS,cross_origin

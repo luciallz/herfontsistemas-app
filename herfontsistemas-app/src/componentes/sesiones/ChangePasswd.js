@@ -55,17 +55,27 @@ function ChangePasswd() {
 
     const handleSubmit = e => {
         e.preventDefault();
-        const data={
-            token:token,
-            contrasena:contrasena,
+        const data = {
+            token: token,
+            contrasena: contrasena,
         }
         APIService.ChangePasswd({ data })
-            .then(resp => 
-                Swal.fire({
-                title: "¡Éxito!",
-                text: "Se ha cambiado la contraseña correctamente",
-                icon: "susccess"
-            }))
+            .then((resp) => {
+                if (resp.errorToken) {
+                    Swal.fire({
+                        title: "Error",
+                        text: resp.errorToken,
+                        icon: "error"
+                    })
+                }
+                if (resp.success) {
+                    Swal.fire({
+                        title: "¡Éxito!",
+                        text: resp.success,
+                        icon: "success"
+                    })
+                }
+            })
             .catch(error => Swal.fire({
                 title: "¡Error!",
                 text: "No coinciden las contraseñas o ha habido un problema, vuelva a intentarlo.",
