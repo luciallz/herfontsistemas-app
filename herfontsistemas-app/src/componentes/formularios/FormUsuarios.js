@@ -48,82 +48,59 @@ function FormUsuarios(props) {
     },[props.usuario])
     useEffect(()=>{
         const result = NOMBRE_VAL.test(nombre);
-        console.log(result);
-        console.log(nombre);
         setValidNombre(result);
 
     },[nombre])
     useEffect(()=>{
         const result = APE_VAL.test(apellidos);
-        console.log(result);
-        console.log(apellidos);
         setValidNombre(result);
 
     },[apellidos])
     useEffect(()=>{
         const result = CORREO_VAL.test(correo);
-        console.log(result);
-        console.log(correo);
         setValidNombre(result);
 
     },[correo])
     useEffect(()=>{
         const result = TEL_VAL.test(telefono);
-        console.log(result);
-        console.log(telefono);
         setValidNombre(result);
 
     },[telefono])
     
     useEffect(()=>{
         const result = CONTRASENA_VAL.test(contrasena);
-        console.log(result);
-        console.log(contrasena);
         setValidNombre(result);
 
     },[contrasena])
     useEffect(()=>{
         const result = DIR_VAL.test(direccion);
-        console.log(result);
-        console.log(direccion);
         setValidNombre(result);
 
     },[direccion])
     useEffect(()=>{
         const result = DIR_VAL.test(direccion);
-        console.log(result);
-        console.log(direccion);
         setValidNombre(result);
 
     },[direccion])
 
     useEffect(()=>{
         const result = CIUPROV_VAL.test(ciudad);
-        console.log(result);
-        console.log(ciudad);
         setValidNombre(result);
 
     },[ciudad])
     useEffect(()=>{
         const result = CIUPROV_VAL.test(provincia);
-        console.log(result);
-        console.log(provincia);
         setValidNombre(result);
 
     },[provincia])
     useEffect(()=>{
         const result = CODPOST_VAL.test(codigo_postal);
-        console.log(result);
-        console.log(codigo_postal);
         setValidNombre(result);
 
     },[codigo_postal])
     useEffect(()=>{
         const result = DESC_VAL.test(descuento);
-        console.log(result);
-        console.log(descuento);
         setValidNombre(result);
-
     },[descuento])
 
 
