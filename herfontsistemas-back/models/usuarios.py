@@ -6,7 +6,6 @@ import json
 from flask_login import UserMixin
 from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy import create_engine
-from cryptography.fernet import Fernet
 
 engine = create_engine(
     "mysql://root:lucia@localhost/herfontsistemasdb", echo=True)
