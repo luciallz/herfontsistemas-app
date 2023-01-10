@@ -12,22 +12,22 @@ engine = create_engine(
     "mysql://root:lucia@localhost/herfontsistemasdb", echo=True)
 Session = sessionmaker(bind=engine)
 
-session = Session()
-metaUsuarios = MetaData()
-usuarios = Table(
-    'usuarios', metaUsuarios,
-    Column('id', Integer, primary_key=True),
-    Column('nombre', String(100)),
-    Column('apellidos', String(100)),
-    Column('correo', String(100)),
-    Column('telefono', String(50)),
-    Column('contrasena', String(50)),
-    Column('direccion', String(50)),
-    Column('ciudad', String(50)),
-    Column('provincia', String(50)),
-    Column('codigo_postal', Integer),
-    Column('descuento', String(50)),
-    Column('admin', Boolean, default=False),
+session=Session()
+metaUsuarios=MetaData()
+usuarios=Table(
+    'usuarios',metaUsuarios,
+    Column('id',Integer,primary_key=True),
+    Column('nombre',String(100)),
+    Column('apellidos',String(100)),
+    Column('correo',String(100)),
+    Column('telefono',String(50)),
+    Column('contrasena',String(200)),
+    Column('direccion',String(50)),
+    Column('ciudad',String(50)),
+    Column('provincia',String(50)),
+    Column('codigo_postal',Integer),
+    Column('descuento',String(50)),
+    Column('admin',Boolean, default=False),
 )
 
 Base = declarative_base()
